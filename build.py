@@ -9,7 +9,7 @@ import mk_all
 def build():
     mk_all()
     print("Building...")
-    os.system("tsc --build --verbose")
+    os.system("npx tsc --build --verbose")
 
 
 if __name__ == "__main__":

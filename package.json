@@ -10,6 +10,7 @@
   "main": "./build/all.js",
   "types": "./types/all.d.ts",
   "devDependencies": {
+    "typescript": "^4",
     "webpack-cli": "^4"
   }
 }
