@@ -7,8 +7,8 @@ import sys
 def publish(mode: str):
     print("Publishing...")
     for public_file in os.listdir("public"):
-        if public_file.endswith(".builded-js"):
-            named = public_file.replace(".builded-js", ".js")
+        if public_file.endswith(".build-js"):
+            named = public_file.replace(".build-js", ".js")
             builded = "./build/" + named
             if os.path.exists(builded):
                 os.system(
