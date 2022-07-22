@@ -2,7 +2,6 @@
 
 import os
 import sys
-from typing import List
 
 search_for = ["export class ", "export abstract class ", "export type ", "export interface ",
               "export enum ", "export const ", "export function "]
@@ -23,8 +22,8 @@ def get_exported(line: str) -> str:
     return ""
 
 
-def get_all(source: str) -> List[str]:
-    results: List[str] = []
+def get_all(source: str) -> list[str]:
+    results: list[str] = []
     with open("src/" + source, "r") as file:
         for line in file.readlines():
             exported = get_exported(line)
@@ -40,7 +39,7 @@ def mk_all():
     if not os.path.exists('src/all.ts'):
         print("Does not need to make an all.ts source.")
         return
-    founds: List[str] = []
+    founds: list[str] = []
     for source in os.listdir("src"):
         if source.endswith(".ts"):
             founds.extend(get_all(source))

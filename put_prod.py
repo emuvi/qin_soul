@@ -1,13 +1,5 @@
 #!/usr/bin/env python3
 
-import os
-import shutil
+import put_on
 
-import gen_build
-import pk_public
-
-qin_root = os.environ['QIN_ROOT']
-gen_build()
-pk_public("production")
-shutil.copytree(
-    "./public", f"{qin_root}/Prod/pub/qin_soul", dirs_exist_ok=True)
+put_on.make("qin_soul", put_on.Mode.PROD, put_on.Kind.PUB)

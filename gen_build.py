@@ -6,6 +6,8 @@ import sys
 
 def generate():
     print("Generating...")
+    if not os.path.isdir("node_modules"):
+        os.system("npm install")
     for path in os.listdir("."):
         if path.startswith("mk_") and path.endswith(".py"):
             with open(path) as file:
