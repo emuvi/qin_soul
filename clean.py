@@ -7,7 +7,6 @@ def clean():
     shutil.rmtree("build")
     shutil.rmtree("types")
     shutil.rmtree("node_modules")
-    pass
 
 
 if __name__ == "__main__":
