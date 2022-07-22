@@ -5,11 +5,13 @@ import urllib.request
 
 
 def automagic():
+    print("Automagic...")
     if os.path.exists("package.json"):
         app_automagic()
 
 
 def app_automagic():
+    print("Configuring an application...")
     download("https://github.com/pointeldevs/qin_soul/raw/master/clean.py", "clean.py")
     download(
         "https://github.com/pointeldevs/qin_soul/raw/master/gen_build.py", "gen_build.py")
