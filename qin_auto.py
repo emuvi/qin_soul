@@ -28,7 +28,7 @@ def app_automagic():
 
 def app_mk_put_mode(app_name: str, mode: str):
     kind = 'PUB'
-    if app_name.startswith("qia_"):
+    if app_name.startswith("qia_") or app_name == "qin_case":
         kind = "APP"
     source = f"""#!/usr/bin/env python3
 import put_on
