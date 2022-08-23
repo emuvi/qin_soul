@@ -73,7 +73,7 @@ function fillToString(
 }
 
 function getTextLines(fromText: string): string[] {
-  if (fromText) {
+  if (!!fromText) {
     return fromText.match(/[^\r\n]+/g);
   } else {
     return [];
@@ -81,43 +81,45 @@ function getTextLines(fromText: string): string[] {
 }
 
 function getCSVRows(fromText: string): string[][] {
-  var lines = getTextLines(fromText);
   var result: string[][] = [];
-  for (let line of lines) {
-    let row = new Array<string>();
-    let inside_quotes = false;
-    let column_value = "";
-    let column_index = 0;
-    for (let char_index = 0; char_index < line.length; char_index++) {
-      let actual = line.charAt(char_index);
-      if (inside_quotes) {
-        if (actual == '"') {
-          let next = char_index < line.length - 1 ? line.charAt(char_index + 1) : "";
-          if (next == '"') {
-            column_value += actual;
-            char_index++;
+  var lines = getTextLines(fromText);
+  if (lines) {
+    for (let line of lines) {
+      let row = new Array<string>();
+      let inside_quotes = false;
+      let column_value = "";
+      let column_index = 0;
+      for (let char_index = 0; char_index < line.length; char_index++) {
+        let actual = line.charAt(char_index);
+        if (inside_quotes) {
+          if (actual == '"') {
+            let next = char_index < line.length - 1 ? line.charAt(char_index + 1) : "";
+            if (next == '"') {
+              column_value += actual;
+              char_index++;
+            } else {
+              inside_quotes = false;
+            }
           } else {
-            inside_quotes = false;
+            column_value += actual;
           }
         } else {
-          column_value += actual;
-        }
-      } else {
-        if (actual == '"') {
-          inside_quotes = true;
-        } else if (actual == ",") {
-          column_value = unmaskSpecialChars(column_value);
-          row.push(column_value);
-          column_value = "";
-          column_index++;
-        } else {
-          column_value += actual;
+          if (actual == '"') {
+            inside_quotes = true;
+          } else if (actual == ",") {
+            column_value = unmaskSpecialChars(column_value);
+            row.push(column_value);
+            column_value = "";
+            column_index++;
+          } else {
+            column_value += actual;
+          }
         }
       }
+      column_value = unmaskSpecialChars(column_value);
+      row.push(column_value);
+      result.push(row);
     }
-    column_value = unmaskSpecialChars(column_value);
-    row.push(column_value);
-    result.push(row);
   }
   return result;
 }
