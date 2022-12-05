@@ -96,14 +96,7 @@ function getDeskAPI() {
   return undefined;
 }
 
-const logged: string[] = [];
-
-function getLogged(): string[] {
-  return logged;
-}
-
 function log(message: string) {
-  logged.push(message);
   try {
     console.log(message);
   } catch (_) {}
@@ -112,8 +105,8 @@ function log(message: string) {
   } catch (_) {}
 }
 
-function logInfo(error: any, origin: string) {
-  log(getInfoMessage(error, origin));
+function logInfo(info: any, origin: string) {
+  log(getInfoMessage(info, origin));
 }
 
 function getInfoMessage(info: any, origin: string) {
@@ -128,12 +121,12 @@ function getErrorMessage(error: any, origin: string) {
   return getTreatMessage(tr("Problem"), error, origin);
 }
 
-function logWarning(error: any, origin: string) {
-  log(getWarningMessage(error, origin));
+function logWarning(warn: any, origin: string) {
+  log(getWarningMessage(warn, origin));
 }
 
-function getWarningMessage(error: any, origin: string) {
-  return getTreatMessage(tr("Attention"), error, origin);
+function getWarningMessage(warn: any, origin: string) {
+  return getTreatMessage(tr("Attention"), warn, origin);
 }
 
 function getTreatMessage(prefix: string, value: any, origin: string) {
@@ -184,7 +177,6 @@ export const QinHead = {
   setCookie,
   delCookie,
   getDeskAPI,
-  getLogged,
   log,
   logInfo,
   getInfoMessage,
