@@ -130,7 +130,7 @@ function getWarningMessage(warn: any, origin: string) {
 }
 
 function getTreatMessage(prefix: string, value: any, origin: string) {
-  var result = tr(" on: ");
+  var result = prefix + ": ";
   if (typeof value == "string" || value instanceof String) {
     result += value.toString();
   } else {
@@ -150,7 +150,7 @@ function getTreatMessage(prefix: string, value: any, origin: string) {
   if (origin) {
     result += "\n" + tr("By origin: ") + origin;
   }
-  return prefix + result;
+  return result;
 }
 
 function getMessageOrData(of: any): string {
