@@ -110,7 +110,7 @@ function logInfo(info: any, origin: string) {
 }
 
 function getInfoMessage(info: any, origin: string) {
-  return getTreatMessage(tr("Look"), info, origin);
+  return getTreatMessage(tr("Notice"), info, origin);
 }
 
 function logError(error: any, origin: string) {
