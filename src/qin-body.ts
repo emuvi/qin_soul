@@ -72,7 +72,10 @@ function fillToString(
   return result;
 }
 
-function getTextLines(fromText: string): string[] {
+function getTextLines(fromText: any): string[] {
+  if (fromText !== null && fromText !== undefined && typeof fromText !== "string") {
+    fromText = fromText.toString();
+  }
   if (!!fromText) {
     return fromText.match(/[^\r\n]+/g);
   } else {
@@ -80,7 +83,7 @@ function getTextLines(fromText: string): string[] {
   }
 }
 
-function getCSVRows(fromText: string): string[][] {
+function getCSVRows(fromText: any): string[][] {
   var result: string[][] = [];
   var lines = getTextLines(fromText);
   if (lines) {
