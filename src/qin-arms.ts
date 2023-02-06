@@ -1248,6 +1248,7 @@ export const QinArms = {
   isEventTouchLong,
   isKeyInList,
   isKeyEnter,
+  isKeyEscape,
   isKeySpace,
   isFirstButton,
   isMiddleButton,
