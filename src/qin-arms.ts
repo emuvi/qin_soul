@@ -319,6 +319,10 @@ export class QinEvent {
   public consumed() {
     this._stop = true;
   }
+
+  public isKeyIn(list: string[]): boolean {
+    return isKeyInList(this._eventKey, list);
+  }
 }
 
 export type QinEventType = {
@@ -796,6 +800,15 @@ function addActionMenuPoint(origin: HTMLElement, action: QinAction) {
   });
 }
 
+function addActionKey(keyList: string[], origin: HTMLElement, action: QinAction) {
+  addAction(origin, (qinEvent: QinEvent) => {
+    if (qinEvent.isKeyIn(keyList)) {
+      action(qinEvent);
+      qinEvent.consumed();
+    }
+  });
+}
+
 function addActions(origins: HTMLElement[], action: QinAction) {
   for (const element of origins) {
     addAction(element, action);
@@ -889,6 +902,12 @@ function addActionsMenuTouch(origins: HTMLElement[], action: QinAction) {
 function addActionsMenuPoint(origins: HTMLElement[], action: QinAction) {
   for (const element of origins) {
     addActionMenuPoint(element, action);
+  }
+}
+
+function addActionsKey(keyList: string[], origins: HTMLElement[], action: QinAction) {
+  for (const element of origins) {
+    addActionKey(keyList, element, action);
   }
 }
 
@@ -1259,6 +1278,7 @@ export const QinArms = {
   addActionMenuMouse,
   addActionMenuTouch,
   addActionMenuPoint,
+  addActionKey,
   addActions,
   addActionsMain,
   addActionsMainKey,
@@ -1275,6 +1295,7 @@ export const QinArms = {
   addActionsMenuMouse,
   addActionsMenuTouch,
   addActionsMenuPoint,
+  addActionsKey,
   addMover,
   addResizer,
   addScroller,
