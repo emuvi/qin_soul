@@ -609,8 +609,6 @@ function addAction(origin: HTMLElement, action: QinAction) {
     action(qinEvent);
     if (qinEvent.stop) {
       return stopEvent(ev);
-    } else {
-      return stopPropagation(ev);
     }
   }
 
@@ -619,8 +617,6 @@ function addAction(origin: HTMLElement, action: QinAction) {
     action(qinEvent);
     if (qinEvent.stop) {
       return stopEvent(ev);
-    } else {
-      return stopPropagation(ev);
     }
   }
 
@@ -629,8 +625,6 @@ function addAction(origin: HTMLElement, action: QinAction) {
     action(qinEvent);
     if (qinEvent.stop) {
       return stopEvent(ev);
-    } else {
-      return stopPropagation(ev);
     }
   }
 
@@ -639,8 +633,6 @@ function addAction(origin: HTMLElement, action: QinAction) {
     action(qinEvent);
     if (qinEvent.stop) {
       return stopEvent(ev);
-    } else {
-      return stopPropagation(ev);
     }
   }
 
@@ -649,8 +641,6 @@ function addAction(origin: HTMLElement, action: QinAction) {
     action(qinEvent);
     if (qinEvent.stop) {
       return stopEvent(ev);
-    } else {
-      return stopPropagation(ev);
     }
   }
 
@@ -659,15 +649,13 @@ function addAction(origin: HTMLElement, action: QinAction) {
     action(qinEvent);
     if (qinEvent.stop) {
       return stopEvent(ev);
-    } else {
-      return stopPropagation(ev);
     }
   }
 }
 
 function addActionMain(origin: HTMLElement, action: QinAction) {
   addAction(origin, (qinEvent: QinEvent) => {
-    if (qinEvent.isMain) {
+    if (!qinEvent.isStart && qinEvent.isMain) {
       action(qinEvent);
       qinEvent.consumed();
     }
@@ -676,7 +664,7 @@ function addActionMain(origin: HTMLElement, action: QinAction) {
 
 function addActionMainKey(origin: HTMLElement, action: QinAction) {
   addAction(origin, (qinEvent: QinEvent) => {
-    if (qinEvent.isMainKey) {
+    if (!qinEvent.isStart && qinEvent.isMainKey) {
       action(qinEvent);
       qinEvent.consumed();
     }
@@ -685,7 +673,7 @@ function addActionMainKey(origin: HTMLElement, action: QinAction) {
 
 function addActionMainMouse(origin: HTMLElement, action: QinAction) {
   addAction(origin, (qinEvent: QinEvent) => {
-    if (qinEvent.isMainMouse) {
+    if (!qinEvent.isStart && qinEvent.isMainMouse) {
       action(qinEvent);
       qinEvent.consumed();
     }
@@ -694,7 +682,7 @@ function addActionMainMouse(origin: HTMLElement, action: QinAction) {
 
 function addActionMainTouch(origin: HTMLElement, action: QinAction) {
   addAction(origin, (qinEvent: QinEvent) => {
-    if (qinEvent.isMainMouse) {
+    if (!qinEvent.isStart && qinEvent.isMainMouse) {
       action(qinEvent);
       qinEvent.consumed();
     }
@@ -703,7 +691,7 @@ function addActionMainTouch(origin: HTMLElement, action: QinAction) {
 
 function addActionMainPoint(origin: HTMLElement, action: QinAction) {
   addAction(origin, (qinEvent: QinEvent) => {
-    if (qinEvent.isMainPoint) {
+    if (!qinEvent.isStart && qinEvent.isMainPoint) {
       action(qinEvent);
       qinEvent.consumed();
     }
@@ -712,7 +700,7 @@ function addActionMainPoint(origin: HTMLElement, action: QinAction) {
 
 function addActionMidi(origin: HTMLElement, action: QinAction) {
   addAction(origin, (qinEvent: QinEvent) => {
-    if (qinEvent.isMidi) {
+    if (!qinEvent.isStart && qinEvent.isMidi) {
       action(qinEvent);
       qinEvent.consumed();
     }
@@ -721,7 +709,7 @@ function addActionMidi(origin: HTMLElement, action: QinAction) {
 
 function addActionMidiKey(origin: HTMLElement, action: QinAction) {
   addAction(origin, (qinEvent: QinEvent) => {
-    if (qinEvent.isMidiKey) {
+    if (!qinEvent.isStart && qinEvent.isMidiKey) {
       action(qinEvent);
       qinEvent.consumed();
     }
@@ -730,7 +718,7 @@ function addActionMidiKey(origin: HTMLElement, action: QinAction) {
 
 function addActionMidiMouse(origin: HTMLElement, action: QinAction) {
   addAction(origin, (qinEvent: QinEvent) => {
-    if (qinEvent.isMidiMouse) {
+    if (!qinEvent.isStart && qinEvent.isMidiMouse) {
       action(qinEvent);
       qinEvent.consumed();
     }
@@ -739,7 +727,7 @@ function addActionMidiMouse(origin: HTMLElement, action: QinAction) {
 
 function addActionMidiTouch(origin: HTMLElement, action: QinAction) {
   addAction(origin, (qinEvent: QinEvent) => {
-    if (qinEvent.isMidiMouse) {
+    if (!qinEvent.isStart && qinEvent.isMidiMouse) {
       action(qinEvent);
       qinEvent.consumed();
     }
@@ -748,7 +736,7 @@ function addActionMidiTouch(origin: HTMLElement, action: QinAction) {
 
 function addActionMidiPoint(origin: HTMLElement, action: QinAction) {
   addAction(origin, (qinEvent: QinEvent) => {
-    if (qinEvent.isMidiPoint) {
+    if (!qinEvent.isStart && qinEvent.isMidiPoint) {
       action(qinEvent);
       qinEvent.consumed();
     }
@@ -757,7 +745,7 @@ function addActionMidiPoint(origin: HTMLElement, action: QinAction) {
 
 function addActionMenu(origin: HTMLElement, action: QinAction) {
   addAction(origin, (qinEvent: QinEvent) => {
-    if (qinEvent.isMenu) {
+    if (!qinEvent.isStart && qinEvent.isMenu) {
       action(qinEvent);
       qinEvent.consumed();
     }
@@ -766,7 +754,7 @@ function addActionMenu(origin: HTMLElement, action: QinAction) {
 
 function addActionMenuKey(origin: HTMLElement, action: QinAction) {
   addAction(origin, (qinEvent: QinEvent) => {
-    if (qinEvent.isMenuKey) {
+    if (!qinEvent.isStart && qinEvent.isMenuKey) {
       action(qinEvent);
       qinEvent.consumed();
     }
@@ -775,7 +763,7 @@ function addActionMenuKey(origin: HTMLElement, action: QinAction) {
 
 function addActionMenuMouse(origin: HTMLElement, action: QinAction) {
   addAction(origin, (qinEvent: QinEvent) => {
-    if (qinEvent.isMenuMouse) {
+    if (!qinEvent.isStart && qinEvent.isMenuMouse) {
       action(qinEvent);
       qinEvent.consumed();
     }
@@ -784,7 +772,7 @@ function addActionMenuMouse(origin: HTMLElement, action: QinAction) {
 
 function addActionMenuTouch(origin: HTMLElement, action: QinAction) {
   addAction(origin, (qinEvent: QinEvent) => {
-    if (qinEvent.isMenuMouse) {
+    if (!qinEvent.isStart && qinEvent.isMenuMouse) {
       action(qinEvent);
       qinEvent.consumed();
     }
@@ -793,7 +781,7 @@ function addActionMenuTouch(origin: HTMLElement, action: QinAction) {
 
 function addActionMenuPoint(origin: HTMLElement, action: QinAction) {
   addAction(origin, (qinEvent: QinEvent) => {
-    if (qinEvent.isMenuPoint) {
+    if (!qinEvent.isStart && qinEvent.isMenuPoint) {
       action(qinEvent);
       qinEvent.consumed();
     }
@@ -802,7 +790,7 @@ function addActionMenuPoint(origin: HTMLElement, action: QinAction) {
 
 function addActionKey(keyList: string[], origin: HTMLElement, action: QinAction) {
   addAction(origin, (qinEvent: QinEvent) => {
-    if (qinEvent.isKeyIn(keyList)) {
+    if (!qinEvent.isStart && qinEvent.isKeyIn(keyList)) {
       action(qinEvent);
       qinEvent.consumed();
     }
