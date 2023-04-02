@@ -169,6 +169,24 @@ function toggleDevTools() {
   }
 }
 
+function stopBrowserShortcuts(window: Window) {
+  window.document.body.onkeydown = (event) => {
+    if (event.ctrlKey) {
+      event.stopPropagation();
+      event.preventDefault();
+      return false;
+    } else if (
+      ["F1", "F2", "F3", "F4", "F5", "F6", "F7", "F8", "F9", "F10", "F11", "F12"]
+        .indexOf(event.key) >= 0
+    ) {
+      event.stopPropagation();
+      event.preventDefault();
+      return false;
+    }
+    return true;
+  };
+}
+
 export const QinHead = {
   translate,
   translations,
@@ -186,4 +204,5 @@ export const QinHead = {
   getWarningMessage,
   getTreatMessage,
   toggleDevTools,
+  stopBrowserShortcuts,
 };
