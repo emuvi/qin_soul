@@ -459,7 +459,7 @@ function isKeyInList(ev: KeyboardEvent, list: string[]): boolean {
   if (!ev) {
     return false;
   }
-  let keyLower = ev.key.toLowerCase();
+  let keyLower = ev.key.toUpperCase();
   return list.indexOf(keyLower) > -1;
 }
 
@@ -467,21 +467,21 @@ function isKeyEnter(ev: KeyboardEvent): boolean {
   if (!ev) {
     return false;
   }
-  return isKeyInList(ev, ["enter", "return"]) || ev.keyCode === 13;
+  return isKeyInList(ev, ["ENTER", "RETURN"]) || ev.keyCode === 13;
 }
 
 function isKeyEscape(ev: KeyboardEvent): boolean {
   if (!ev) {
     return false;
   }
-  return isKeyInList(ev, ["esc", "escape"]) || ev.keyCode === 27;
+  return isKeyInList(ev, ["ESC", "ESCAPE"]) || ev.keyCode === 27;
 }
 
 function isKeySpace(ev: KeyboardEvent): boolean {
   if (!ev) {
     return false;
   }
-  return isKeyInList(ev, [" ", "space", "spacebar"]) || ev.keyCode === 32;
+  return isKeyInList(ev, [" ", "SPACE", "SPACEBAR"]) || ev.keyCode === 32;
 }
 
 function isFirstButton(ev: MouseEvent): boolean {
