@@ -99,9 +99,9 @@ export class QinEvent {
     return false;
   }
 
-  public get keyTyped(): string {
+  public get keyPressed(): string {
     if (this._eventKey) {
-      return this._eventKey.key;
+      return this._eventKey.key.toUpperCase();
     }
     return null;
   }
@@ -459,8 +459,8 @@ function isKeyInList(ev: KeyboardEvent, list: string[]): boolean {
   if (!ev) {
     return false;
   }
-  let keyLower = ev.key.toUpperCase();
-  return list.indexOf(keyLower) > -1;
+  let keyUpper = ev.key.toUpperCase();
+  return list.indexOf(keyUpper) > -1;
 }
 
 function isKeyEnter(ev: KeyboardEvent): boolean {
