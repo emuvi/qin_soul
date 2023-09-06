@@ -6,10 +6,10 @@ import { QinLegs } from "./qin-legs";
 import { QinSkin } from "./qin-skin";
 
 export const QinSoul = {
-  skin: QinSkin,
-  head: QinHead,
-  arms: QinArms,
-  body: QinBody,
-  legs: QinLegs,
-  foot: QinFoot,
+    skin: QinSkin,
+    head: QinHead,
+    arms: QinArms,
+    body: QinBody,
+    legs: QinLegs,
+    foot: QinFoot,
 };

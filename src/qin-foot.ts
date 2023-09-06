@@ -21,10 +21,13 @@ function getLocation() {
 function isLocalHost() {
     var location = getLocation();
     var start = location.indexOf("://");
-    if (start == -1) { start = 0; }
-    else { start += 3 }
+    if (start == -1) {
+        start = 0;
+    } else {
+        start += 3;
+    }
     location = location.substring(start);
-    return location.indexOf("localhost") === 0 || location.indexOf("127.0.0.1") === 0
+    return location.indexOf("localhost") === 0 || location.indexOf("127.0.0.1") === 0;
 }
 
 function getSeparator(ofPath: string): string {
@@ -91,68 +94,75 @@ function getFileExtension(name: string): string {
     }
 }
 
-const appsExtensions = [
-    "htm", "html", "css", "js", "jsx", "ts", "tsx", "phtml"
-];
+const appsExtensions = ["htm", "html", "css", "js", "jsx", "ts", "tsx", "phtml"];
 
 function isFileApp(extension: string): boolean {
     return appsExtensions.indexOf(extension) > -1;
 }
 
 const cmdsExtensions = [
-    "h", "c", "hpp", "cpp", "rs", "jl",
-    "cs", "csproj", "fs", "ml", "fsi", "mli", "fsx", "fsscript",
-    "java", "gy", "gvy", "groovy", "sc", "scala", "clj",
-    "py", "ruby", "php", "phtml",
+    "h",
+    "c",
+    "hpp",
+    "cpp",
+    "rs",
+    "jl",
+    "cs",
+    "csproj",
+    "fs",
+    "ml",
+    "fsi",
+    "mli",
+    "fsx",
+    "fsscript",
+    "java",
+    "gy",
+    "gvy",
+    "groovy",
+    "sc",
+    "scala",
+    "clj",
+    "py",
+    "ruby",
+    "php",
+    "phtml",
 ];
 
 function isFileCmd(extension: string): boolean {
     return cmdsExtensions.indexOf(extension) > -1;
 }
 
-const execExtensions = [
-    "exe", "jar", "com", "bat", "sh"
-];
+const execExtensions = ["exe", "jar", "com", "bat", "sh"];
 
 function isFileExec(extension: string): boolean {
     return execExtensions.indexOf(extension) > -1;
 }
 
-const imageExtensions = [
-    "jpg", "jpeg", "png", "gif", "bmp"
-];
+const imageExtensions = ["jpg", "jpeg", "png", "gif", "bmp"];
 
 function isFileImage(extension: string): boolean {
     return imageExtensions.indexOf(extension) > -1;
 }
 
-const vectorExtensions = [
-    "svg"
-];
+const vectorExtensions = ["svg"];
 
 function isFileVector(extension: string): boolean {
     return vectorExtensions.indexOf(extension) > -1;
 }
 
-const movieExtensions = [
-    "avi", "mp4"
-];
+const movieExtensions = ["avi", "mp4"];
 
 function isFileMovie(extension: string): boolean {
     return movieExtensions.indexOf(extension) > -1;
 }
 
-const musicExtensions = [
-    "wav", "mp3"
-];
+const musicExtensions = ["wav", "mp3"];
 
 function isFileMusic(extension: string): boolean {
     return musicExtensions.indexOf(extension) > -1;
 }
 
-const zippedExtensions = [
-    "zip", "rar", "7z", "tar", "gz"
-];
+const zippedExtensions = ["zip", "rar", "7z", "tar", "gz"];
 
 function isFileZipped(extension: string): boolean {
     return zippedExtensions.indexOf(extension) > -1;

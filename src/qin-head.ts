@@ -3,206 +3,207 @@ import { QinBody } from "./qin-body";
 const dictionary: Map<string, string> = new Map();
 
 export function tr(of: string): string {
-  return dictionary.get(of) || of;
+    return dictionary.get(of) || of;
 }
 
 function translate(of: string, to: string) {
-  dictionary.set(of, to);
+    dictionary.set(of, to);
 }
 
 function translations(dictionary: string) {
-  let lines = QinBody.getTextLines(dictionary);
-  for (let line of lines) {
-    let index = line.indexOf("=");
-    if (index > 0) {
-      let of = line.substring(0, index);
-      let to = line.substring(index + 1);
-      translate(of, to);
+    let lines = QinBody.getTextLines(dictionary);
+    for (let line of lines) {
+        let index = line.indexOf("=");
+        if (index > 0) {
+            let of = line.substring(0, index);
+            let to = line.substring(index + 1);
+            translate(of, to);
+        }
     }
-  }
 }
 
 function forgetAll() {
-  dictionary.clear();
+    dictionary.clear();
 }
 
 function getCookie(name: string, orDefault?: string): string {
-  let cookies = document.cookie.split(";");
-  for (var i = 0; i < cookies.length; i++) {
-    let cookiePair = cookies[i].split("=");
-    if (name == decodeURIComponent(cookiePair[0]).trim()) {
-      return decodeURIComponent(cookiePair[1]);
+    let cookies = document.cookie.split(";");
+    for (var i = 0; i < cookies.length; i++) {
+        let cookiePair = cookies[i].split("=");
+        if (name == decodeURIComponent(cookiePair[0]).trim()) {
+            return decodeURIComponent(cookiePair[1]);
+        }
     }
-  }
-  return orDefault;
+    return orDefault;
 }
 
 function setCookie(name: string, value: any, options: any = {}) {
-  options = {
-    path: "/",
-    ...options,
-  };
-  if (!options.expires) {
-    let date = new Date();
-    date.setTime(date.getTime() + 1 * 24 * 60 * 60 * 1000);
-    options.expires = date;
-  }
-  if (options.expires instanceof Date) {
-    options.expires = options.expires.toUTCString();
-  }
-  options["SameSite"] = "Strict";
-  let updatedCookie = encodeURIComponent(name) + "=" + encodeURIComponent(value);
-  for (let optionKey in options) {
-    updatedCookie += "; " + optionKey;
-    let optionValue = options[optionKey];
-    if (optionValue !== true) {
-      updatedCookie += "=" + optionValue;
+    options = {
+        path: "/",
+        ...options,
+    };
+    if (!options.expires) {
+        let date = new Date();
+        date.setTime(date.getTime() + 1 * 24 * 60 * 60 * 1000);
+        options.expires = date;
     }
-  }
-  updatedCookie += "; Secure";
-  document.cookie = updatedCookie;
+    if (options.expires instanceof Date) {
+        options.expires = options.expires.toUTCString();
+    }
+    options["SameSite"] = "Strict";
+    let updatedCookie = encodeURIComponent(name) + "=" + encodeURIComponent(value);
+    for (let optionKey in options) {
+        updatedCookie += "; " + optionKey;
+        let optionValue = options[optionKey];
+        if (optionValue !== true) {
+            updatedCookie += "=" + optionValue;
+        }
+    }
+    updatedCookie += "; Secure";
+    document.cookie = updatedCookie;
 }
 
 function delCookie(name: string, options: any = {}) {
-  let updatedCookie = encodeURIComponent(name) + "=;  expires=Thu, 01 Jan 1970 00:00:00 GMT";
-  if (options.expires) {
-    delete options.expires;
-  }
-  for (let optionKey in options) {
-    updatedCookie += "; " + optionKey;
-    let optionValue = options[optionKey];
-    if (optionValue !== true) {
-      updatedCookie += "=" + optionValue;
+    let updatedCookie = encodeURIComponent(name) + "=;  expires=Thu, 01 Jan 1970 00:00:00 GMT";
+    if (options.expires) {
+        delete options.expires;
     }
-  }
-  document.cookie = updatedCookie;
+    for (let optionKey in options) {
+        updatedCookie += "; " + optionKey;
+        let optionValue = options[optionKey];
+        if (optionValue !== true) {
+            updatedCookie += "=" + optionValue;
+        }
+    }
+    document.cookie = updatedCookie;
 }
 
 function getDeskAPI() {
-  var win = window as any;
-  if (win.deskAPI) {
-    return win.deskAPI;
-  } else {
-    win = window.parent;
-  }
-  if (win.deskAPI) {
-    return win.deskAPI;
-  } else {
-    win = window.top;
-  }
-  if (win.deskAPI) {
-    return win.deskAPI;
-  }
-  return undefined;
+    var win = window as any;
+    if (win.deskAPI) {
+        return win.deskAPI;
+    } else {
+        win = window.parent;
+    }
+    if (win.deskAPI) {
+        return win.deskAPI;
+    } else {
+        win = window.top;
+    }
+    if (win.deskAPI) {
+        return win.deskAPI;
+    }
+    return undefined;
 }
 
 function log(message: string) {
-  try {
-    console.log(message);
-  } catch (_) {}
-  try {
-    getDeskAPI().send("logOnMain", message);
-  } catch (_) {}
+    try {
+        console.log(message);
+    } catch (_) {}
+    try {
+        getDeskAPI().send("logOnMain", message);
+    } catch (_) {}
 }
 
 function logInfo(info: any, origin: string) {
-  log(getInfoMessage(info, origin));
+    log(getInfoMessage(info, origin));
 }
 
 function getInfoMessage(info: any, origin: string) {
-  return getTreatMessage(tr("Notice"), info, origin);
+    return getTreatMessage(tr("Notice"), info, origin);
 }
 
 function logError(error: any, origin: string) {
-  log(getErrorMessage(error, origin));
+    log(getErrorMessage(error, origin));
 }
 
 function getErrorMessage(error: any, origin: string) {
-  return getTreatMessage(tr("Problem"), error, origin);
+    return getTreatMessage(tr("Problem"), error, origin);
 }
 
 function logWarning(warn: any, origin: string) {
-  log(getWarningMessage(warn, origin));
+    log(getWarningMessage(warn, origin));
 }
 
 function getWarningMessage(warn: any, origin: string) {
-  return getTreatMessage(tr("Attention"), warn, origin);
+    return getTreatMessage(tr("Attention"), warn, origin);
 }
 
 function getTreatMessage(prefix: string, value: any, origin: string) {
-  var result = prefix + ": ";
-  if (typeof value == "string" || value instanceof String) {
-    result += value.toString();
-  } else {
-    if (value && value.why) {
-      result += getMessageOrData(value.why);
+    var result = prefix + ": ";
+    if (typeof value == "string" || value instanceof String) {
+        result += value.toString();
+    } else {
+        if (value && value.why) {
+            result += getMessageOrData(value.why);
+        }
+        if (value && value.message) {
+            result += getMessageOrData(value.message);
+        }
+        if (value && value.response && value.response.data) {
+            if (result) {
+                result += "\n" + tr("And");
+            }
+            result += tr(" was returned") + getMessageOrData(value.response.data);
+        }
     }
-    if (value && value.message) {
-      result += getMessageOrData(value.message);
+    if (origin) {
+        result += "\n" + tr("By origin: ") + origin;
     }
-    if (value && value.response && value.response.data) {
-      if (result) {
-        result += "\n" + tr("And");
-      }
-      result += tr(" was returned") + getMessageOrData(value.response.data);
-    }
-  }
-  if (origin) {
-    result += "\n" + tr("By origin: ") + origin;
-  }
-  return result;
+    return result;
 }
 
 function getMessageOrData(of: any): string {
-  if (typeof of == "string" || of instanceof String) {
-    return of.toString();
-  } else {
-    return tr(" with data:") + "\n" + JSON.stringify(of);
-  }
+    if (typeof of == "string" || of instanceof String) {
+        return of.toString();
+    } else {
+        return tr(" with data:") + "\n" + JSON.stringify(of);
+    }
 }
 
 function toggleDevTools() {
-  try {
-    getDeskAPI().send("toggleDevTools");
-  } catch (e) {
-    logError(e, "{qinpel-res}(ErrCode-000001)");
-  }
+    try {
+        getDeskAPI().send("toggleDevTools");
+    } catch (e) {
+        logError(e, "{qinpel-res}(ErrCode-000001)");
+    }
 }
 
 function stopBrowserShortcuts(window: Window) {
-  window.document.body.onkeydown = (event) => {
-    if (event.ctrlKey) {
-      event.stopPropagation();
-      event.preventDefault();
-      return false;
-    } else if (
-      ["F1", "F2", "F3", "F4", "F5", "F6", "F7", "F8", "F9", "F10", "F11", "F12"]
-        .indexOf(event.key) >= 0
-    ) {
-      event.stopPropagation();
-      event.preventDefault();
-      return false;
-    }
-    return true;
-  };
+    window.document.body.onkeydown = (event) => {
+        if (event.ctrlKey) {
+            event.stopPropagation();
+            event.preventDefault();
+            return false;
+        } else if (
+            ["F1", "F2", "F3", "F4", "F5", "F6", "F7", "F8", "F9", "F10", "F11", "F12"].indexOf(
+                event.key
+            ) >= 0
+        ) {
+            event.stopPropagation();
+            event.preventDefault();
+            return false;
+        }
+        return true;
+    };
 }
 
 export const QinHead = {
-  translate,
-  translations,
-  forgetAll,
-  getCookie,
-  setCookie,
-  delCookie,
-  getDeskAPI,
-  log,
-  logInfo,
-  getInfoMessage,
-  logError,
-  getErrorMessage,
-  logWarning,
-  getWarningMessage,
-  getTreatMessage,
-  toggleDevTools,
-  stopBrowserShortcuts,
+    translate,
+    translations,
+    forgetAll,
+    getCookie,
+    setCookie,
+    delCookie,
+    getDeskAPI,
+    log,
+    logInfo,
+    getInfoMessage,
+    logError,
+    getErrorMessage,
+    logWarning,
+    getWarningMessage,
+    getTreatMessage,
+    toggleDevTools,
+    stopBrowserShortcuts,
 };
