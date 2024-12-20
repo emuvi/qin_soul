@@ -63,5 +63,3 @@ def download(origin: str, destiny: str):
 
 if __name__ == "__main__":
     automagic()
-else:
-    sys.modules[__name__] = automagic

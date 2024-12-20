@@ -48,5 +48,3 @@ def mk_all():
 
 if __name__ == "__main__" or __name__ == "gen_build":
     mk_all()
-else:
-    sys.modules[__name__] = mk_all

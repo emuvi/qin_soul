@@ -1,5 +1,4 @@
 import shutil
-import sys
 
 
 def clean():
@@ -10,5 +9,3 @@ def clean():
 
 if __name__ == "__main__":
     clean()
-else:
-    sys.modules[__name__] = clean
