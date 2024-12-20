@@ -16,7 +16,7 @@ class Kind(Enum):
     PUB = 1
 
 
-def make(name: str, mode: Mode, kind: Kind):
+def install(name: str, mode: Mode, kind: Kind):
     qin_root = os.environ['QIN_ROOT']
     destiny_root = f"{qin_root}/{'Prod' if mode == Mode.PROD else 'Test'}"
     builder.generate_and_build()
