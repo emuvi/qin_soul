@@ -24,7 +24,11 @@ def install(name: str, mode: Mode, kind: Kind):
     print("Publishing...")
     if os.path.isdir("public"):
         destiny = f"{destiny_root}/{'pub' if kind == Kind.PUB else 'app'}/{name}"
-        shutil.copytree("./public", destiny, dirs_exist_ok=True)
+        if os.path.isdir(destiny):
+            shutil.rmtree(destiny)
+        shutil.copytree("./public", destiny)
     if os.path.isdir("giz"):
         destiny = f"{destiny_root}/giz/{name}"
-        shutil.copytree("./giz", destiny, dirs_exist_ok=True)
+        if os.path.isdir(destiny):
+            shutil.rmtree(destiny)
+        shutil.copytree("./giz", destiny)
