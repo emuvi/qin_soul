@@ -1,3 +1,37 @@
+export enum QinConstants {
+    DEV_TOOLS = "DevTools",
+    QIN_BASES = "QinBases",
+    QIN_BASE_SELECTED = "QinBaseSelected",
+    QIN_SETUP = "QinSetup",
+    LANG_PT_BR = "pt-BR",
+}
+
+export enum QinNature {
+    BIT = "BIT",
+    BOOL = "BOOL",
+    BYTE = "BYTE",
+    TINY = "TINY",
+    SMALL = "SMALL",
+    INT = "INT",
+    LONG = "LONG",
+    SERIAL = "SERIAL",
+    BIG_SERIAL = "BIG_SERIAL",
+    FLOAT = "FLOAT",
+    REAL = "REAL",
+    DOUBLE = "DOUBLE",
+    NUMERIC = "NUMERIC",
+    BIG_NUMERIC = "BIG_NUMERIC",
+    CHAR = "CHAR",
+    CHARS = "CHARS",
+    DATE = "DATE",
+    TIME = "TIME",
+    DATE_TIME = "DATE_TIME",
+    TIMESTAMP = "TIMESTAMP",
+    BYTES = "BYTES",
+    BLOB = "BLOB",
+    TEXT = "TEXT",
+}
+
 export enum QinFilesNature {
     BOTH = "both",
     DIRECTORIES = "directories",

@@ -1,29 +1,17 @@
-import { QinBody } from "./qin-body";
+const _dictionary: Map<string, string> = new Map();
 
-const dictionary: Map<string, string> = new Map();
-
-export function tr(of: string): string {
-    return dictionary.get(of) || of;
+function tr(of: string): string {
+    return _dictionary.get(of) || of;
 }
 
-function translate(of: string, to: string) {
-    dictionary.set(of, to);
-}
-
-function translations(dictionary: string) {
-    let lines = QinBody.getTextLines(dictionary);
-    for (let line of lines) {
-        let index = line.indexOf("=");
-        if (index > 0) {
-            let of = line.substring(0, index);
-            let to = line.substring(index + 1);
-            translate(of, to);
-        }
+function loadDictionary(dictionary: Record<string, string>) {
+    for (const keyOf in dictionary) {
+        _dictionary.set(keyOf, dictionary[keyOf]);
     }
 }
 
-function forgetAll() {
-    dictionary.clear();
+function dictionaryForget() {
+    _dictionary.clear();
 }
 
 function getCookie(name: string, orDefault?: string): string {
@@ -189,9 +177,9 @@ function stopBrowserShortcuts(window: Window) {
 }
 
 export const QinHead = {
-    translate,
-    translations,
-    forgetAll,
+    tr,
+    loadDictionary,
+    dictionaryForget,
     getCookie,
     setCookie,
     delCookie,
