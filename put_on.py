@@ -27,8 +27,12 @@ def install(name: str, mode: Mode, kind: Kind):
         if os.path.isdir(destiny):
             shutil.rmtree(destiny)
         shutil.copytree("./public", destiny)
+    else:
+        print("No public folder found to be published.")
     if os.path.isdir("giz"):
         destiny = f"{destiny_root}/giz/{name}"
         if os.path.isdir(destiny):
             shutil.rmtree(destiny)
         shutil.copytree("./giz", destiny)
+    else:
+        print("No giz folder found to be published.")
