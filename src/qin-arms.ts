@@ -333,31 +333,6 @@ export type QinEventType = {
 
 export type QinAction = (event: QinEvent) => void;
 
-export type QinWaiter<T> = (result: T) => void;
-
-export class QinWaiters<T> {
-    private _waiters: QinWaiter<T>[];
-
-    public constructor(initial?: QinWaiter<T>[]) {
-        this._waiters = initial ? initial : [];
-    }
-
-    public addWaiter(waiter: QinWaiter<T>): QinWaiters<T> {
-        this._waiters.push(waiter);
-        return this;
-    }
-
-    public hasWaiter(): boolean {
-        return this._waiters.length > 0;
-    }
-
-    public sendWaiters(result: T) {
-        for (const waiter of this._waiters) {
-            waiter(result);
-        }
-    }
-}
-
 type QinPointerCaller = (event?: MouseEvent | TouchEvent) => void | boolean;
 
 export class QinPointerCalls {

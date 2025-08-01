@@ -1,3 +1,41 @@
+export type QinWaiter = (result: any) => void;
+
+export class QinWaiters {
+   private _waiters: QinWaiter[];
+
+   public constructor(initial?: QinWaiter[]) {
+      this._waiters = initial ? initial : [];
+   }
+
+   public put(waiter: QinWaiter): QinWaiters {
+      this._waiters.push(waiter);
+      return this;
+   }
+
+   public del(waiter: QinWaiter): QinWaiters {
+      const index = this._waiters.indexOf(waiter);
+      if (index !== -1) {
+         this._waiters.splice(index, 1);
+      }
+      return this;
+   }
+
+   public has(waiter: QinWaiter): boolean {
+      return this._waiters.indexOf(waiter) > 0;
+   }
+
+   public clean(): QinWaiters {
+      this._waiters.length = 0;
+      return this;
+   }
+
+   public send(result: any) {
+      for (const waiter of this._waiters) {
+         waiter(result);
+      }
+   }
+}
+
 export type TryAuth = {
     name: string;
     pass: string;
