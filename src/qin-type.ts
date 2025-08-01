@@ -1,18 +1,18 @@
-export type QinWaiter = (result: any) => void;
+export type QinWaiter<T> = (result: T) => void;
 
-export class QinWaiters {
-   private _waiters: QinWaiter[];
+export class QinWaiters<T> {
+   private _waiters: QinWaiter<T>[];
 
-   public constructor(initial?: QinWaiter[]) {
+   public constructor(initial?: QinWaiter<T>[]) {
       this._waiters = initial ? initial : [];
    }
 
-   public put(waiter: QinWaiter): QinWaiters {
+   public put(waiter: QinWaiter<T>): QinWaiters<T> {
       this._waiters.push(waiter);
       return this;
    }
 
-   public del(waiter: QinWaiter): QinWaiters {
+   public del(waiter: QinWaiter<T>): QinWaiters<T> {
       const index = this._waiters.indexOf(waiter);
       if (index !== -1) {
          this._waiters.splice(index, 1);
@@ -20,11 +20,11 @@ export class QinWaiters {
       return this;
    }
 
-   public has(waiter: QinWaiter): boolean {
+   public has(waiter: QinWaiter<T>): boolean {
       return this._waiters.indexOf(waiter) > 0;
    }
 
-   public clean(): QinWaiters {
+   public clean(): QinWaiters<T> {
       this._waiters.length = 0;
       return this;
    }
