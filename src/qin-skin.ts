@@ -57,6 +57,16 @@ function styleAsBody(el: HTMLElement) {
     el.style.left = "0px";
     el.style.padding = "9px";
     el.style.overflow = "auto";
+    el.style.flex = "1";
+}
+
+function styleAsWhole(el: HTMLElement) {
+    el.style.position = "relative";
+    el.style.top = "0px";
+    el.style.right = "0px";
+    el.style.bottom = "0px";
+    el.style.left = "0px";
+    el.style.flex = "1";
 }
 
 function styleAsBase(el: HTMLElement) {
@@ -298,6 +308,7 @@ function applyStyles(element: HTMLElement, styles: Partial<CSSStyleDeclaration>)
 export const QinSkin = {
     styles: QinStyles,
     styleAsBody,
+    styleAsWhole,
     styleAsBase,
     styleAsEditable,
     styleAsActionable,
