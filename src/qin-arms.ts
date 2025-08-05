@@ -360,6 +360,8 @@ function stopPropagation(event: any) {
 
 var lastEventMouse: MouseEvent = null;
 var lastEventTouch: TouchEvent = null;
+var actualEventMouse: MouseEvent = null;
+var actualEventTouch: TouchEvent = null;
 
 function makeEventMousePoint(isStart: boolean, ev: MouseEvent): QinPoint {
     if (!ev) {
@@ -373,8 +375,9 @@ function makeEventMousePoint(isStart: boolean, ev: MouseEvent): QinPoint {
         result.posX = ev.clientX;
         result.posY = ev.clientY;
     }
-    if (isStart) {
-        lastEventMouse = ev;
+    if (!isStart) {
+        lastEventMouse = actualEventMouse;
+        actualEventMouse = ev;
     }
     return result;
 }
@@ -399,7 +402,7 @@ function makeEventTouch(isStart: boolean, ev: TouchEvent): QinPoint {
 }
 
 function isEventMouseDouble(isStart: boolean, ev: MouseEvent): boolean {
-    if (!isStart || lastEventMouse == null || ev == null) {
+    if (isStart || lastEventMouse == null || ev == null) {
         return false;
     }
     const timeDif = ev.timeStamp - lastEventMouse.timeStamp;
@@ -407,7 +410,7 @@ function isEventMouseDouble(isStart: boolean, ev: MouseEvent): boolean {
 }
 
 function isEventTouchDouble(isStart: boolean, ev: TouchEvent): boolean {
-    if (!isStart || lastEventTouch == null || ev == null) {
+    if (isStart || lastEventTouch == null || ev == null) {
         return false;
     }
     const timeDif = ev.timeStamp - lastEventTouch.timeStamp;
@@ -415,7 +418,7 @@ function isEventTouchDouble(isStart: boolean, ev: TouchEvent): boolean {
 }
 
 function isEventMouseLong(isStart: boolean, ev: MouseEvent): boolean {
-    if (!isStart || lastEventMouse == null || ev == null) {
+    if (isStart || lastEventMouse == null || ev == null) {
         return false;
     }
     const timeDif = ev.timeStamp - lastEventMouse.timeStamp;
@@ -423,7 +426,7 @@ function isEventMouseLong(isStart: boolean, ev: MouseEvent): boolean {
 }
 
 function isEventTouchLong(isStart: boolean, ev: TouchEvent): boolean {
-    if (!isStart || lastEventTouch == null || ev == null) {
+    if (isStart || lastEventTouch == null || ev == null) {
         return false;
     }
     const timeDif = ev.timeStamp - lastEventTouch.timeStamp;

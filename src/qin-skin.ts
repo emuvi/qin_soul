@@ -70,7 +70,7 @@ function styleAsWhole(el: HTMLElement) {
 }
 
 function styleAsBase(el: HTMLElement) {
-    el.style.margin = "1px";
+    el.style.margin = "2px";
     el.style.padding = "3px";
     el.style.outline = "none";
     el.style.color = QinStyles.ColorForeground;
