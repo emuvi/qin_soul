@@ -1,39 +1,39 @@
 export type QinWaiter<T> = (result: T) => void;
 
 export class QinWaiters<T> {
-   private _waiters: QinWaiter<T>[];
+    private _waiters: QinWaiter<T>[];
 
-   public constructor(initial?: QinWaiter<T>[]) {
-      this._waiters = initial ? initial : [];
-   }
+    public constructor(initial?: QinWaiter<T>[]) {
+        this._waiters = initial ? initial : [];
+    }
 
-   public put(waiter: QinWaiter<T>): QinWaiters<T> {
-      this._waiters.push(waiter);
-      return this;
-   }
+    public put(waiter: QinWaiter<T>): QinWaiters<T> {
+        this._waiters.push(waiter);
+        return this;
+    }
 
-   public del(waiter: QinWaiter<T>): QinWaiters<T> {
-      const index = this._waiters.indexOf(waiter);
-      if (index !== -1) {
-         this._waiters.splice(index, 1);
-      }
-      return this;
-   }
+    public del(waiter: QinWaiter<T>): QinWaiters<T> {
+        const index = this._waiters.indexOf(waiter);
+        if (index !== -1) {
+            this._waiters.splice(index, 1);
+        }
+        return this;
+    }
 
-   public has(waiter: QinWaiter<T>): boolean {
-      return this._waiters.indexOf(waiter) > 0;
-   }
+    public has(waiter: QinWaiter<T>): boolean {
+        return this._waiters.indexOf(waiter) > 0;
+    }
 
-   public clean(): QinWaiters<T> {
-      this._waiters.length = 0;
-      return this;
-   }
+    public clean(): QinWaiters<T> {
+        this._waiters.length = 0;
+        return this;
+    }
 
-   public send(result: any) {
-      for (const waiter of this._waiters) {
-         waiter(result);
-      }
-   }
+    public send(result: any) {
+        for (const waiter of this._waiters) {
+            waiter(result);
+        }
+    }
 }
 
 export type TryAuth = {
@@ -154,177 +154,167 @@ export enum StreamKind {
     ERR = "ERR",
 }
 
-export type AllowReg = {
-    registry: Registry;
-    all: Boolean;
-    insert: Boolean;
-    select: Boolean;
-    update: Boolean;
-    delete: Boolean;
-    strain: Strain;
-}
-
 export type Registry = {
-   base: string;
-   tableHead: TableHead;
+    base: string;
+    tableHead: TableHead;
 }
 
 export type Strain = {
-   restrict: string;
-   modify: string;
-   include: string;
+    restrict: string;
+    modify: string;
+    include: string;
 }
 
 export type ToInsert = {
-   base: string;
-   insert: Insert;
+    base: string;
+    insert: Insert;
 }
 
 export type Insert = {
-   tableHead: TableHead;
-   valuedList: Array<Valued>;
-   toGetID: ToGetID;
+    tableHead: TableHead;
+    valuedList: Array<Valued>;
+    toGetID: ToGetID;
 }
 
 export type ToSelect = {
-   base: string;
-   select: Select;
+    base: string;
+    select: Select;
 }
 
 export type Select = {
-   tableHead: TableHead;
-   fieldList: Array<Typed>;
-   joinList: Array<Join>;
-   filterList: Array<Filter>;
-   orderList: Array<Order>;
-   offset: number;
-   limit: number;
+    tableHead: TableHead;
+    fieldList: Array<Typed>;
+    joinList: Array<Join>;
+    filterList: Array<Filter>;
+    orderList: Array<Order>;
+    offset: number;
+    limit: number;
 }
 
 export type ToUpdate = {
-   base: string;
-   update: Update;
+    base: string;
+    update: Update;
 }
 
 export type Update = {
-   tableHead: TableHead;
-   valuedList: Array<Valued>;
-   filterList: Array<Filter>;
-   limit: number;
+    tableHead: TableHead;
+    valuedList: Array<Valued>;
+    filterList: Array<Filter>;
+    limit: number;
 }
 
 export type ToDelete = {
-   base: string;
-   delete: Delete;
+    base: string;
+    delete: Delete;
 }
 
 export type Delete = {
-   tableHead: TableHead;
-   filterList: Array<Filter>;
+    tableHead: TableHead;
+    filterList: Array<Filter>;
 }
 
 export type TableHead = {
-   catalog: string;
-   schema: string;
-   name: string;
-   alias: string;
+    catalog: string;
+    schema: string;
+    name: string;
+    alias: string;
 }
 
 export type ToGetID = {
-   name: string;
-   filter: Valued;
+    name: string;
+    filter: Valued;
 }
 
 export type Join = {
-   tableHead: TableHead;
-   alias: String;
-   filterList: Array<Filter>;
-   ties: JoinTies;
+    tableHead: TableHead;
+    alias: String;
+    filterList: Array<Filter>;
+    ties: JoinTies;
 }
 
 export enum JoinTies {
-   INNER = "INNER",
-   LEFT = "LEFT",
-   RIGHT = "RIGHT",
-   FULL = "FULL",
-   CROSS = "CROSS"
+    INNER = "INNER",
+    LEFT = "LEFT",
+    RIGHT = "RIGHT",
+    FULL = "FULL",
+    CROSS = "CROSS"
 }
 
 export type Filter = {
-   seems: FilterSeems;
-   likes: FilterLikes;
-   valued: Valued;
-   linked: Linked;
-   ties: FilterTies;
+    seems: FilterSeems;
+    likes: FilterLikes;
+    valued: Valued;
+    linked: Linked;
+    ties: FilterTies;
 }
 
 export enum FilterSeems {
-   IS = "IS",
-   NOT = "NOT"
+    IS = "IS",
+    NOT = "NOT"
 }
 
 export enum FilterLikes {
-   EQUALS = "EQUALS",
-   BIGGER = "BIGGER",
-   LESSER = "LESSER",
-   BIGGER_EQUALS = "BIGGER_EQUALS",
-   LESSER_EQUALS = "LESSER_EQUALS",
-   STARTS_WITH = "STARTS_WITH",
-   ENDS_WITH = "ENDS_WITH",
-   CONTAINS = "CONTAINS"
+    EQUALS = "EQUALS",
+    BIGGER = "BIGGER",
+    LESSER = "LESSER",
+    BIGGER_EQUALS = "BIGGER_EQUALS",
+    LESSER_EQUALS = "LESSER_EQUALS",
+    STARTS_WITH = "STARTS_WITH",
+    ENDS_WITH = "ENDS_WITH",
+    CONTAINS = "CONTAINS"
 }
 
 export enum FilterTies {
-   AND = "AND",
-   OR = "OR"
+    AND = "AND",
+    OR = "OR"
 }
 
 export type Linked = {
-   name: string;
-   upon: string;
+    name: string;
+    upon: string;
 }
 
 export type Order = {
-   name: string;
-   desc: boolean;
+    name: string;
+    desc: boolean;
 }
 
 export type Valued = {
-   name: string;
-   type: Nature;
-   data: any;
+    name: string;
+    type: Nature;
+    data: any;
 }
 
 export type Typed = {
-   name: string;
-   type: Nature;
-   alias: string;
+    name: string;
+    type: Nature;
+    alias: string;
 }
 
 export enum Nature {
-   BIT = "BIT",
-   BOOL = "BOOL",
-   BYTE = "BYTE",
-   TINY = "TINY",
-   SMALL = "SMALL",
-   INT = "INT",
-   LONG = "LONG",
-   SERIAL = "SERIAL",
-   BIG_SERIAL = "BIG_SERIAL",
-   FLOAT = "FLOAT",
-   REAL = "REAL",
-   DOUBLE = "DOUBLE",
-   NUMERIC = "NUMERIC",
-   BIG_NUMERIC = "BIG_NUMERIC",
-   CHAR = "CHAR",
-   CHARS = "CHARS",
-   DATE = "DATE",
-   TIME = "TIME",
-   DATE_TIME = "DATE_TIME",
-   TIMESTAMP = "TIMESTAMP",
-   BYTES = "BYTES",
-   BLOB = "BLOB",
-   TEXT = "TEXT"
+    BIT = "BIT",
+    BOOL = "BOOL",
+    BYTE = "BYTE",
+    TINY = "TINY",
+    SMALL = "SMALL",
+    INT = "INT",
+    LONG = "LONG",
+    SERIAL = "SERIAL",
+    BIG_SERIAL = "BIG_SERIAL",
+    FLOAT = "FLOAT",
+    REAL = "REAL",
+    DOUBLE = "DOUBLE",
+    NUMERIC = "NUMERIC",
+    BIG_NUMERIC = "BIG_NUMERIC",
+    CHAR = "CHAR",
+    CHARS = "CHARS",
+    DATE = "DATE",
+    TIME = "TIME",
+    DATE_TIME = "DATE_TIME",
+    TIMESTAMP = "TIMESTAMP",
+    BYTES = "BYTES",
+    BLOB = "BLOB",
+    TEXT = "TEXT"
 }
 
 export type Setup = {
@@ -349,4 +339,112 @@ export type Setup = {
     threadsIdleTimeout?: number;
     cleanInterval?: number;
     tokenValidity?: number;
+}
+
+export type Bases = Array<DataWays>;
+
+export type DataWays = {
+    dataJdbc: DataJdbc;
+    dataLink: DataLink;
+    storeMinIdle: number;
+    storeMaxIdle: number;
+    storeMaxTotal: number;
+}
+
+export type DataJdbc = {
+    name: string;
+    url: string;
+    user: string;
+    pass: string;
+}
+
+export type DataLink = {
+    name: string;
+    base: DataBase;
+    path: string;
+    port: number;
+    data: string;
+    user: string;
+    pass: string;
+}
+
+export enum DataBase {
+    SQLiteMemory = "SQLiteMemory",
+    SQLiteLocal = "SQLiteLocal",
+    HSQLDBMemory = "HSQLDBMemory", 
+    HSQLDBLocal = "HSQLDBLocal",
+    HSQLDBClient = "HSQLDBClient", 
+    DerbyInner = "DerbyInner",
+    DerbyClient = "DerbyClient",
+    FirebirdLocal = "FirebirdLocal",
+    FirebirdInner = "FirebirdInner",
+    FirebirdClient = "FirebirdClient",
+    MySQLClient = "MySQLClient",
+    PostgreClient = "PostgreClient" 
+}
+
+export type Users = Array<User>;
+
+export type User = {
+    name: string;
+    pass: string;
+    home: string;
+    lang: string;
+    master: boolean;
+    allowList: Array<Allow>;
+    configMap: Map<string, string>;
+    group: string;
+}
+
+export type Groups = Array<Group>;
+
+export type Group = {
+    name: string;
+    home: string;
+    lang: string;
+    master: boolean;
+    allowList: Array<Allow>;
+    configMap: Map<string, string>;
+}
+
+export type Allow = {
+    allowApp: AllowApp;
+    allowDir: AllowDir;
+    allowCmd: AllowCmd;
+    allowBas: AllowBas;
+    allowReg: AllowReg;
+    allowGiz: AllowGiz;
+}
+
+export type AllowApp = {
+    name: string;
+}
+
+export type AllowDir = {
+    path: string;
+    mutate: boolean;
+}
+
+export type AllowCmd = {
+    name: string;
+    args: Array<string>;
+}
+
+export type AllowBas = {
+    name: string;
+    mutate: boolean;
+}
+
+export type AllowReg = {
+    registry: Registry;
+    all: Boolean;
+    insert: Boolean;
+    select: Boolean;
+    update: Boolean;
+    delete: Boolean;
+    strain: Strain;
+}
+
+export type AllowGiz = {
+    path: string;
 }
