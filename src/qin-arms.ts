@@ -47,11 +47,15 @@ export class QinEvent {
         return null;
     }
 
-    public get fromTyping(): boolean {
+    public get isTyping(): boolean {
         return !!this._eventKey;
     }
 
-    public get fromPointing(): boolean {
+    public get isPointing(): boolean {
+        return !!(this._eventMouse || this._eventTouch);
+    }
+
+    public get hasPointing(): boolean {
         return !!this._point;
     }
 
@@ -134,6 +138,16 @@ export class QinEvent {
             return isEventTouchLong(this._start, this._eventTouch);
         }
         return false;
+    }
+
+    public get isMaster(): boolean {
+        if (this.isTyping) {
+            return this.hasCtrl && this.isEnter;
+        } else if (this.isPointing) {
+            return this.isFirstButton && this.isDouble;
+        } else {
+            return false;
+        }
     }
 
     public get point(): QinPoint {

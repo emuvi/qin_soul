@@ -92,7 +92,7 @@ export enum FilesNature {
 
 export enum FilesOperation {
     OPEN = "OPEN",
-    SAVE = "SAVE",
+    SAVE = "SAVE"                                                                                                     ,
 }
 
 export type FilesDescriptor = {
