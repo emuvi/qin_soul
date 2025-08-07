@@ -66,31 +66,8 @@ function delCookie(name: string, options: any = {}) {
     document.cookie = updatedCookie;
 }
 
-function getDeskAPI() {
-    var win = window as any;
-    if (win.deskAPI) {
-        return win.deskAPI;
-    } else {
-        win = window.parent;
-    }
-    if (win.deskAPI) {
-        return win.deskAPI;
-    } else {
-        win = window.top;
-    }
-    if (win.deskAPI) {
-        return win.deskAPI;
-    }
-    return undefined;
-}
-
 function log(message: string) {
-    try {
-        console.log(message);
-    } catch (_) {}
-    try {
-        getDeskAPI().send("logOnMain", message);
-    } catch (_) {}
+    console.log(message);
 }
 
 function logInfo(info: any, origin: string) {
@@ -149,14 +126,6 @@ function getMessageOrData(of: any): string {
     }
 }
 
-function toggleDevTools() {
-    try {
-        getDeskAPI().send("toggleDevTools");
-    } catch (e) {
-        logError(e, "{qinpel-res}(ErrCode-000001)");
-    }
-}
-
 function stopBrowserShortcuts(window: Window) {
     window.document.body.onkeydown = (event) => {
         if (event.ctrlKey) {
@@ -183,7 +152,6 @@ export const QinHead = {
     getCookie,
     setCookie,
     delCookie,
-    getDeskAPI,
     log,
     logInfo,
     getInfoMessage,
@@ -192,6 +160,5 @@ export const QinHead = {
     logWarning,
     getWarningMessage,
     getTreatMessage,
-    toggleDevTools,
     stopBrowserShortcuts,
 };

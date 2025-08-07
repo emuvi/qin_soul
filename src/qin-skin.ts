@@ -134,10 +134,8 @@ function styleAsReadOnly(el: HTMLElement) {
 }
 
 function styleMaxSizeForNotOverFlow(el: HTMLElement, parent?: HTMLElement) {
-    console.log("D1");
     if (!parent) {
         parent = el.parentElement;
-        console.log("D2: " + parent);
     }
     if (parent) {
         let maxWidth = 0;
@@ -146,14 +144,10 @@ function styleMaxSizeForNotOverFlow(el: HTMLElement, parent?: HTMLElement) {
         do {
             maxWidth = maxWidth + imediate.clientLeft;
             maxHeight = maxHeight + imediate.clientTop;
-            console.log("D3: " + maxWidth);
-            console.log("D4: " + maxHeight);
             imediate = imediate.parentElement;
         } while (imediate != null && imediate != parent);
         maxWidth = parent.clientWidth - maxWidth;
         maxHeight = parent.clientHeight - maxHeight;
-        console.log("D5: " + maxWidth);
-        console.log("D6: " + maxHeight);
         el.style.maxWidth = maxWidth + "px";
         el.style.maxHeight = maxHeight + "px";
     }
