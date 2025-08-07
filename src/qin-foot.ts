@@ -32,22 +32,6 @@ export enum QinNature {
     TEXT = "TEXT",
 }
 
-export enum QinFilesNature {
-    BOTH = "both",
-    DIRECTORIES = "directories",
-    FILES = "files",
-}
-
-export enum QinFilesOperation {
-    OPEN = "open",
-    SAVE = "save",
-}
-
-export class QinFilesDescriptor {
-    public description: string;
-    public extensions: string[];
-}
-
 function getLocation() {
     return window.location.href;
 }

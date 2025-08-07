@@ -84,6 +84,22 @@ export type PathWrite = {
     rangeStart: number;
 }
 
+export enum FilesNature {
+    BOTH = "BOTH",
+    DIRECTORIES = "DIRECTORIES",
+    FILES = "FILES",
+}
+
+export enum FilesOperation {
+    OPEN = "OPEN",
+    SAVE = "SAVE",
+}
+
+export type FilesDescriptor = {
+    description: string;
+    extensions: string[];
+}
+
 export type Execute = {
     name: string;
     args?: string[];
