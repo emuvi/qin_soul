@@ -276,11 +276,11 @@ export enum JoinTies {
 }
 
 export type Filter = {
-    seems: FilterSeems;
-    likes: FilterLikes;
+    seems?: FilterSeems;
+    likes?: FilterLikes;
     valued?: Valued;
     linked?: Linked;
-    ties: FilterTies;
+    ties?: FilterTies;
 }
 
 export enum FilterSeems {
