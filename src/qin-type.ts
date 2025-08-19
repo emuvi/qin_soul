@@ -170,17 +170,6 @@ export enum StreamKind {
     ERR = "ERR",
 }
 
-export type Registry = {
-    base: string;
-    tableHead: TableHead;
-}
-
-export type Strain = {
-    restrict: string;
-    modify: string;
-    include: string;
-}
-
 export type ToInsert = {
     base: string;
     insert: Insert;
@@ -271,23 +260,9 @@ export type Match = {
     outColumn: string;
 }
 
-export type Heads = Array<TableHead>;
-
-export type TableHead = {
-    catalog: string;
-    schema: string;
-    name: string;
-    alias: string;
-}
-
-export type ToGetID = {
-    name: string;
-    filter: Valued;
-}
-
 export type Join = {
     tableHead: TableHead;
-    alias: String;
+    alias: string;
     filterList: Array<Filter>;
     ties: JoinTies;
 }
@@ -337,6 +312,31 @@ export type Linked = {
 export type Order = {
     name: string;
     desc: boolean;
+}
+
+export type Registry = {
+    base: string;
+    tableHead: TableHead;
+}
+
+export type Strain = {
+    restrict: string;
+    modify: string;
+    include: string;
+}
+
+export type Heads = Array<TableHead>;
+
+export type TableHead = {
+    catalog: string;
+    schema: string;
+    name: string;
+    alias: string;
+}
+
+export type ToGetID = {
+    name: string;
+    filter: Valued;
 }
 
 export type Valued = {
