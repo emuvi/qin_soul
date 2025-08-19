@@ -189,11 +189,11 @@ export type ToSelect = {
 export type Select = {
     tableHead: TableHead;
     fieldList: Array<Typed>;
-    joinList: Array<Join>;
-    filterList: Array<Filter>;
-    orderList: Array<Order>;
-    offset: number;
-    limit: number;
+    joinList?: Array<Join>;
+    filterList?: Array<Filter>;
+    orderList?: Array<Order>;
+    offset?: number;
+    limit?: number;
 }
 
 export type ToUpdate = {
@@ -278,8 +278,8 @@ export enum JoinTies {
 export type Filter = {
     seems: FilterSeems;
     likes: FilterLikes;
-    valued: Valued;
-    linked: Linked;
+    valued?: Valued;
+    linked?: Linked;
     ties: FilterTies;
 }
 
@@ -328,10 +328,10 @@ export type Strain = {
 export type Heads = Array<TableHead>;
 
 export type TableHead = {
-    catalog: string;
-    schema: string;
+    catalog?: string;
+    schema?: string;
     name: string;
-    alias: string;
+    alias?: string;
 }
 
 export type ToGetID = {
@@ -341,14 +341,14 @@ export type ToGetID = {
 
 export type Valued = {
     name: string;
-    type: Nature;
+    type?: Nature;
     data: any;
 }
 
 export type Typed = {
     name: string;
     type: Nature;
-    alias: string;
+    alias?: string;
 }
 
 export enum Nature {
