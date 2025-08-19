@@ -6,39 +6,13 @@ export enum QinConstants {
     LANG_PT_BR = "pt-BR",
 }
 
-export enum QinNature {
-    BIT = "BIT",
-    BOOL = "BOOL",
-    BYTE = "BYTE",
-    TINY = "TINY",
-    SMALL = "SMALL",
-    INT = "INT",
-    LONG = "LONG",
-    SERIAL = "SERIAL",
-    BIG_SERIAL = "BIG_SERIAL",
-    FLOAT = "FLOAT",
-    REAL = "REAL",
-    DOUBLE = "DOUBLE",
-    NUMERIC = "NUMERIC",
-    BIG_NUMERIC = "BIG_NUMERIC",
-    CHAR = "CHAR",
-    CHARS = "CHARS",
-    DATE = "DATE",
-    TIME = "TIME",
-    DATE_TIME = "DATE_TIME",
-    TIMESTAMP = "TIMESTAMP",
-    BYTES = "BYTES",
-    BLOB = "BLOB",
-    TEXT = "TEXT",
-}
-
 function getLocation() {
     return window.location.href;
 }
 
 function isLocalHost() {
-    var location = getLocation();
-    var start = location.indexOf("://");
+    let location = getLocation();
+    let start = location.indexOf("://");
     if (start == -1) {
         start = 0;
     } else {

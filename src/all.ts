@@ -59,7 +59,6 @@ export { QinFoot } from "./qin-foot";
 export { QinGrandeur } from "./qin-skin";
 export { QinHead } from "./qin-head";
 export { QinLegs } from "./qin-legs";
-export { QinNature } from "./qin-foot";
 export { QinPoint } from "./qin-skin";
 export { QinPointerCalls } from "./qin-arms";
 export { QinSkin } from "./qin-skin";
