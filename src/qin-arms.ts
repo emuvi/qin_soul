@@ -140,16 +140,6 @@ export class QinEvent {
         return false;
     }
 
-    public get isMaster(): boolean {
-        if (this.isTyping) {
-            return this.hasCtrl && this.isEnter;
-        } else if (this.isPointing) {
-            return this.isFirstButton && this.isDouble;
-        } else {
-            return false;
-        }
-    }
-
     public get point(): QinPoint {
         return this._point;
     }
@@ -190,10 +180,17 @@ export class QinEvent {
         return isFourFingers(this._eventTouch);
     }
 
-    public get isMain(): boolean {
-        if (this._start) {
+    public get isMaster(): boolean {
+        if (this.isTyping) {
+            return this.hasCtrl && this.isEnter;
+        } else if (this.isPointing) {
+            return this.isFirstButton && this.isDouble;
+        } else {
             return false;
         }
+    }
+
+    public get isMain(): boolean {
         if (this._eventKey) {
             return isMainKey(this._eventKey);
         } else if (this._eventMouse) {
@@ -205,37 +202,22 @@ export class QinEvent {
     }
 
     public get isMainKey(): boolean {
-        if (this._start) {
-            return false;
-        }
         return isMainKey(this._eventKey);
     }
 
     public get isMainMouse(): boolean {
-        if (this._start) {
-            return false;
-        }
         return isMainMouse(this._eventMouse);
     }
 
     public get isMainTouch(): boolean {
-        if (this._start) {
-            return false;
-        }
         return isMainTouch(this._eventTouch);
     }
 
     public get isMainPoint(): boolean {
-        if (this._start) {
-            return false;
-        }
         return isMainMouse(this._eventMouse) || isMainTouch(this._eventTouch);
     }
 
     public get isMidi(): boolean {
-        if (this._start) {
-            return false;
-        }
         if (this._eventKey) {
             return isMidiKey(this._eventKey);
         } else if (this._eventMouse) {
@@ -247,30 +229,18 @@ export class QinEvent {
     }
 
     public get isMidiKey(): boolean {
-        if (this._start) {
-            return false;
-        }
         return isMidiKey(this._eventKey);
     }
 
     public get isMidiMouse(): boolean {
-        if (this._start) {
-            return false;
-        }
         return isMidiMouse(this._eventMouse);
     }
 
     public get isMidiTouch(): boolean {
-        if (this._start) {
-            return false;
-        }
         return isMidiTouch(this._eventTouch);
     }
 
     public get isMidiPoint(): boolean {
-        if (this._start) {
-            return false;
-        }
         if (this._eventMouse) {
             return isMidiMouse(this._eventMouse);
         } else if (this._eventTouch) {
@@ -280,9 +250,6 @@ export class QinEvent {
     }
 
     public get isMenu(): boolean {
-        if (this._start) {
-            return false;
-        }
         if (this._eventKey) {
             return isMenuKey(this._eventKey);
         } else if (this._eventKey) {
@@ -294,30 +261,18 @@ export class QinEvent {
     }
 
     public get isMenuKey(): boolean {
-        if (this._start) {
-            return false;
-        }
         return isMenuKey(this._eventKey);
     }
 
     public get isMenuMouse(): boolean {
-        if (this._start) {
-            return false;
-        }
         return isMenuMouse(this._eventMouse);
     }
 
     public get isMenuTouch(): boolean {
-        if (this._start) {
-            return false;
-        }
         return isMenuTouch(this._eventTouch);
     }
 
     public get isMenuPoint(): boolean {
-        if (this._start) {
-            return false;
-        }
         if (this._eventMouse) {
             return isMenuMouse(this._eventMouse);
         } else if (this._eventTouch) {
@@ -330,7 +285,7 @@ export class QinEvent {
         return this._stop;
     }
 
-    public consumed() {
+    public done() {
         this._stop = true;
     }
 
@@ -647,144 +602,192 @@ function addAction(origin: HTMLElement, action: QinAction) {
 
 function addActionMain(origin: HTMLElement, action: QinAction) {
     addAction(origin, (qinEvent: QinEvent) => {
+        if (qinEvent.isStart && qinEvent.isMain) {
+            qinEvent.done();
+        }
         if (!qinEvent.isStart && qinEvent.isMain) {
             action(qinEvent);
-            qinEvent.consumed();
+            qinEvent.done();
         }
     });
 }
 
 function addActionMainKey(origin: HTMLElement, action: QinAction) {
     addAction(origin, (qinEvent: QinEvent) => {
+        if (qinEvent.isStart && qinEvent.isMainKey) {
+            qinEvent.done();
+        }
         if (!qinEvent.isStart && qinEvent.isMainKey) {
             action(qinEvent);
-            qinEvent.consumed();
+            qinEvent.done();
         }
     });
 }
 
 function addActionMainMouse(origin: HTMLElement, action: QinAction) {
     addAction(origin, (qinEvent: QinEvent) => {
+        if (qinEvent.isStart && qinEvent.isMainMouse) {
+            qinEvent.done();
+        }
         if (!qinEvent.isStart && qinEvent.isMainMouse) {
             action(qinEvent);
-            qinEvent.consumed();
+            qinEvent.done();
         }
     });
 }
 
 function addActionMainTouch(origin: HTMLElement, action: QinAction) {
     addAction(origin, (qinEvent: QinEvent) => {
-        if (!qinEvent.isStart && qinEvent.isMainMouse) {
+        if (qinEvent.isStart && qinEvent.isMainTouch) {
+            qinEvent.done();
+        }
+        if (!qinEvent.isStart && qinEvent.isMainTouch) {
             action(qinEvent);
-            qinEvent.consumed();
+            qinEvent.done();
         }
     });
 }
 
 function addActionMainPoint(origin: HTMLElement, action: QinAction) {
     addAction(origin, (qinEvent: QinEvent) => {
+        if (qinEvent.isStart && qinEvent.isMainPoint) {
+            qinEvent.done();
+        }
         if (!qinEvent.isStart && qinEvent.isMainPoint) {
             action(qinEvent);
-            qinEvent.consumed();
+            qinEvent.done();
         }
     });
 }
 
 function addActionMidi(origin: HTMLElement, action: QinAction) {
     addAction(origin, (qinEvent: QinEvent) => {
+        if (qinEvent.isStart && qinEvent.isMidi) {
+            qinEvent.done();
+        }
         if (!qinEvent.isStart && qinEvent.isMidi) {
             action(qinEvent);
-            qinEvent.consumed();
+            qinEvent.done();
         }
     });
 }
 
 function addActionMidiKey(origin: HTMLElement, action: QinAction) {
     addAction(origin, (qinEvent: QinEvent) => {
+        if (qinEvent.isStart && qinEvent.isMidiKey) {
+            qinEvent.done();
+        }
         if (!qinEvent.isStart && qinEvent.isMidiKey) {
             action(qinEvent);
-            qinEvent.consumed();
+            qinEvent.done();
         }
     });
 }
 
 function addActionMidiMouse(origin: HTMLElement, action: QinAction) {
     addAction(origin, (qinEvent: QinEvent) => {
+        if (qinEvent.isStart && qinEvent.isMidiMouse) {
+            qinEvent.done();
+        }
         if (!qinEvent.isStart && qinEvent.isMidiMouse) {
             action(qinEvent);
-            qinEvent.consumed();
+            qinEvent.done();
         }
     });
 }
 
 function addActionMidiTouch(origin: HTMLElement, action: QinAction) {
     addAction(origin, (qinEvent: QinEvent) => {
-        if (!qinEvent.isStart && qinEvent.isMidiMouse) {
+        if (qinEvent.isStart && qinEvent.isMidiTouch) {
+            qinEvent.done();
+        }
+        if (!qinEvent.isStart && qinEvent.isMidiTouch) {
             action(qinEvent);
-            qinEvent.consumed();
+            qinEvent.done();
         }
     });
 }
 
 function addActionMidiPoint(origin: HTMLElement, action: QinAction) {
     addAction(origin, (qinEvent: QinEvent) => {
+        if (qinEvent.isStart && qinEvent.isMidiPoint) {
+            qinEvent.done();
+        }
         if (!qinEvent.isStart && qinEvent.isMidiPoint) {
             action(qinEvent);
-            qinEvent.consumed();
+            qinEvent.done();
         }
     });
 }
 
 function addActionMenu(origin: HTMLElement, action: QinAction) {
     addAction(origin, (qinEvent: QinEvent) => {
+        if (qinEvent.isStart && qinEvent.isMenu) {
+            qinEvent.done();
+        }
         if (!qinEvent.isStart && qinEvent.isMenu) {
             action(qinEvent);
-            qinEvent.consumed();
+            qinEvent.done();
         }
     });
 }
 
 function addActionMenuKey(origin: HTMLElement, action: QinAction) {
     addAction(origin, (qinEvent: QinEvent) => {
+        if (qinEvent.isStart && qinEvent.isMenuKey) {
+            qinEvent.done();
+        }
         if (!qinEvent.isStart && qinEvent.isMenuKey) {
             action(qinEvent);
-            qinEvent.consumed();
+            qinEvent.done();
         }
     });
 }
 
 function addActionMenuMouse(origin: HTMLElement, action: QinAction) {
     addAction(origin, (qinEvent: QinEvent) => {
+        if (qinEvent.isStart && qinEvent.isMenuMouse) {
+            qinEvent.done();
+        }
         if (!qinEvent.isStart && qinEvent.isMenuMouse) {
             action(qinEvent);
-            qinEvent.consumed();
+            qinEvent.done();
         }
     });
 }
 
 function addActionMenuTouch(origin: HTMLElement, action: QinAction) {
     addAction(origin, (qinEvent: QinEvent) => {
-        if (!qinEvent.isStart && qinEvent.isMenuMouse) {
+        if (qinEvent.isStart && qinEvent.isMenuTouch) {
+            qinEvent.done();
+        }
+        if (!qinEvent.isStart && qinEvent.isMenuTouch) {
             action(qinEvent);
-            qinEvent.consumed();
+            qinEvent.done();
         }
     });
 }
 
 function addActionMenuPoint(origin: HTMLElement, action: QinAction) {
     addAction(origin, (qinEvent: QinEvent) => {
+        if (qinEvent.isStart && qinEvent.isMenuPoint) {
+            qinEvent.done();
+        }
         if (!qinEvent.isStart && qinEvent.isMenuPoint) {
             action(qinEvent);
-            qinEvent.consumed();
+            qinEvent.done();
         }
     });
 }
 
 function addActionKey(keyList: string[], origin: HTMLElement, action: QinAction) {
     addAction(origin, (qinEvent: QinEvent) => {
+        if (qinEvent.isStart && qinEvent.isKeyIn(keyList)) {
+            qinEvent.done();
+        }
         if (!qinEvent.isStart && qinEvent.isKeyIn(keyList)) {
             action(qinEvent);
-            qinEvent.consumed();
+            qinEvent.done();
         }
     });
 }

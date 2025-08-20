@@ -66,22 +66,22 @@ function styleAsWhole(el: HTMLElement) {
     el.style.right = "0px";
     el.style.bottom = "0px";
     el.style.left = "0px";
-    el.style.flex = "1";
+    el.style.flex = "1 1 auto";
 }
 
 function styleAsBase(el: HTMLElement) {
-    el.style.margin = "2px";
-    el.style.padding = "3px";
-    el.style.outline = "none";
-    el.style.color = QinStyles.ColorForeground;
-    el.style.fontFamily = "SourceSansPro";
-    el.style.fontSize = "16px";
     el.style.minHeight = "fit-content";
     el.style.minWidth = "fit-content";
 }
 
+function styleAsSpaced(el: HTMLElement) {
+    el.style.margin = "2px";
+    el.style.padding = "4px";
+}
+
 function styleAsEditable(el: HTMLElement) {
-    styleAsBase(el);
+    styleAsSpaced(el);
+    el.style.color = QinStyles.ColorForeground;
     el.style.backgroundColor = QinStyles.ColorInactive;
     el.style.border = "1px solid " + QinStyles.ColorForeground;
     el.style.borderRadius = "3px";
@@ -104,7 +104,7 @@ export type QinActionableStyles = {
 };
 
 function styleAsActionable(el: HTMLElement, styles: QinActionableStyles = QinStyles) {
-    styleAsBase(el);
+    styleAsSpaced(el);
     el.style.backgroundColor = styles.ColorInactiveAct;
     el.style.border = "1px solid " + styles.ColorForeground;
     el.style.borderRadius = "3px";
@@ -120,7 +120,7 @@ function styleAsActionable(el: HTMLElement, styles: QinActionableStyles = QinSty
 }
 
 function styleAsReadOnly(el: HTMLElement) {
-    styleAsBase(el);
+    styleAsSpaced(el);
     el.style.backgroundColor = QinStyles.ColorBlocked;
     el.style.border = "1px solid " + QinStyles.ColorForeground;
     el.style.borderRadius = "3px";
@@ -157,14 +157,16 @@ function styleMaxSizeForNotOverFlow(el: HTMLElement, parent?: HTMLElement) {
 
 function styleSize(el: HTMLElement, size?: QinDimension | QinGrandeur) {
     if (size) {
-        if (size instanceof QinDimension) {
-            el.style.width = size.width + "px";
-            el.style.height = size.height + "px";
-        } else {
-            let dim = getDimensionSize(size);
-            el.style.width = dim.width + "px";
-            el.style.height = dim.height + "px";
+        let dim = size;
+        if (!(size instanceof QinDimension)) {
+            dim = getDimensionSize(size);
         }
+        el.style.width = (dim as QinDimension).width + "px";
+        el.style.height = (dim as QinDimension).height + "px";
+        el.style.minWidth = (dim as QinDimension).width + "px";
+        el.style.minHeight = (dim as QinDimension).height + "px";
+        el.style.maxWidth = (dim as QinDimension).width + "px";
+        el.style.maxHeight = (dim as QinDimension).height + "px";
     }
 }
 
@@ -306,6 +308,7 @@ export const QinSkin = {
     styleAsBody,
     styleAsWhole,
     styleAsBase,
+    styleAsSpaced,
     styleAsEditable,
     styleAsActionable,
     styleAsReadOnly,
