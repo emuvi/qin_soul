@@ -51,21 +51,22 @@ export const QinStylesPicker = {
 
 function styleAsBody(el: HTMLElement) {
     el.style.position = "absolute";
-    el.style.top = "0px";
-    el.style.right = "0px";
-    el.style.bottom = "0px";
-    el.style.left = "0px";
-    el.style.padding = "9px";
+    el.style.top = "0";
+    el.style.right = "0";
+    el.style.bottom = "0";
+    el.style.left = "0";
+    el.style.minWidth = "stretch";
+    el.style.minHeight = "stretch";
+    el.style.padding = "7px";
     el.style.overflow = "auto";
-    el.style.flex = "1";
 }
 
 function styleAsWhole(el: HTMLElement) {
     el.style.position = "relative";
-    el.style.top = "0px";
-    el.style.right = "0px";
-    el.style.bottom = "0px";
-    el.style.left = "0px";
+    el.style.top = "0";
+    el.style.right = "0";
+    el.style.bottom = "0";
+    el.style.left = "0";
     el.style.flex = "1 1 auto";
 }
 
@@ -79,6 +80,38 @@ function styleAsSpaced(el: HTMLElement) {
     el.style.padding = "4px";
 }
 
+function _styledAsEditableFocusEvent() {
+    this.style.backgroundColor = QinStyles.ColorActive;
+    this.style.border = "1px solid " + QinStyles.ColorAccent;
+}
+
+function _styledAsEditableFocusoutEvent() {
+    this.style.backgroundColor = QinStyles.ColorInactive;
+    this.style.border = "1px solid " + QinStyles.ColorForeground;
+}
+
+function _styledAsReadOnlyFocusEvent() {
+    this.style.backgroundColor = QinSkin.styles.ColorEntered;
+    this.style.border = "1px solid " + QinSkin.styles.ColorAttend;
+}
+
+function _styledAsReadOnlyFocusoutEvent() {
+    this.style.backgroundColor = QinSkin.styles.ColorBlocked;
+    this.style.border = "1px solid " + QinSkin.styles.ColorForeground;
+}
+
+function _styledAsActionableFocusEvent() {
+    const styles = this['actionableStyles'] as QinActionableStyles;
+    this.style.backgroundColor = styles.ColorActiveAct;
+    this.style.border = "1px solid " + styles.ColorAccentAct;
+}
+
+function _styledAsActionableFocusoutEvent() {
+    const styles = this['actionableStyles'] as QinActionableStyles;
+    this.style.backgroundColor = styles.ColorInactiveAct;
+    this.style.border = "1px solid " + styles.ColorForeground;
+}
+
 function styleAsEditable(el: HTMLElement) {
     styleAsSpaced(el);
     el.style.color = QinStyles.ColorForeground;
@@ -86,14 +119,41 @@ function styleAsEditable(el: HTMLElement) {
     el.style.border = "1px solid " + QinStyles.ColorForeground;
     el.style.borderRadius = "3px";
     el.style.outline = "none";
-    el.addEventListener("focus", () => {
-        el.style.backgroundColor = QinStyles.ColorActive;
-        el.style.border = "1px solid " + QinStyles.ColorAccent;
-    });
-    el.addEventListener("focusout", () => {
-        el.style.backgroundColor = QinStyles.ColorInactive;
-        el.style.border = "1px solid " + QinStyles.ColorForeground;
-    });
+    el.addEventListener("focus", _styledAsEditableFocusEvent);
+    el.addEventListener("focusout", _styledAsEditableFocusoutEvent);
+    el.removeEventListener("focus", _styledAsReadOnlyFocusEvent);
+    el.removeEventListener("focusout", _styledAsReadOnlyFocusoutEvent);
+    el.removeEventListener("focus", _styledAsActionableFocusEvent);
+    el.removeEventListener("focusout", _styledAsActionableFocusoutEvent);
+}
+
+function styleAsReadOnly(el: HTMLElement) {
+    styleAsSpaced(el);
+    el.style.backgroundColor = QinStyles.ColorBlocked;
+    el.style.border = "1px solid " + QinSkin.styles.ColorForeground;
+    el.style.borderRadius = "3px";
+    el.style.outline = "none";
+    el.removeEventListener("focus", _styledAsEditableFocusEvent);
+    el.removeEventListener("focusout", _styledAsEditableFocusoutEvent);
+    el.addEventListener("focus", _styledAsReadOnlyFocusEvent);
+    el.addEventListener("focusout", _styledAsReadOnlyFocusoutEvent);
+    el.removeEventListener("focus", _styledAsActionableFocusEvent);
+    el.removeEventListener("focusout", _styledAsActionableFocusoutEvent);
+}
+
+function styleAsActionable(el: HTMLElement, styles: QinActionableStyles = QinStyles) {
+    styleAsSpaced(el);
+    el['actionableStyles'] = styles;
+    el.style.backgroundColor = styles.ColorInactiveAct;
+    el.style.border = "1px solid " + styles.ColorForeground;
+    el.style.borderRadius = "3px";
+    el.style.outline = "none";
+    el.removeEventListener("focus", _styledAsEditableFocusEvent);
+    el.removeEventListener("focusout", _styledAsEditableFocusoutEvent);
+    el.removeEventListener("focus", _styledAsReadOnlyFocusEvent);
+    el.removeEventListener("focusout", _styledAsReadOnlyFocusoutEvent);
+    el.addEventListener("focus", _styledAsActionableFocusEvent);
+    el.addEventListener("focusout", _styledAsActionableFocusoutEvent);
 }
 
 export type QinActionableStyles = {
@@ -102,38 +162,6 @@ export type QinActionableStyles = {
     ColorActiveAct: string;
     ColorAccentAct: string;
 };
-
-function styleAsActionable(el: HTMLElement, styles: QinActionableStyles = QinStyles) {
-    styleAsSpaced(el);
-    el.style.backgroundColor = styles.ColorInactiveAct;
-    el.style.border = "1px solid " + styles.ColorForeground;
-    el.style.borderRadius = "3px";
-    el.style.outline = "none";
-    el.addEventListener("focus", () => {
-        el.style.backgroundColor = styles.ColorActiveAct;
-        el.style.border = "1px solid " + styles.ColorAccentAct;
-    });
-    el.addEventListener("focusout", () => {
-        el.style.backgroundColor = styles.ColorInactiveAct;
-        el.style.border = "1px solid " + styles.ColorForeground;
-    });
-}
-
-function styleAsReadOnly(el: HTMLElement) {
-    styleAsSpaced(el);
-    el.style.backgroundColor = QinStyles.ColorBlocked;
-    el.style.border = "1px solid " + QinStyles.ColorForeground;
-    el.style.borderRadius = "3px";
-    el.style.outline = "none";
-    el.addEventListener("focus", () => {
-        el.style.backgroundColor = QinStyles.ColorEntered;
-        el.style.border = "1px solid " + QinStyles.ColorAttend;
-    });
-    el.addEventListener("focusout", () => {
-        el.style.backgroundColor = QinStyles.ColorBlocked;
-        el.style.border = "1px solid " + QinStyles.ColorForeground;
-    });
-}
 
 function styleMaxSizeForNotOverFlow(el: HTMLElement, parent?: HTMLElement) {
     if (!parent) {
@@ -310,8 +338,8 @@ export const QinSkin = {
     styleAsBase,
     styleAsSpaced,
     styleAsEditable,
-    styleAsActionable,
     styleAsReadOnly,
+    styleAsActionable,
     styleMaxSizeForNotOverFlow,
     styleSize,
     styleFlexMax,
