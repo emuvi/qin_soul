@@ -18,9 +18,9 @@ export class QinBounds {
 }
 
 export enum QinGrandeur {
-    SMALL = "small",
-    MEDIUM = "medium",
-    LARGE = "large",
+    SMALL = "SMALL",
+    MEDIUM = "MEDIUM",
+    LARGE = "LARGE",
 }
 
 export const QinStyles = {
@@ -76,6 +76,8 @@ function styleAsBase(el: HTMLElement) {
     el.style.color = QinStyles.ColorForeground;
     el.style.fontFamily = "SourceSansPro";
     el.style.fontSize = "16px";
+    el.style.minHeight = "fit-content";
+    el.style.minWidth = "fit-content";
 }
 
 function styleAsEditable(el: HTMLElement) {
