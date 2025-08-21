@@ -280,6 +280,12 @@ function isElementVisibleInScroll(element: HTMLElement) {
     return true;
 }
 
+function getWidthByMaxLength(maxLength: number): string {
+    let positions = Math.min(Math.max(maxLength - 10, 0), 90);
+    let width = Math.floor(90 + (positions * 7) / 3);
+    return width + "px";
+}
+
 function getDimension(el: HTMLElement): QinDimension {
     return {
         width: parseInt(el.style.width),
@@ -351,6 +357,7 @@ export const QinSkin = {
     disableSelection,
     clearSelection,
     isElementVisibleInScroll,
+    getWidthByMaxLength,
     getDimension,
     getDimensionSize,
     getDimensionSmall,
