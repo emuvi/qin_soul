@@ -506,6 +506,62 @@ function styleAsMaxSize(el: HTMLElement, size?: QinDimension | QinGrandeur) {
     el.style.maxHeight = getPixelsOrInitial((dim as QinDimension).height);
 }
 
+function styleAsForeground(el: HTMLElement, foreground: string) {
+    el.style.color = foreground;
+}
+
+function styleAsBackground(el: HTMLElement, background: string) {
+    el.style.background = background;
+}
+
+function styleAsBackgroundImage(el: HTMLElement, imageURL: string) {
+    if (imageURL) {
+        el.style.backgroundImage = "url('" + imageURL + "')";
+    } else {
+        styleAsBackgroundImageInitial(el);
+    }
+}
+
+function styleAsBackgroundImageInitial(el: HTMLElement) {
+    el.style.backgroundImage = "initial";
+}
+
+function styleAsZIndex(el: HTMLElement, index: number) {
+    if (index == null || index == undefined) {
+        el.style.zIndex = "initial";
+    } else {
+        el.style.zIndex = index.toString();
+    }
+}
+
+function styleAsWhiteSpaceNormal(el: HTMLElement) {
+    el.style.whiteSpace = "normal";
+}
+
+function styleAsWhiteSpaceNoWrap(el: HTMLElement) {
+    el.style.whiteSpace = "nowrap";
+}
+
+function styleAsWhiteSpacePre(el: HTMLElement) {
+    el.style.whiteSpace = "pre";
+}
+
+function styleAsWhiteSpacePreLine(el: HTMLElement) {
+    el.style.whiteSpace = "pre-line";
+}
+
+function styleAsWhiteSpacePreWrap(el: HTMLElement) {
+    el.style.whiteSpace = "pre-wrap";
+}
+
+function styleAsWhiteSpaceInitial(el: HTMLElement) {
+    el.style.whiteSpace = "initial";
+}
+
+function styleAsWhiteSpaceInherit(el: HTMLElement) {
+    el.style.whiteSpace = "inherit";
+}
+
 function applyStyles(element: HTMLElement, styles: Partial<CSSStyleDeclaration>) {
     if (element && styles) {
         for (const key in styles) {
@@ -754,6 +810,18 @@ export const QinSkin = {
     styleAsMaxWidth,
     styleAsMaxHeight,
     styleAsMaxSize,
+    styleAsForeground,
+    styleAsBackground,
+    styleAsBackgroundImage,
+    styleAsBackgroundImageInitial,
+    styleAsZIndex,
+    styleAsWhiteSpaceNormal,
+    styleAsWhiteSpaceNoWrap,
+    styleAsWhiteSpacePre,
+    styleAsWhiteSpacePreLine,
+    styleAsWhiteSpacePreWrap,
+    styleAsWhiteSpaceInitial,
+    styleAsWhiteSpaceInherit,
     applyStyles,
     getPixelsOrInitial,
     getWindowSize,
