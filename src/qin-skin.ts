@@ -1,16 +1,16 @@
 import { QinArms } from "./qin-arms";
 
-export class QinPoint {
+export type QinPoint = {
     posX: number;
     posY: number;
 }
 
-export class QinDimension {
+export type QinDimension = {
     width: number;
     height: number;
 }
 
-export class QinBounds {
+export type QinBounds = {
     posX: number;
     posY: number;
     width: number;
@@ -183,27 +183,174 @@ function styleMaxSizeForNotOverFlow(el: HTMLElement, parent?: HTMLElement) {
     }
 }
 
-function styleSize(el: HTMLElement, size?: QinDimension | QinGrandeur) {
-    if (size) {
-        let dim = size;
-        if (!(size instanceof QinDimension)) {
-            dim = getDimensionSize(size);
-        }
-        el.style.width = (dim as QinDimension).width + "px";
-        el.style.height = (dim as QinDimension).height + "px";
-        el.style.minWidth = (dim as QinDimension).width + "px";
-        el.style.minHeight = (dim as QinDimension).height + "px";
-        el.style.maxWidth = (dim as QinDimension).width + "px";
-        el.style.maxHeight = (dim as QinDimension).height + "px";
-    }
+function styleAsScroll(el: HTMLElement) {
+    el.style.overflow = "auto";
 }
 
-function styleFlexMax(el: HTMLElement) {
+function styleAsMargin(el: HTMLElement, margin: number) {
+    el.style.margin = getPixelsOrInitial(margin);
+}
+
+function styleAsMarginTop(el: HTMLElement, margin: number) {
+    el.style.marginTop = getPixelsOrInitial(margin);
+}
+
+function styleAsMarginBottom(el: HTMLElement, margin: number) {
+    el.style.marginBottom = getPixelsOrInitial(margin);
+}
+
+function styleAsMarginLeft(el: HTMLElement, margin: number) {
+    el.style.marginLeft = getPixelsOrInitial(margin);
+}
+
+function styleAsMarginRight(el: HTMLElement, margin: number) {
+    el.style.marginRight = getPixelsOrInitial(margin);
+}
+
+function styleAsPadding(el: HTMLElement, padding: number) {
+    el.style.padding = getPixelsOrInitial(padding);
+}
+
+function styleAsPaddingTop(el: HTMLElement, padding: number) {
+    el.style.paddingTop = getPixelsOrInitial(padding);
+}
+
+function styleAsPaddingBottom(el: HTMLElement, padding: number) {
+    el.style.paddingBottom = getPixelsOrInitial(padding);
+}
+
+function styleAsPaddingLeft(el: HTMLElement, padding: number) {
+    el.style.paddingLeft = getPixelsOrInitial(padding);
+}
+
+function styleAsPaddingRight(el: HTMLElement, padding: number) {
+    el.style.paddingRight = getPixelsOrInitial(padding);
+}
+
+function styleAsBounds(el: HTMLElement, top: number, right: number, bottom: number, left: number) {
+    el.style.top = getPixelsOrInitial(top);
+    el.style.right = getPixelsOrInitial(right);
+    el.style.bottom = getPixelsOrInitial(bottom);
+    el.style.left = getPixelsOrInitial(left);
+}
+
+function styleAsWidth(el: HTMLElement, width?: number | QinGrandeur) {
+    let dim = width;
+    if (typeof width === "string") {
+        dim = getDimensionSize(width).width;
+    }
+    el.style.width = getPixelsOrInitial(dim as number);
+    el.style.minWidth = getPixelsOrInitial(dim as number);
+    el.style.maxWidth = getPixelsOrInitial(dim as number);
+}
+
+function styleAsHeight(el: HTMLElement, height?: number | QinGrandeur) {
+    let dim = height;
+    if (typeof height === "string") {
+        dim = getDimensionSize(height).height;
+    }
+    el.style.height = getPixelsOrInitial(dim as number);
+    el.style.minHeight = getPixelsOrInitial(dim as number);
+    el.style.maxHeight = getPixelsOrInitial(dim as number);
+}
+
+function styleAsSize(el: HTMLElement, size?: QinDimension | QinGrandeur) {
+    let dim = size;
+    if (typeof size === "string") {
+        dim = getDimensionSize(size);
+    }
+    if (!dim) {
+        dim = { width: null, height: null }
+    }
+    el.style.width = getPixelsOrInitial((dim as QinDimension).width);
+    el.style.height = getPixelsOrInitial((dim as QinDimension).height);
+    el.style.minWidth = getPixelsOrInitial((dim as QinDimension).width);
+    el.style.minHeight = getPixelsOrInitial((dim as QinDimension).height);
+    el.style.maxWidth = getPixelsOrInitial((dim as QinDimension).width);
+    el.style.maxHeight = getPixelsOrInitial((dim as QinDimension).height);
+}
+
+function styleAsMinWidth(el: HTMLElement, width?: number | QinGrandeur) {
+    let dim = width;
+    if (typeof width === "string") {
+        dim = getDimensionSize(width).width;
+    }
+    el.style.minWidth = getPixelsOrInitial(dim as number);
+}
+
+function styleAsMinHeight(el: HTMLElement, height?: number | QinGrandeur) {
+    let dim = height;
+    if (typeof height === "string") {
+        dim = getDimensionSize(height).height;
+    }
+    el.style.minHeight = getPixelsOrInitial(dim as number);
+}
+
+function styleAsMinSize(el: HTMLElement, size?: QinDimension | QinGrandeur) {
+    let dim = size;
+    if (typeof size === "string") {
+        dim = getDimensionSize(size);
+    }
+    if (!dim) {
+        dim = { width: null, height: null }
+    }
+    el.style.minWidth = getPixelsOrInitial((dim as QinDimension).width);
+    el.style.minHeight = getPixelsOrInitial((dim as QinDimension).height);
+}
+
+function styleAsMaxWidth(el: HTMLElement, width?: number | QinGrandeur) {
+    let dim = width;
+    if (typeof width === "string") {
+        dim = getDimensionSize(width).width;
+    }
+    el.style.maxWidth = getPixelsOrInitial(dim as number);
+}
+
+function styleAsMaxHeight(el: HTMLElement, height?: number | QinGrandeur) {
+    let dim = height;
+    if (typeof height === "string") {
+        dim = getDimensionSize(height).height;
+    }
+    el.style.maxHeight = getPixelsOrInitial(dim as number);
+}
+
+function styleAsMaxSize(el: HTMLElement, size?: QinDimension | QinGrandeur) {
+    let dim = size;
+    if (typeof size === "string") {
+        dim = getDimensionSize(size);
+    }
+    if (!dim) {
+        dim = { width: null, height: null }
+    }
+    el.style.maxWidth = getPixelsOrInitial((dim as QinDimension).width);
+    el.style.maxHeight = getPixelsOrInitial((dim as QinDimension).height);
+}
+
+function styleAsFlexMax(el: HTMLElement) {
     el.style.flex = "1";
 }
 
-function styleFlexMin(el: HTMLElement) {
+function styleAsFlexMin(el: HTMLElement) {
     el.style.flex = "0";
+}
+
+function styleAsFlexProp(el: HTMLElement, prop: number) {
+    el.style.flex = prop + "";
+}
+
+function applyStyles(element: HTMLElement, styles: Partial<CSSStyleDeclaration>) {
+    if (element && styles) {
+        for (const key in styles) {
+            element.style[key] = styles[key];
+        }
+    }
+}
+
+function getPixelsOrInitial(value: number): string {
+    if (value == null || value == undefined) {
+        return "initial";
+    }
+    return value + "px";
 }
 
 function getWindowSize(): QinDimension {
@@ -225,17 +372,15 @@ function getWindowSizeStyle(): QinGrandeur {
 }
 
 function hideAllIFrames() {
-    var docIFrames = document.getElementsByTagName("iframe");
-    for (let i = 0; i < docIFrames.length; i++) {
-        let doc_iframe = docIFrames[i];
+    let docIFrames = document.getElementsByTagName("iframe");
+    for (const doc_iframe of docIFrames) {
         doc_iframe.style.visibility = "hidden";
     }
 }
 
 function showAllIFrames() {
-    var docIFrames = document.getElementsByTagName("iframe");
-    for (let i = 0; i < docIFrames.length; i++) {
-        let doc_iframe = docIFrames[i];
+    let docIFrames = document.getElementsByTagName("iframe");
+    for (const doc_iframe of docIFrames) {
         doc_iframe.style.visibility = "visible";
     }
 }
@@ -329,14 +474,6 @@ function getDimensionLarge(): QinDimension {
     return dimensionLarge;
 }
 
-function applyStyles(element: HTMLElement, styles: Partial<CSSStyleDeclaration>) {
-    if (element && styles) {
-        for (const key in styles) {
-            element.style[key] = styles[key];
-        }
-    }
-}
-
 export const QinSkin = {
     styles: QinStyles,
     styleAsBody,
@@ -347,9 +484,32 @@ export const QinSkin = {
     styleAsReadOnly,
     styleAsActionable,
     styleMaxSizeForNotOverFlow,
-    styleSize,
-    styleFlexMax,
-    styleFlexMin,
+    styleAsScroll,
+    styleAsMargin,
+    styleAsMarginTop,
+    styleAsMarginBottom,
+    styleAsMarginLeft,
+    styleAsMarginRight,
+    styleAsPadding,
+    styleAsPaddingTop,
+    styleAsPaddingBottom,
+    styleAsPaddingLeft,
+    styleAsPaddingRight,
+    styleAsBounds,
+    styleAsWidth,
+    styleAsHeight,
+    styleAsSize,
+    styleAsMinWidth,
+    styleAsMinHeight,
+    styleAsMinSize,
+    styleAsMaxWidth,
+    styleAsMaxHeight,
+    styleAsMaxSize,
+    styleAsFlexMax,
+    styleAsFlexMin,
+    styleAsFlexProp,
+    applyStyles,
+    getPixelsOrInitial,
     getWindowSize,
     getWindowSizeStyle,
     hideAllIFrames,
@@ -363,5 +523,4 @@ export const QinSkin = {
     getDimensionSmall,
     getDimensionMedium,
     getDimensionLarge,
-    applyStyles,
 };
