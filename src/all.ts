@@ -8,6 +8,7 @@ export { AllowReg } from "./qin-type";
 export { AskConstantly } from "./qin-type";
 export { AskStream } from "./qin-type";
 export { Bases } from "./qin-type";
+export { BorderStyle } from "./qin-skin";
 export { DataBase } from "./qin-type";
 export { DataJdbc } from "./qin-type";
 export { DataLink } from "./qin-type";

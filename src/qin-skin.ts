@@ -1,28 +1,5 @@
 import { QinArms } from "./qin-arms";
 
-export type QinPoint = {
-    posX: number;
-    posY: number;
-}
-
-export type QinDimension = {
-    width: number;
-    height: number;
-}
-
-export type QinBounds = {
-    posX: number;
-    posY: number;
-    width: number;
-    height: number;
-}
-
-export enum QinGrandeur {
-    SMALL = "SMALL",
-    MEDIUM = "MEDIUM",
-    LARGE = "LARGE",
-}
-
 export const QinStyles = {
     ColorForeground: "#180027ff",
     ColorBackground: "#fffcf9ff",
@@ -227,6 +204,209 @@ function styleAsPaddingRight(el: HTMLElement, padding: number) {
     el.style.paddingRight = getPixelsOrInitial(padding);
 }
 
+function styleAsBorder(el: HTMLElement, thick?: number, color: string = QinStyles.ColorForeground, style: BorderStyle = BorderStyle.SOLID) {
+    if (thick) {
+        el.style.border = thick + "px " + style + " " + color;
+    } else {
+        el.style.border = "none";
+    }
+}
+
+function styleAsBorderTop(el: HTMLElement, thick?: number, color: string = QinStyles.ColorForeground, style: BorderStyle = BorderStyle.SOLID) {
+    if (thick) {
+        el.style.borderTop = thick + "px " + style + " " + color;
+    } else {
+        el.style.borderTop = "none";
+    }
+}
+
+function styleAsBorderBottom(el: HTMLElement, thick?: number, color: string = QinStyles.ColorForeground, style: BorderStyle = BorderStyle.SOLID) {
+    if (thick) {
+        el.style.borderBottom = thick + "px " + style + " " + color;
+    } else {
+        el.style.borderBottom = "none";
+    }
+}
+
+function styleAsBorderLeft(el: HTMLElement, thick?: number, color: string = QinStyles.ColorForeground, style: BorderStyle = BorderStyle.SOLID) {
+    if (thick) {
+        el.style.borderLeft = thick + "px " + style + " " + color;
+    } else {
+        el.style.borderLeft = "none";
+    }
+}
+
+function styleAsBorderRight(el: HTMLElement, thick?: number, color: string = QinStyles.ColorForeground, style: BorderStyle = BorderStyle.SOLID) {
+    if (thick) {
+        el.style.borderRight = thick + "px " + style + " " + color;
+    } else {
+        el.style.borderRight = "none";
+    }
+}
+
+function styleAsBorderRadius(el: HTMLElement, radius: number) {
+    el.style.borderRadius = getPixelsOrInitial(radius);
+}
+
+function styleAsBorderTopLeftRadius(el: HTMLElement, radius: number) {
+    el.style.borderTopLeftRadius = getPixelsOrInitial(radius);
+}
+
+function styleAsBorderTopRightRadius(el: HTMLElement, radius: number) {
+    el.style.borderTopRightRadius = getPixelsOrInitial(radius);
+}
+
+function styleAsBorderBottomRightRadius(el: HTMLElement, radius: number) {
+    el.style.borderBottomRightRadius = getPixelsOrInitial(radius);
+}
+
+function styleAsBorderBottomLeftRadius(el: HTMLElement, radius: number) {
+    el.style.borderBottomLeftRadius = getPixelsOrInitial(radius);
+}
+
+function styleAsDisplayFlex(el: HTMLElement) {
+    el.style.display = "flex";
+}
+
+function styleAsDisplayInline(el: HTMLElement) {
+    el.style.display = "inline";
+}
+
+function styleAsDisplayInlineBlock(el: HTMLElement) {
+    el.style.display = "inline-block";
+}
+
+function styleAsPositionStatic(el: HTMLElement) {
+    el.style.position = "static";
+}
+
+function styleAsPositionAbsolute(el: HTMLElement) {
+    el.style.position = "absolute";
+}
+
+function styleAsPositionFixed(el: HTMLElement) {
+    el.style.position = "fixed";
+}
+
+function styleAsPositionRelative(el: HTMLElement) {
+    el.style.position = "relative";
+}
+
+function styleAsPositionSticky(el: HTMLElement) {
+    el.style.position = "sticky";
+}
+
+function styleAsPositionInitial(el: HTMLElement) {
+    el.style.position = "initial";
+}
+
+function styleAsFlexDirectionRow(el: HTMLElement) {
+    el.style.flexDirection = "row";
+}
+
+function styleAsFlexDirectionRowReverse(el: HTMLElement) {
+    el.style.flexDirection = "row-reverse";
+}
+
+function styleAsFlexDirectionColumn(el: HTMLElement) {
+    el.style.flexDirection = "column";
+}
+
+function styleAsFlexDirectionColumnReverse(el: HTMLElement) {
+    el.style.flexDirection = "column-reverse";
+}
+
+function styleAsFlexWrap(el: HTMLElement) {
+    el.style.flexWrap = "wrap";
+}
+
+function styleAsFlexWrapNot(el: HTMLElement) {
+    el.style.flexWrap = "nowrap";
+}
+
+function styleAsFlexWrapReverse(el: HTMLElement) {
+    el.style.flexWrap = "wrap-reverse";
+}
+
+function styleAsFlexMin(el: HTMLElement) {
+    el.style.flex = "none";
+}
+
+function styleAsFlexMax(el: HTMLElement) {
+    el.style.flex = "auto";
+}
+
+function styleAsFlexProp(el: HTMLElement, prop: number) {
+    el.style.flex = prop + "";
+}
+
+function styleAsAllCentered(el: HTMLElement) {
+    el.style.textAlign = "center";
+    el.style.alignItems = "center";
+    el.style.alignContent = "center";
+    el.style.verticalAlign = "middle";
+}
+
+function styleAsJustifyContentFlexStart(el: HTMLElement) {
+    el.style.justifyContent = "flex-start";
+}
+
+function styleAsJustifyContentFlexEnd(el: HTMLElement) {
+    el.style.justifyContent = "flex-end";
+}
+
+function styleAsJustifyContentCenter(el: HTMLElement) {
+    el.style.justifyContent = "center";
+}
+
+function styleAsJustifyContentSpaceBetween(el: HTMLElement) {
+    el.style.justifyContent = "space-between";
+}
+
+function styleAsJustifyContentSpaceAround(el: HTMLElement) {
+    el.style.justifyContent = "space-around";
+}
+
+function styleAsJustifyContentSpaceEvenly(el: HTMLElement) {
+    el.style.justifyContent = "space-evenly";
+}
+
+function styleAsJustifyContentInitial(el: HTMLElement) {
+    el.style.justifyContent = "initial";
+}
+
+function styleAsJustifyContentInherit(el: HTMLElement) {
+    el.style.justifyContent = "inherit";
+}
+
+function styleAsAlignItemsStretch(el: HTMLElement) {
+    el.style.alignItems = "stretch";
+}
+
+function styleAsAlignItemsCenter(el: HTMLElement) {
+    el.style.alignItems = "center";
+}
+
+function styleAsAlignItemsFlexStart(el: HTMLElement) {
+    el.style.alignItems = "flex-start";
+}
+
+function styleAsAlignItemsFlexEnd(el: HTMLElement) {
+    el.style.alignItems = "flex-end";
+}
+
+function styleAsAlignItemsBaseline(el: HTMLElement) {
+    el.style.alignItems = "baseline";
+}
+
+function styleAsAlignItemsInitial(el: HTMLElement) {
+    el.style.alignItems = "initial";
+}
+
+function styleAsAlignItemsInherit(el: HTMLElement) {
+    el.style.alignItems = "inherit";
+}
+
 function styleAsBounds(el: HTMLElement, top: number, right: number, bottom: number, left: number) {
     el.style.top = getPixelsOrInitial(top);
     el.style.right = getPixelsOrInitial(right);
@@ -324,18 +504,6 @@ function styleAsMaxSize(el: HTMLElement, size?: QinDimension | QinGrandeur) {
     }
     el.style.maxWidth = getPixelsOrInitial((dim as QinDimension).width);
     el.style.maxHeight = getPixelsOrInitial((dim as QinDimension).height);
-}
-
-function styleAsFlexMax(el: HTMLElement) {
-    el.style.flex = "1";
-}
-
-function styleAsFlexMin(el: HTMLElement) {
-    el.style.flex = "0";
-}
-
-function styleAsFlexProp(el: HTMLElement, prop: number) {
-    el.style.flex = prop + "";
 }
 
 function applyStyles(element: HTMLElement, styles: Partial<CSSStyleDeclaration>) {
@@ -474,6 +642,42 @@ function getDimensionLarge(): QinDimension {
     return dimensionLarge;
 }
 
+export type QinPoint = {
+    posX: number;
+    posY: number;
+}
+
+export type QinDimension = {
+    width: number;
+    height: number;
+}
+
+export type QinBounds = {
+    posX: number;
+    posY: number;
+    width: number;
+    height: number;
+}
+
+export enum QinGrandeur {
+    SMALL = "SMALL",
+    MEDIUM = "MEDIUM",
+    LARGE = "LARGE",
+}
+
+export enum BorderStyle {
+    NONE = "none",
+    HIDDEN = "hidden",
+    DOTTED = "dotted",
+    DASHED = "dashed",
+    SOLID = "solid",
+    DOUBLE = "double",
+    GROOVE = "groove",
+    RIDGE = "ridge",
+    INSET = "inset",
+    OUTSET = "outset",
+}
+
 export const QinSkin = {
     styles: QinStyles,
     styleAsBody,
@@ -495,6 +699,51 @@ export const QinSkin = {
     styleAsPaddingBottom,
     styleAsPaddingLeft,
     styleAsPaddingRight,
+    styleAsBorder,
+    styleAsBorderTop,
+    styleAsBorderBottom,
+    styleAsBorderLeft,
+    styleAsBorderRight,
+    styleAsBorderRadius,
+    styleAsBorderTopLeftRadius,
+    styleAsBorderTopRightRadius,
+    styleAsBorderBottomRightRadius,
+    styleAsBorderBottomLeftRadius,
+    styleAsDisplayFlex,
+    styleAsDisplayInline,
+    styleAsDisplayInlineBlock,
+    styleAsPositionStatic,
+    styleAsPositionAbsolute,
+    styleAsPositionFixed,
+    styleAsPositionRelative,
+    styleAsPositionSticky,
+    styleAsPositionInitial,
+    styleAsFlexDirectionRow,
+    styleAsFlexDirectionRowReverse,
+    styleAsFlexDirectionColumn,
+    styleAsFlexDirectionColumnReverse,
+    styleAsFlexWrap,
+    styleAsFlexWrapNot,
+    styleAsFlexWrapReverse,
+    styleAsFlexMin,
+    styleAsFlexMax,
+    styleAsFlexProp,
+    styleAsAllCentered,
+    styleAsJustifyContentFlexStart,
+    styleAsJustifyContentFlexEnd,
+    styleAsJustifyContentCenter,
+    styleAsJustifyContentSpaceBetween,
+    styleAsJustifyContentSpaceAround,
+    styleAsJustifyContentSpaceEvenly,
+    styleAsJustifyContentInitial,
+    styleAsJustifyContentInherit,
+    styleAsAlignItemsStretch,
+    styleAsAlignItemsCenter,
+    styleAsAlignItemsFlexStart,
+    styleAsAlignItemsFlexEnd,
+    styleAsAlignItemsBaseline,
+    styleAsAlignItemsInitial,
+    styleAsAlignItemsInherit,
     styleAsBounds,
     styleAsWidth,
     styleAsHeight,
@@ -505,9 +754,6 @@ export const QinSkin = {
     styleAsMaxWidth,
     styleAsMaxHeight,
     styleAsMaxSize,
-    styleAsFlexMax,
-    styleAsFlexMin,
-    styleAsFlexProp,
     applyStyles,
     getPixelsOrInitial,
     getWindowSize,
