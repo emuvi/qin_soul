@@ -497,11 +497,11 @@ export type AllowBas = {
 
 export type AllowReg = {
     registry: Registry;
-    all: Boolean;
-    insert: Boolean;
-    select: Boolean;
-    update: Boolean;
-    delete: Boolean;
+    all: boolean;
+    insert: boolean;
+    select: boolean;
+    update: boolean;
+    delete: boolean;
     strain: Strain;
 }
 
