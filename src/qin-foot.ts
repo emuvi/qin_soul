@@ -1,3 +1,5 @@
+import { Nature } from "./qin-type";
+
 export enum QinConstants {
     DEV_TOOLS = "DevTools",
     QIN_BASES = "QinBases",
@@ -92,33 +94,7 @@ function isFileApp(extension: string): boolean {
     return appsExtensions.indexOf(extension) > -1;
 }
 
-const cmdsExtensions = [
-    "h",
-    "c",
-    "hpp",
-    "cpp",
-    "rs",
-    "jl",
-    "cs",
-    "csproj",
-    "fs",
-    "ml",
-    "fsi",
-    "mli",
-    "fsx",
-    "fsscript",
-    "java",
-    "gy",
-    "gvy",
-    "groovy",
-    "sc",
-    "scala",
-    "clj",
-    "py",
-    "ruby",
-    "php",
-    "phtml",
-];
+const cmdsExtensions = ["h", "c", "hpp", "cpp", "rs", "jl", "cs", "csproj", "fs", "ml", "fsi", "mli", "fsx", "fsscript", "java", "gy", "gvy", "groovy", "sc", "scala", "clj", "py", "ruby", "php", "phtml"];
 
 function isFileCmd(extension: string): boolean {
     return cmdsExtensions.indexOf(extension) > -1;
@@ -160,6 +136,190 @@ function isFileZipped(extension: string): boolean {
     return zippedExtensions.indexOf(extension) > -1;
 }
 
+function parseBit(value: any) {
+  return value ? 1 : 0;
+}
+
+function parseBool(value: any) {
+  if (typeof value === "boolean") return value;
+  if (typeof value === "string") {
+    let lower = value.trim().toLowerCase();
+    return ["true", "1", "yes", "y"].indexOf(lower) >= 0;
+  }
+  return Boolean(value);
+}
+
+function parseByte(value: any) {
+  let num = Number(value) || 0;
+  num = Math.trunc(num);
+  if (num < -128) return -128;
+  if (num > 127) return 127;
+  return num;
+}
+
+function parseTiny(value: any) {
+  return parseByte(value);
+}
+
+function parseSmall(value: any) {
+  let num = Number(value) || 0;
+  num = Math.trunc(num);
+  if (num < -32768) return -32768;
+  if (num > 32767) return 32767;
+  return num;
+}
+
+function parseInt32(value: any) {
+  let num = Number(value) || 0;
+  num = Math.trunc(num);
+  if (num < -2147483648) return -2147483648;
+  if (num > 2147483647) return 2147483647;
+  return num;
+}
+
+function parseLong(value: any) {
+  let num = Number(value) || 0;
+  num = Math.trunc(num);
+  if (num < -9007199254740991) return -9007199254740991;
+  if (num > 9007199254740991) return 9007199254740991;
+  return num;
+}
+
+function parseSerial(value: any) {
+  return parseInt32(value);
+}
+
+function parseBigSerial(value: any) {
+  return parseLong(value);
+}
+
+function parseFloat32(value: any) {
+  let num = Number(value) || 0;
+  if (num < -3.4028235e38) return -3.4028235e38;
+  if (num > 3.4028235e38) return 3.4028235e38;
+  return num;
+}
+
+function parseReal(value: any) {
+  return parseFloat32(value);
+}
+
+function parseDouble(value: any) {
+  let num = Number(value) || 0;
+  if (num < -1.7976931348623157e308) return -1.7976931348623157e308;
+  if (num > 1.7976931348623157e308) return 1.7976931348623157e308;
+  return num;
+}
+
+function parseNumeric(value: any) {
+  let num = Number(value);
+  return isNaN(num) ? 0 : num;
+}
+
+function parseBigNumeric(value: any) {
+  let num = Number(value);
+  return isNaN(num) ? 0 : num;
+}
+
+function parseChar(value: any) {
+  let str = String(value || "").trim();
+  return str.charAt(0) || "\0";
+}
+
+function parseChars(value: any) {
+  return String(value || "");
+}
+
+function parseDate(value: any) {
+  let d = new Date(value);
+  return isNaN(d.getTime()) ? new Date(0) : d;
+}
+
+function parseTime(value: any) {
+  if (typeof value === "string") return value;
+  let d = new Date(value);
+  return isNaN(d.getTime()) ? "00:00:00" : d.toTimeString().split(" ")[0];
+}
+
+function parseDateTime(value: any) {
+  let d = new Date(value);
+  return isNaN(d.getTime()) ? new Date(0) : d;
+}
+
+function parseTimestamp(value: any) {
+  let d = new Date(value);
+  return isNaN(d.getTime()) ? new Date(0) : d;
+}
+
+function parseBytes(value: any) {
+  if (value instanceof Uint8Array) return value;
+  if (Array.isArray(value)) return new Uint8Array(value.map(function(v){return Number(v)||0;}));
+  if (typeof value === "string") return new Uint8Array([].map.call(value,function(c){return c.charCodeAt(0);}));
+  return new Uint8Array(0);
+}
+
+function parseBlob(value: any) {
+  if (value instanceof Uint8Array || value instanceof ArrayBuffer) return value;
+  return parseBytes(value);
+}
+
+function parseText(value: any) {
+  return String(value || "");
+}
+
+function parseValued(type: Nature, data: any): any {
+    switch (type) {
+        case Nature.BIT:
+            return parseBit(data);
+        case Nature.BOOL:
+            return parseBool(data);
+        case Nature.BYTE:
+            return parseByte(data);
+        case Nature.TINY:
+            return parseTiny(data);
+        case Nature.SMALL:
+            return parseSmall(data);
+        case Nature.INT:
+            return parseInt32(data);
+            case Nature.SERIAL:
+            return parseSerial(data);
+        case Nature.LONG:
+            return parseLong(data);
+        case Nature.BIG_SERIAL:
+            return parseBigSerial(data);
+        case Nature.FLOAT:
+            return parseFloat32(data);
+        case Nature.REAL:
+            return parseReal(data);
+        case Nature.DOUBLE:
+            return parseDouble(data);
+        case Nature.NUMERIC:
+            return parseNumeric(data);
+        case Nature.BIG_NUMERIC:
+            return parseBigNumeric(data);
+        case Nature.CHAR:
+            return parseChar(data);
+        case Nature.CHARS:
+            return parseChars(data);
+        case Nature.DATE:
+            return parseDate(data);
+        case Nature.TIME:
+            return parseTime(data);
+        case Nature.DATE_TIME:
+            return parseDateTime(data);
+        case Nature.TIMESTAMP:
+            return parseTimestamp(data);
+        case Nature.BYTES:
+            return parseBytes(data);
+        case Nature.BLOB:
+            return parseBlob(data);
+        case Nature.TEXT:
+            return parseText(data);
+        default:
+            return data;
+    }
+}
+
 export const QinFoot = {
     getLocation,
     isLocalHost,
@@ -176,4 +336,28 @@ export const QinFoot = {
     isFileMovie,
     isFileMusic,
     isFileZipped,
+    parseBit,
+    parseBool,
+    parseByte,
+    parseTiny,
+    parseSmall,
+    parseInt32,
+    parseLong,
+    parseSerial,
+    parseBigSerial,
+    parseFloat32,
+    parseReal,
+    parseDouble,
+    parseNumeric,
+    parseBigNumeric,
+    parseChar,
+    parseChars,
+    parseDate,
+    parseTime,
+    parseDateTime,
+    parseTimestamp,
+    parseBytes,
+    parseBlob,
+    parseText,
+    parseValued
 };
