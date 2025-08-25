@@ -339,6 +339,11 @@ export type ToGetID = {
     filter: Valued;
 }
 
+export type NamedChars = {
+    name: string;
+    chars: string;
+}
+
 export type Valued = {
     name: string;
     type?: Nature;

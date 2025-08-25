@@ -38,6 +38,7 @@ export { Linked } from "./qin-type";
 export { LogLevel } from "./qin-type";
 export { Logged } from "./qin-type";
 export { Match } from "./qin-type";
+export { NamedChars } from "./qin-type";
 export { Nature } from "./qin-type";
 export { OrdName } from "./qin-type";
 export { Order } from "./qin-type";
