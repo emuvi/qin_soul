@@ -379,7 +379,8 @@ export enum Nature {
     TIMESTAMP = "TIMESTAMP",
     BYTES = "BYTES",
     BLOB = "BLOB",
-    TEXT = "TEXT"
+    TEXT = "TEXT",
+    OBJECT = "OBJECT"
 }
 
 export type Setup = {
