@@ -1005,11 +1005,11 @@ function addMover(sources: HTMLElement[], target: HTMLElement, dragCalls?: QinPo
 }
 
 function addResizer(sources: HTMLElement[], target: HTMLElement, dragCalls?: QinPointerCalls) {
-    var dragInitEventX = 0;
-    var dragInitEventY = 0;
-    var dragInitWidth = 0;
-    var dragInitHeight = 0;
-
+    let dragInitEventX = 0;
+    let dragInitEventY = 0;
+    let dragInitWidth = 0;
+    let dragInitHeight = 0;
+    
     for (let source of sources) {
         source.onmousedown = onResizerMouseInit;
         source.ontouchstart = onResizerTouchInit;
@@ -1074,10 +1074,10 @@ function addResizer(sources: HTMLElement[], target: HTMLElement, dragCalls?: Qin
 
     function onResizerMouseMove(ev: MouseEvent) {
         const pointer = makeEventMousePoint(false, ev);
-        var frameDragDifX = pointer.posX - dragInitEventX;
-        var frameDragDifY = pointer.posY - dragInitEventY;
-        var frameDragFinalWidth = dragInitWidth + frameDragDifX;
-        var frameDragFinalHeight = dragInitHeight + frameDragDifY;
+        let frameDragDifX = pointer.posX - dragInitEventX;
+        let frameDragDifY = pointer.posY - dragInitEventY;
+        let frameDragFinalWidth = dragInitWidth + frameDragDifX;
+        let frameDragFinalHeight = dragInitHeight + frameDragDifY;
         target.style.width = (frameDragFinalWidth > 0 ? frameDragFinalWidth : 0) + "px";
         target.style.height = (frameDragFinalHeight > 0 ? frameDragFinalHeight : 0) + "px";
         if (dragCalls && dragCalls.onMove) {
@@ -1088,10 +1088,10 @@ function addResizer(sources: HTMLElement[], target: HTMLElement, dragCalls?: Qin
 
     function onResizerTouchMove(ev: TouchEvent) {
         const pointer = makeEventTouch(false, ev);
-        var frameDragDifX = pointer.posX - dragInitEventX;
-        var frameDragDifY = pointer.posY - dragInitEventY;
-        var frameDragFinalWidth = dragInitWidth + frameDragDifX;
-        var frameDragFinalHeight = dragInitHeight + frameDragDifY;
+        let frameDragDifX = pointer.posX - dragInitEventX;
+        let frameDragDifY = pointer.posY - dragInitEventY;
+        let frameDragFinalWidth = dragInitWidth + frameDragDifX;
+        let frameDragFinalHeight = dragInitHeight + frameDragDifY;
         target.style.width = (frameDragFinalWidth > 0 ? frameDragFinalWidth : 0) + "px";
         target.style.height = (frameDragFinalHeight > 0 ? frameDragFinalHeight : 0) + "px";
         if (dragCalls && dragCalls.onMove) {
@@ -1115,10 +1115,10 @@ function addResizer(sources: HTMLElement[], target: HTMLElement, dragCalls?: Qin
 }
 
 function addScroller(target: HTMLElement, dragCalls?: QinPointerCalls) {
-    var dragInitX = 0;
-    var dragInitY = 0;
-    var dragScrollX = 0;
-    var dragScrollY = 0;
+    let dragInitX = 0;
+    let dragInitY = 0;
+    let dragScrollX = 0;
+    let dragScrollY = 0;
 
     target.ondragstart = stopEvent;
     target.onmousedown = onScrollerMouseInit;

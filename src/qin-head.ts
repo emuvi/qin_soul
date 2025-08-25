@@ -1,7 +1,7 @@
 const _dictionary: Map<string, string> = new Map();
 
 function tr(of: string): string {
-    return _dictionary.get(of) || of;
+    return _dictionary.get(of) ?? of;
 }
 
 function loadDictionary(dictionary: Record<string, string>) {
@@ -16,8 +16,8 @@ function dictionaryForget() {
 
 function getCookie(name: string, orDefault?: string): string {
     let cookies = document.cookie.split(";");
-    for (var i = 0; i < cookies.length; i++) {
-        let cookiePair = cookies[i].split("=");
+    for (const cookie of cookies) {
+        let cookiePair = cookie.split("=");
         if (name == decodeURIComponent(cookiePair[0]).trim()) {
             return decodeURIComponent(cookiePair[1]);
         }
