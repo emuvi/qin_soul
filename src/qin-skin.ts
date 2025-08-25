@@ -267,8 +267,8 @@ function styleAsBorderBottomLeftRadius(el: HTMLElement, radius: number) {
     el.style.borderBottomLeftRadius = getPixelsOrInitial(radius);
 }
 
-function styleAsDisplayFlex(el: HTMLElement) {
-    el.style.display = "flex";
+function styleAsDisplayBlock(el: HTMLElement) {
+    el.style.display = "block";
 }
 
 function styleAsDisplayInline(el: HTMLElement) {
@@ -277,6 +277,66 @@ function styleAsDisplayInline(el: HTMLElement) {
 
 function styleAsDisplayInlineBlock(el: HTMLElement) {
     el.style.display = "inline-block";
+}
+
+function styleAsDisplayFlex(el: HTMLElement) {
+    el.style.display = "flex";
+}
+
+function styleAsDisplayInlineFlex(el: HTMLElement) {
+    el.style.display = "inline-flex";
+}
+
+function styleAsDisplayGrid(el: HTMLElement) {
+    el.style.display = "grid";
+}
+
+function styleAsDisplayInlineGrid(el: HTMLElement) {
+    el.style.display = "inline-grid";
+}
+
+function styleAsDisplayFlowRoot(el: HTMLElement) {
+    el.style.display = "flow-root";
+}
+
+function styleAsDisplayNone(el: HTMLElement) {
+    el.style.display = "none";
+}
+
+function styleAsDisplayContents(el: HTMLElement) {
+    el.style.display = "contents";
+}
+
+function styleAsDisplayTable(el: HTMLElement) {
+    el.style.display = "table";
+}
+
+function styleAsDisplayTableRow(el: HTMLElement) {
+    el.style.display = "table-row";
+}
+
+function styleAsDisplayListItem(el: HTMLElement) {
+    el.style.display = "list-item";
+}
+
+function styleAsDisplayInherit(el: HTMLElement) {
+    el.style.display = "inherit";
+}
+
+function styleAsDisplayInitial(el: HTMLElement) {
+    el.style.display = "initial";
+}
+
+function styleAsDisplayRevert(el: HTMLElement) {
+    el.style.display = "revert";
+}
+
+function styleAsDisplayRevertLayer(el: HTMLElement) {
+    el.style.display = "revert-layer";
+}
+
+function styleAsDisplayUnset(el: HTMLElement) {
+    el.style.display = "unset";
 }
 
 function styleAsPositionStatic(el: HTMLElement) {
@@ -768,9 +828,24 @@ export const QinSkin = {
     styleAsBorderTopRightRadius,
     styleAsBorderBottomRightRadius,
     styleAsBorderBottomLeftRadius,
-    styleAsDisplayFlex,
+    styleAsDisplayBlock,
     styleAsDisplayInline,
     styleAsDisplayInlineBlock,
+    styleAsDisplayFlex,
+    styleAsDisplayInlineFlex,
+    styleAsDisplayGrid,
+    styleAsDisplayInlineGrid,
+    styleAsDisplayFlowRoot,
+    styleAsDisplayNone,
+    styleAsDisplayContents,
+    styleAsDisplayTable,
+    styleAsDisplayTableRow,
+    styleAsDisplayListItem,
+    styleAsDisplayInherit,
+    styleAsDisplayInitial,
+    styleAsDisplayRevert,
+    styleAsDisplayRevertLayer,
+    styleAsDisplayUnset,
     styleAsPositionStatic,
     styleAsPositionAbsolute,
     styleAsPositionFixed,
