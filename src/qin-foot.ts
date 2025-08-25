@@ -267,6 +267,10 @@ function parseText(value: any) {
   return String(value || "");
 }
 
+function parseObject(value: any) {
+  return JSON.parse(String(value || "{}"));
+}
+
 function parseValued(type: Nature, data: any): any {
     switch (type) {
         case Nature.BIT:
@@ -315,6 +319,8 @@ function parseValued(type: Nature, data: any): any {
             return parseBlob(data);
         case Nature.TEXT:
             return parseText(data);
+        case Nature.OBJECT:
+            return parseObject(data);
         default:
             return data;
     }
