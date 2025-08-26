@@ -27,29 +27,28 @@ export const QinStylesPicker = {
 };
 
 function styleAsBody(el: HTMLElement) {
-    el.style.position = "absolute";
-    el.style.top = "0";
-    el.style.right = "0";
-    el.style.bottom = "0";
-    el.style.left = "0";
-    el.style.minWidth = "stretch";
-    el.style.minHeight = "stretch";
-    el.style.padding = "7px";
+    document.body.style.position = "fixed";
+    document.body.style.inset = "0";
+    document.body.style.overflow = "auto";
+    el.style.position = "fixed";
+    el.style.inset = "7px";
     el.style.overflow = "auto";
+    el.style.display = "flex";
+    el.style.justifyContent = "stretch";
+    el.style.alignItems = "stretch";
+    styleAsSizeInitial(el);
 }
 
 function styleAsWhole(el: HTMLElement) {
-    el.style.position = "relative";
-    el.style.top = "0";
-    el.style.right = "0";
-    el.style.bottom = "0";
-    el.style.left = "0";
-    el.style.flex = "1 1 auto";
+    el.style.flex = "100 100 auto";
+    styleAsSizeInitial(el);
 }
 
 function styleAsBase(el: HTMLElement) {
     el.style.minHeight = "fit-content";
     el.style.minWidth = "fit-content";
+    el.style.maxHeight = "fit-content";
+    el.style.maxWidth = "fit-content";
 }
 
 function styleAsSpaced(el: HTMLElement) {
