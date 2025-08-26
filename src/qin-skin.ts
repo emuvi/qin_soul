@@ -52,18 +52,22 @@ function styleAsBase(el: HTMLElement) {
 }
 
 function styleAsSpaced(el: HTMLElement) {
-    el.style.margin = "2px";
+    el.style.margin = "3px";
     el.style.padding = "4px";
 }
 
-function styleAsEditable(el: HTMLElement) {
+function styleAsBordered(el: HTMLElement) {
     styleAsSpaced(el);
-    el.tabIndex = 0;
-    el.style.color = QinStyles.ColorForeground;
-    el.style.backgroundColor = QinStyles.ColorInactive;
     el.style.border = "1px solid " + QinStyles.ColorForeground;
     el.style.borderRadius = "3px";
+}
+
+function styleAsEditable(el: HTMLElement) {
+    styleAsBordered(el);
+    el.tabIndex = 0;
     el.style.outline = "none";
+    el.style.color = QinStyles.ColorForeground;
+    el.style.backgroundColor = QinStyles.ColorInactive;
     el.addEventListener("focus", _styledAsEditableFocusEvent);
     el.addEventListener("focusout", _styledAsEditableFocusoutEvent);
     el.removeEventListener("focus", _styledAsReadOnlyFocusEvent);
@@ -73,12 +77,11 @@ function styleAsEditable(el: HTMLElement) {
 }
 
 function styleAsReadOnly(el: HTMLElement) {
-    styleAsSpaced(el);
+    styleAsBordered(el);
     el.tabIndex = 0;
-    el.style.backgroundColor = QinStyles.ColorBlocked;
-    el.style.border = "1px solid " + QinSkin.styles.ColorForeground;
-    el.style.borderRadius = "3px";
     el.style.outline = "none";
+    el.style.color = QinStyles.ColorForeground;
+    el.style.backgroundColor = QinStyles.ColorBlocked;
     el.removeEventListener("focus", _styledAsEditableFocusEvent);
     el.removeEventListener("focusout", _styledAsEditableFocusoutEvent);
     el.addEventListener("focus", _styledAsReadOnlyFocusEvent);
@@ -88,13 +91,12 @@ function styleAsReadOnly(el: HTMLElement) {
 }
 
 function styleAsActionable(el: HTMLElement, styles: QinActionableStyles = QinStyles) {
-    styleAsSpaced(el);
+    styleAsBordered(el);
     el.tabIndex = 0;
-    el['actionableStyles'] = styles;
-    el.style.backgroundColor = styles.ColorInactiveAct;
-    el.style.border = "1px solid " + styles.ColorForeground;
-    el.style.borderRadius = "3px";
     el.style.outline = "none";
+    el['actionableStyles'] = styles;
+    el.style.color = styles.ColorForeground;
+    el.style.backgroundColor = styles.ColorInactiveAct;
     el.removeEventListener("focus", _styledAsEditableFocusEvent);
     el.removeEventListener("focusout", _styledAsEditableFocusoutEvent);
     el.removeEventListener("focus", _styledAsReadOnlyFocusEvent);
@@ -1390,6 +1392,7 @@ export const QinSkin = {
     styleAsWhole,
     styleAsBase,
     styleAsSpaced,
+    styleAsBordered,
     styleAsEditable,
     styleAsReadOnly,
     styleAsActionable,
