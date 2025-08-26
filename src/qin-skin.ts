@@ -493,6 +493,32 @@ function styleAsBounds(el: HTMLElement, top: number, right: number, bottom: numb
     el.style.left = getPixelsOrInitial(left);
 }
 
+function styleAsTopRight(el: HTMLElement, top: number, right: number) {
+    el.style.top = getPixelsOrInitial(top);
+    el.style.right = getPixelsOrInitial(right);
+}
+
+function styleAsTop(el: HTMLElement, top: number) {
+    el.style.top = getPixelsOrInitial(top);
+}
+
+function styleAsRight(el: HTMLElement, right: number) {
+    el.style.right = getPixelsOrInitial(right);
+}
+
+function styleAsBottomLeft(el: HTMLElement, bottom: number, left: number) {
+    el.style.bottom = getPixelsOrInitial(bottom);
+    el.style.left = getPixelsOrInitial(left);
+}
+
+function styleAsBottom(el: HTMLElement, bottom: number) {
+    el.style.bottom = getPixelsOrInitial(bottom);
+}
+
+function styleAsLeft(el: HTMLElement, left: number) {
+    el.style.left = getPixelsOrInitial(left);
+}
+
 function styleAsWidth(el: HTMLElement, width?: number | QinGrandeur) {
     let dim = width;
     if (typeof width === "string") {
@@ -949,6 +975,12 @@ export const QinSkin = {
     styleAsAlignItemsInitial,
     styleAsAlignItemsInherit,
     styleAsBounds,
+    styleAsTopRight,
+    styleAsTop,
+    styleAsRight,
+    styleAsBottomLeft,
+    styleAsBottom,
+    styleAsLeft,
     styleAsWidth,
     styleAsHeight,
     styleAsSize,
