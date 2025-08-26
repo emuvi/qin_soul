@@ -8,33 +8,19 @@ function makeQinUID(): string {
 }
 
 function makeQindredUID(qindred: string): string {
-    return (
-        qindred +
-        "_qindred_" +
-        getLastChars(Date.now() + "", 4, "0", false) +
-        "_" +
-        fillToString(Math.floor(Math.random() * 10000), 5, "0", false)
-    );
+    return qindred + "_qindred_" 
+            + getLastChars(Date.now() + "", 4, "0", false) + "_" 
+            + fillToString(Math.floor(Math.random() * 10000), 5, "0", false);
 }
 
-function getLastChars(
-    source: string,
-    count: number,
-    fillWith: string = " ",
-    atEnd: boolean = true
-): string {
+function getLastChars(source: string, count: number, fillWith: string = " ", atEnd: boolean = true): string {
     if (source.length < count) {
         return fillToString(source, count, fillWith, atEnd);
     }
     return source.substring(source.length - count);
 }
 
-function fillToString(
-    value: any,
-    tilSize: number,
-    withStr: string = " ",
-    atEnd: boolean = true
-): string {
+function fillToString(value: any, tilSize: number, withStr: string = " ", atEnd: boolean = true): string {
     let result = value.toString();
     while (result.length < tilSize) {
         if (atEnd) {
@@ -50,7 +36,7 @@ function getTextLines(fromText: any): string[] {
     if (fromText !== null && fromText !== undefined && typeof fromText !== "string") {
         fromText = fromText.toString();
     }
-    if (!!fromText) {
+    if (fromText) {
         return fromText.match(/[^\r\n]+/g);
     } else {
         return [];
@@ -58,8 +44,8 @@ function getTextLines(fromText: any): string[] {
 }
 
 function getCSVRows(fromText: any): string[][] {
-    var result: string[][] = [];
-    var lines = getTextLines(fromText);
+    let result: string[][] = [];
+    let lines = getTextLines(fromText);
     if (lines) {
         for (let line of lines) {
             let row = new Array<string>();
