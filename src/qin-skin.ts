@@ -493,30 +493,30 @@ function styleAsBounds(el: HTMLElement, top: number, right: number, bottom: numb
     el.style.left = getPixelsOrInitial(left);
 }
 
-function styleAsTopRight(el: HTMLElement, top: number, right: number) {
+function styleAsTopLeft(el: HTMLElement, top: number, left: number) {
     el.style.top = getPixelsOrInitial(top);
-    el.style.right = getPixelsOrInitial(right);
+    el.style.left = getPixelsOrInitial(left);
 }
 
 function styleAsTop(el: HTMLElement, top: number) {
     el.style.top = getPixelsOrInitial(top);
 }
 
-function styleAsRight(el: HTMLElement, right: number) {
-    el.style.right = getPixelsOrInitial(right);
+function styleAsLeft(el: HTMLElement, left: number) {
+    el.style.left = getPixelsOrInitial(left);
 }
 
-function styleAsBottomLeft(el: HTMLElement, bottom: number, left: number) {
+function styleAsBottomRight(el: HTMLElement, bottom: number, right: number) {
     el.style.bottom = getPixelsOrInitial(bottom);
-    el.style.left = getPixelsOrInitial(left);
+    el.style.right = getPixelsOrInitial(right);
 }
 
 function styleAsBottom(el: HTMLElement, bottom: number) {
     el.style.bottom = getPixelsOrInitial(bottom);
 }
 
-function styleAsLeft(el: HTMLElement, left: number) {
-    el.style.left = getPixelsOrInitial(left);
+function styleAsRight(el: HTMLElement, right: number) {
+    el.style.right = getPixelsOrInitial(right);
 }
 
 function styleAsWidth(el: HTMLElement, width: number | QinGrandeur) {
@@ -1461,12 +1461,12 @@ export const QinSkin = {
     styleAsAlignItemsInitial,
     styleAsAlignItemsInherit,
     styleAsBounds,
-    styleAsTopRight,
+    styleAsTopLeft,
     styleAsTop,
-    styleAsRight,
-    styleAsBottomLeft,
-    styleAsBottom,
     styleAsLeft,
+    styleAsBottomRight,
+    styleAsBottom,
+    styleAsRight,
     styleAsWidth,
     styleAsWidthPer,
     styleAsWidthMaxContent,
