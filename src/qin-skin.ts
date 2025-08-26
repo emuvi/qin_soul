@@ -726,21 +726,51 @@ function getDimension(el: HTMLElement): QinDimension {
 }
 
 function getDimensionSize(size: QinGrandeur): QinDimension {
-    if (size == QinGrandeur.LARGE) {
-        return getDimensionLarge();
-    } else if (size == QinGrandeur.MEDIUM) {
-        return getDimensionMedium();
-    } else {
-        return getDimensionSmall();
+    switch (size) {
+        case QinGrandeur.HUGE:
+            return getDimensionHuge();
+        case QinGrandeur.GRAND:
+            return getDimensionGrand();
+        case QinGrandeur.LARGE:
+            return getDimensionLarge();
+        case QinGrandeur.MEDIUM:
+            return getDimensionMedium();
+        case QinGrandeur.SMALL:
+            return getDimensionSmall();
+        case QinGrandeur.MICRO:
+            return getDimensionMicro();
+        case QinGrandeur.PICO:
+            return getDimensionPico();
+        default:
+            return getDimensionSmall();
     }
 }
 
-const dimensionSmall: QinDimension = {
-    width: 20,
-    height: 20,
+const dimensionHuge: QinDimension = {
+    width: 240,
+    height: 240,
 };
-function getDimensionSmall(): QinDimension {
-    return dimensionSmall;
+
+function getDimensionHuge(): QinDimension {
+    return dimensionHuge;
+}
+
+const dimensionGrand: QinDimension = {
+    width: 120,
+    height: 120,
+};
+
+function getDimensionGrand(): QinDimension {
+    return dimensionGrand;
+}
+
+const dimensionLarge: QinDimension = {
+    width: 60,
+    height: 60,
+};
+
+function getDimensionLarge(): QinDimension {
+    return dimensionLarge;
 }
 
 const dimensionMedium: QinDimension = {
@@ -752,13 +782,29 @@ function getDimensionMedium(): QinDimension {
     return dimensionMedium;
 }
 
-const dimensionLarge: QinDimension = {
-    width: 60,
-    height: 60,
+const dimensionSmall: QinDimension = {
+    width: 20,
+    height: 20,
+};
+function getDimensionSmall(): QinDimension {
+    return dimensionSmall;
+}
+
+const dimensionMicro: QinDimension = {
+    width: 15,
+    height: 15,
+};
+function getDimensionMicro(): QinDimension {
+    return dimensionMicro;
+}
+
+const dimensionPico: QinDimension = {
+    width: 10,
+    height: 10,
 };
 
-function getDimensionLarge(): QinDimension {
-    return dimensionLarge;
+function getDimensionPico(): QinDimension {
+    return dimensionPico;
 }
 
 export type QinPoint = {
@@ -779,9 +825,13 @@ export type QinBounds = {
 }
 
 export enum QinGrandeur {
-    SMALL = "SMALL",
-    MEDIUM = "MEDIUM",
+    HUGE = "HUGE",
+    GRAND = "GRAND",
     LARGE = "LARGE",
+    MEDIUM = "MEDIUM",
+    SMALL = "SMALL",
+    MICRO = "MICRO",
+    PICO = "PICO",
 }
 
 export enum BorderStyle {
@@ -912,7 +962,11 @@ export const QinSkin = {
     getWidthByMaxLength,
     getDimension,
     getDimensionSize,
-    getDimensionSmall,
-    getDimensionMedium,
+    getDimensionHuge,
+    getDimensionGrand,
     getDimensionLarge,
+    getDimensionMedium,
+    getDimensionSmall,
+    getDimensionMicro,
+    getDimensionPico,
 };
