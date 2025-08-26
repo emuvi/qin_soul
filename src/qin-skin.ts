@@ -267,6 +267,46 @@ function styleAsBorderBottomLeftRadius(el: HTMLElement, radius: number) {
     el.style.borderBottomLeftRadius = getPixelsOrInitial(radius);
 }
 
+function styleAsPositionStatic(el: HTMLElement) {
+    el.style.position = "static";
+}
+
+function styleAsPositionRelative(el: HTMLElement) {
+    el.style.position = "relative";
+}
+
+function styleAsPositionAbsolute(el: HTMLElement) {
+    el.style.position = "absolute";
+}
+
+function styleAsPositionFixed(el: HTMLElement) {
+    el.style.position = "fixed";
+}
+
+function styleAsPositionSticky(el: HTMLElement) {
+    el.style.position = "sticky";
+}
+
+function styleAsPositionInherit(el: HTMLElement) {
+    el.style.position = "inherit";
+}
+
+function styleAsPositionInitial(el: HTMLElement) {
+    el.style.position = "initial";
+}
+
+function styleAsPositionRevert(el: HTMLElement) {
+    el.style.position = "revert";
+}
+
+function styleAsPositionRevertLayer(el: HTMLElement) {
+    el.style.position = "revert-layer";
+}
+
+function styleAsPositionUnset(el: HTMLElement) {
+    el.style.position = "unset";
+}
+
 function styleAsDisplayBlock(el: HTMLElement) {
     el.style.display = "block";
 }
@@ -337,30 +377,6 @@ function styleAsDisplayRevertLayer(el: HTMLElement) {
 
 function styleAsDisplayUnset(el: HTMLElement) {
     el.style.display = "unset";
-}
-
-function styleAsPositionStatic(el: HTMLElement) {
-    el.style.position = "static";
-}
-
-function styleAsPositionAbsolute(el: HTMLElement) {
-    el.style.position = "absolute";
-}
-
-function styleAsPositionFixed(el: HTMLElement) {
-    el.style.position = "fixed";
-}
-
-function styleAsPositionRelative(el: HTMLElement) {
-    el.style.position = "relative";
-}
-
-function styleAsPositionSticky(el: HTMLElement) {
-    el.style.position = "sticky";
-}
-
-function styleAsPositionInitial(el: HTMLElement) {
-    el.style.position = "initial";
 }
 
 function styleAsFlexDirectionRow(el: HTMLElement) {
@@ -878,6 +894,16 @@ export const QinSkin = {
     styleAsBorderTopRightRadius,
     styleAsBorderBottomRightRadius,
     styleAsBorderBottomLeftRadius,
+    styleAsPositionStatic,
+    styleAsPositionRelative,
+    styleAsPositionAbsolute,
+    styleAsPositionFixed,
+    styleAsPositionSticky,
+    styleAsPositionInherit,
+    styleAsPositionInitial,
+    styleAsPositionRevert,
+    styleAsPositionRevertLayer,
+    styleAsPositionUnset,
     styleAsDisplayBlock,
     styleAsDisplayInline,
     styleAsDisplayInlineBlock,
@@ -896,12 +922,6 @@ export const QinSkin = {
     styleAsDisplayRevert,
     styleAsDisplayRevertLayer,
     styleAsDisplayUnset,
-    styleAsPositionStatic,
-    styleAsPositionAbsolute,
-    styleAsPositionFixed,
-    styleAsPositionRelative,
-    styleAsPositionSticky,
-    styleAsPositionInitial,
     styleAsFlexDirectionRow,
     styleAsFlexDirectionRowReverse,
     styleAsFlexDirectionColumn,
