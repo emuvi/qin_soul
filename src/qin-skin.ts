@@ -519,7 +519,7 @@ function styleAsLeft(el: HTMLElement, left: number) {
     el.style.left = getPixelsOrInitial(left);
 }
 
-function styleAsWidth(el: HTMLElement, width?: number | QinGrandeur) {
+function styleAsWidth(el: HTMLElement, width: number | QinGrandeur) {
     let dim = width;
     if (typeof width === "string") {
         dim = getDimensionSize(width).width;
@@ -529,7 +529,67 @@ function styleAsWidth(el: HTMLElement, width?: number | QinGrandeur) {
     el.style.maxWidth = getPixelsOrInitial(dim as number);
 }
 
-function styleAsHeight(el: HTMLElement, height?: number | QinGrandeur) {
+function styleAsWidthPer(el: HTMLElement, width: number) {
+    el.style.width = getPercentOrInitial(width);
+    el.style.minWidth = getPercentOrInitial(width);
+    el.style.maxWidth = getPercentOrInitial(width);
+}
+
+function styleAsWidthMaxContent(el: HTMLElement) {
+    el.style.width = 'max-content';
+    el.style.minWidth = 'max-content';
+    el.style.maxWidth = 'max-content';
+}
+
+function styleAsWidthMinContent(el: HTMLElement) {
+    el.style.width = 'min-content';
+    el.style.minWidth = 'min-content';
+    el.style.maxWidth = 'min-content';
+}
+
+function styleAsWidthFitContent(el: HTMLElement) {
+    el.style.width = 'fit-content';
+    el.style.minWidth = 'fit-content';
+    el.style.maxWidth = 'fit-content';
+}
+
+function styleAsWidthStretch(el: HTMLElement) {
+    el.style.width = 'stretch';
+    el.style.minWidth = 'stretch';
+    el.style.maxWidth = 'stretch';
+}
+
+function styleAsWidthInherit(el: HTMLElement) {
+    el.style.width = 'inherit';
+    el.style.minWidth = 'inherit';
+    el.style.maxWidth = 'inherit';
+}
+
+function styleAsWidthInitial(el: HTMLElement) {
+    el.style.width = 'initial';
+    el.style.minWidth = 'initial';
+    el.style.maxWidth = 'initial';
+}
+
+function styleAsWidthRevert(el: HTMLElement) {
+    el.style.width = 'revert';
+    el.style.minWidth = 'revert';
+    el.style.maxWidth = 'revert';
+}
+
+function styleAsWidthRevertLayer(el: HTMLElement) {
+    el.style.width = 'revert-layer';
+    el.style.minWidth = 'revert-layer';
+    el.style.maxWidth = 'revert-layer';
+}
+
+function styleAsWidthUnset(el: HTMLElement) {
+    el.style.width = 'unset';
+    el.style.minWidth = 'unset';
+    el.style.maxWidth = 'unset';
+}
+
+function styleAsHeight(el: HTMLElement, height: number | QinGrandeur) {
     let dim = height;
     if (typeof height === "string") {
         dim = getDimensionSize(height).height;
@@ -539,13 +599,73 @@ function styleAsHeight(el: HTMLElement, height?: number | QinGrandeur) {
     el.style.maxHeight = getPixelsOrInitial(dim as number);
 }
 
-function styleAsSize(el: HTMLElement, size?: QinDimension | QinGrandeur) {
+function styleAsHeightPer(el: HTMLElement, width: number) {
+    el.style.height = getPercentOrInitial(width);
+    el.style.minHeight = getPercentOrInitial(width);
+    el.style.maxHeight = getPercentOrInitial(width);
+}
+
+function styleAsHeightMaxContent(el: HTMLElement) {
+    el.style.height = 'max-content';
+    el.style.minHeight = 'max-content';
+    el.style.maxHeight = 'max-content';
+}
+
+function styleAsHeightMinContent(el: HTMLElement) {
+    el.style.height = 'min-content';
+    el.style.minHeight = 'min-content';
+    el.style.maxHeight = 'min-content';
+}
+
+function styleAsHeightFitContent(el: HTMLElement) {
+    el.style.height = 'fit-content';
+    el.style.minHeight = 'fit-content';
+    el.style.maxHeight = 'fit-content';
+}
+
+function styleAsHeightStretch(el: HTMLElement) {
+    el.style.height = 'stretch';
+    el.style.minHeight = 'stretch';
+    el.style.maxHeight = 'stretch';
+}
+
+function styleAsHeightInherit(el: HTMLElement) {
+    el.style.height = 'inherit';
+    el.style.minHeight = 'inherit';
+    el.style.maxHeight = 'inherit';
+}
+
+function styleAsHeightInitial(el: HTMLElement) {
+    el.style.height = 'initial';
+    el.style.minHeight = 'initial';
+    el.style.maxHeight = 'initial';
+}
+
+function styleAsHeightRevert(el: HTMLElement) {
+    el.style.height = 'revert';
+    el.style.minHeight = 'revert';
+    el.style.maxHeight = 'revert';
+}
+
+function styleAsHeightRevertLayer(el: HTMLElement) {
+    el.style.height = 'revert-layer';
+    el.style.minHeight = 'revert-layer';
+    el.style.maxHeight = 'revert-layer';
+}
+
+function styleAsHeightUnset(el: HTMLElement) {
+    el.style.height = 'unset';
+    el.style.minHeight = 'unset';
+    el.style.maxHeight = 'unset';
+}
+
+function styleAsSize(el: HTMLElement, size: QinDimension | QinGrandeur) {
     let dim = size;
     if (typeof size === "string") {
         dim = getDimensionSize(size);
     }
     if (!dim) {
-        dim = { width: null, height: null }
+        dim = { width: null, height: null };
     }
     el.style.width = getPixelsOrInitial((dim as QinDimension).width);
     el.style.height = getPixelsOrInitial((dim as QinDimension).height);
@@ -555,7 +675,100 @@ function styleAsSize(el: HTMLElement, size?: QinDimension | QinGrandeur) {
     el.style.maxHeight = getPixelsOrInitial((dim as QinDimension).height);
 }
 
-function styleAsMinWidth(el: HTMLElement, width?: number | QinGrandeur) {
+function styleAsSizePer(el: HTMLElement, size: QinDimension) {
+    if (!size) {
+        size = { width: null, height: null };
+    }
+    el.style.width = getPercentOrInitial(size.width);
+    el.style.height = getPercentOrInitial(size.height);
+    el.style.minWidth = getPercentOrInitial(size.width);
+    el.style.minHeight = getPercentOrInitial(size.height);
+    el.style.maxWidth = getPercentOrInitial(size.width);
+    el.style.maxHeight = getPercentOrInitial(size.height);
+}
+
+function styleAsSizeMaxContent(el: HTMLElement) {
+    el.style.width = 'max-content';
+    el.style.height = 'max-content';
+    el.style.minWidth = 'max-content';
+    el.style.minHeight = 'max-content';
+    el.style.maxWidth = 'max-content';
+    el.style.maxHeight = 'max-content';
+}
+
+function styleAsSizeMinContent(el: HTMLElement) {
+    el.style.width = 'min-content';
+    el.style.height = 'min-content';
+    el.style.minWidth = 'min-content';
+    el.style.minHeight = 'min-content';
+    el.style.maxWidth = 'min-content';
+    el.style.maxHeight = 'min-content';
+}
+
+function styleAsSizeFitContent(el: HTMLElement) {
+    el.style.width = 'fit-content';
+    el.style.height = 'fit-content';
+    el.style.minWidth = 'fit-content';
+    el.style.minHeight = 'fit-content';
+    el.style.maxWidth = 'fit-content';
+    el.style.maxHeight = 'fit-content';
+}
+
+function styleAsSizeStretch(el: HTMLElement) {
+    el.style.width = 'stretch';
+    el.style.height = 'stretch';
+    el.style.minWidth = 'stretch';
+    el.style.minHeight = 'stretch';
+    el.style.maxWidth = 'stretch';
+    el.style.maxHeight = 'stretch';
+}
+
+function styleAsSizeInherit(el: HTMLElement) {
+    el.style.width = 'inherit';
+    el.style.height = 'inherit';
+    el.style.minWidth = 'inherit';
+    el.style.minHeight = 'inherit';
+    el.style.maxWidth = 'inherit';
+    el.style.maxHeight = 'inherit';
+}
+
+function styleAsSizeInitial(el: HTMLElement) {
+    el.style.width = 'initial';
+    el.style.height = 'initial';
+    el.style.minWidth = 'initial';
+    el.style.minHeight = 'initial';
+    el.style.maxWidth = 'initial';
+    el.style.maxHeight = 'initial';
+}
+
+function styleAsSizeRevert(el: HTMLElement) {
+    el.style.width = 'revert';
+    el.style.height = 'revert';
+    el.style.minWidth = 'revert';
+    el.style.minHeight = 'revert';
+    el.style.maxWidth = 'revert';
+    el.style.maxHeight = 'revert';
+}
+
+function styleAsSizeRevertLayer(el: HTMLElement) {
+    el.style.width = 'revert-layer';
+    el.style.height = 'revert-layer';
+    el.style.minWidth = 'revert-layer';
+    el.style.minHeight = 'revert-layer';
+    el.style.maxWidth = 'revert-layer';
+    el.style.maxHeight = 'revert-layer';
+}
+
+function styleAsSizeUnset(el: HTMLElement) {
+    el.style.width = 'unset';
+    el.style.height = 'unset';
+    el.style.minWidth = 'unset';
+    el.style.minHeight = 'unset';
+    el.style.maxWidth = 'unset';
+    el.style.maxHeight = 'unset';
+}
+
+function styleAsMinWidth(el: HTMLElement, width: number | QinGrandeur) {
     let dim = width;
     if (typeof width === "string") {
         dim = getDimensionSize(width).width;
@@ -563,7 +776,47 @@ function styleAsMinWidth(el: HTMLElement, width?: number | QinGrandeur) {
     el.style.minWidth = getPixelsOrInitial(dim as number);
 }
 
-function styleAsMinHeight(el: HTMLElement, height?: number | QinGrandeur) {
+function styleAsMinWidthPer(el: HTMLElement, width: number) {
+    el.style.minWidth = getPercentOrInitial(width);
+}
+
+function styleAsMinWidthMaxContent(el: HTMLElement) {
+    el.style.minWidth = 'max-content';
+}
+
+function styleAsMinWidthMinContent(el: HTMLElement) {
+    el.style.minWidth = 'min-content';
+}
+
+function styleAsMinWidthFitContent(el: HTMLElement) {
+    el.style.minWidth = 'fit-content';
+}
+
+function styleAsMinWidthStretch(el: HTMLElement) {
+    el.style.minWidth = 'stretch';
+}
+
+function styleAsMinWidthInherit(el: HTMLElement) {
+    el.style.minWidth = 'inherit';
+}
+
+function styleAsMinWidthInitial(el: HTMLElement) {
+    el.style.minWidth = 'initial';
+}
+
+function styleAsMinWidthRevert(el: HTMLElement) {
+    el.style.minWidth = 'revert';
+}
+
+function styleAsMinWidthRevertLayer(el: HTMLElement) {
+    el.style.minWidth = 'revert-layer';
+}
+
+function styleAsMinWidthUnset(el: HTMLElement) {
+    el.style.minWidth = 'unset';
+}
+
+function styleAsMinHeight(el: HTMLElement, height: number | QinGrandeur) {
     let dim = height;
     if (typeof height === "string") {
         dim = getDimensionSize(height).height;
@@ -571,7 +824,47 @@ function styleAsMinHeight(el: HTMLElement, height?: number | QinGrandeur) {
     el.style.minHeight = getPixelsOrInitial(dim as number);
 }
 
-function styleAsMinSize(el: HTMLElement, size?: QinDimension | QinGrandeur) {
+function styleAsMinHeightPer(el: HTMLElement, height: number) {
+    el.style.minHeight = getPercentOrInitial(height);
+}
+
+function styleAsMinHeightMaxContent(el: HTMLElement) {
+    el.style.minHeight = 'max-content';
+}
+
+function styleAsMinHeightMinContent(el: HTMLElement) {
+    el.style.minHeight = 'min-content';
+}
+
+function styleAsMinHeightFitContent(el: HTMLElement) {
+    el.style.minHeight = 'fit-content';
+}
+
+function styleAsMinHeightStretch(el: HTMLElement) {
+    el.style.minHeight = 'stretch';
+}
+
+function styleAsMinHeightInherit(el: HTMLElement) {
+    el.style.minHeight = 'inherit';
+}
+
+function styleAsMinHeightInitial(el: HTMLElement) {
+    el.style.minHeight = 'initial';
+}
+
+function styleAsMinHeightRevert(el: HTMLElement) {
+    el.style.minHeight = 'revert';
+}
+
+function styleAsMinHeightRevertLayer(el: HTMLElement) {
+    el.style.minHeight = 'revert-layer';
+}
+
+function styleAsMinHeightUnset(el: HTMLElement) {
+    el.style.minHeight = 'unset';
+}
+
+function styleAsMinSize(el: HTMLElement, size: QinDimension | QinGrandeur) {
     let dim = size;
     if (typeof size === "string") {
         dim = getDimensionSize(size);
@@ -583,7 +876,60 @@ function styleAsMinSize(el: HTMLElement, size?: QinDimension | QinGrandeur) {
     el.style.minHeight = getPixelsOrInitial((dim as QinDimension).height);
 }
 
-function styleAsMaxWidth(el: HTMLElement, width?: number | QinGrandeur) {
+function styleAsMinSizePer(el: HTMLElement, size: QinDimension) {
+    if (!size) {
+        size = { width: null, height: null }
+    }
+    el.style.minWidth = getPercentOrInitial(size.width);
+    el.style.minHeight = getPercentOrInitial(size.height);
+}
+
+function styleAsMinSizeMaxContent(el: HTMLElement) {
+    el.style.minWidth = 'max-content';
+    el.style.minHeight = 'max-content';
+}
+
+function styleAsMinSizeMinContent(el: HTMLElement) {
+    el.style.minWidth = 'min-content';
+    el.style.minHeight = 'min-content';
+}
+
+function styleAsMinSizeFitContent(el: HTMLElement) {
+    el.style.minWidth = 'fit-content';
+    el.style.minHeight = 'fit-content';
+}
+
+function styleAsMinSizeStretch(el: HTMLElement) {
+    el.style.minWidth = 'stretch';
+    el.style.minHeight = 'stretch';
+}
+
+function styleAsMinSizeInherit(el: HTMLElement) {
+    el.style.minWidth = 'inherit';
+    el.style.minHeight = 'inherit';
+}
+
+function styleAsMinSizeInitial(el: HTMLElement) {
+    el.style.minWidth = 'initial';
+    el.style.minHeight = 'initial';
+}
+
+function styleAsMinSizeRevert(el: HTMLElement) {
+    el.style.minWidth = 'revert';
+    el.style.minHeight = 'revert';
+}
+
+function styleAsMinSizeRevertLayer(el: HTMLElement) {
+    el.style.minWidth = 'revert-layer';
+    el.style.minHeight = 'revert-layer';
+}
+
+function styleAsMinSizeUnset(el: HTMLElement) {
+    el.style.minWidth = 'unset';
+    el.style.minHeight = 'unset';
+}
+
+function styleAsMaxWidth(el: HTMLElement, width: number | QinGrandeur) {
     let dim = width;
     if (typeof width === "string") {
         dim = getDimensionSize(width).width;
@@ -591,7 +937,47 @@ function styleAsMaxWidth(el: HTMLElement, width?: number | QinGrandeur) {
     el.style.maxWidth = getPixelsOrInitial(dim as number);
 }
 
-function styleAsMaxHeight(el: HTMLElement, height?: number | QinGrandeur) {
+function styleAsMaxWidthPer(el: HTMLElement, width: number) {
+    el.style.maxWidth = getPercentOrInitial(width);
+}
+
+function styleAsMaxWidthMaxContent(el: HTMLElement) {
+    el.style.maxWidth = 'max-content';
+}
+
+function styleAsMaxWidthMinContent(el: HTMLElement) {
+    el.style.maxWidth = 'min-content';
+}
+
+function styleAsMaxWidthFitContent(el: HTMLElement) {
+    el.style.maxWidth = 'fit-content';
+}
+
+function styleAsMaxWidthStretch(el: HTMLElement) {
+    el.style.maxWidth = 'stretch';
+}
+
+function styleAsMaxWidthInherit(el: HTMLElement) {
+    el.style.maxWidth = 'inherit';
+}
+
+function styleAsMaxWidthInitial(el: HTMLElement) {
+    el.style.maxWidth = 'initial';
+}
+
+function styleAsMaxWidthRevert(el: HTMLElement) {
+    el.style.maxWidth = 'revert';
+}
+
+function styleAsMaxWidthRevertLayer(el: HTMLElement) {
+    el.style.maxWidth = 'revert-layer';
+}
+
+function styleAsMaxWidthUnset(el: HTMLElement) {
+    el.style.maxWidth = 'unset';
+}
+
+function styleAsMaxHeight(el: HTMLElement, height: number | QinGrandeur) {
     let dim = height;
     if (typeof height === "string") {
         dim = getDimensionSize(height).height;
@@ -599,16 +985,109 @@ function styleAsMaxHeight(el: HTMLElement, height?: number | QinGrandeur) {
     el.style.maxHeight = getPixelsOrInitial(dim as number);
 }
 
-function styleAsMaxSize(el: HTMLElement, size?: QinDimension | QinGrandeur) {
+function styleAsMaxHeightPer(el: HTMLElement, height: number) {
+    el.style.maxHeight = getPercentOrInitial(height);
+}
+
+function styleAsMaxHeightMaxContent(el: HTMLElement) {
+    el.style.maxHeight = 'max-content';
+}
+
+function styleAsMaxHeightMinContent(el: HTMLElement) {
+    el.style.maxHeight = 'min-content';
+}
+
+function styleAsMaxHeightFitContent(el: HTMLElement) {
+    el.style.maxHeight = 'fit-content';
+}
+
+function styleAsMaxHeightStretch(el: HTMLElement) {
+    el.style.maxHeight = 'stretch';
+}
+
+function styleAsMaxHeightInherit(el: HTMLElement) {
+    el.style.maxHeight = 'inherit';
+}
+
+function styleAsMaxHeightInitial(el: HTMLElement) {
+    el.style.maxHeight = 'initial';
+}
+
+function styleAsMaxHeightRevert(el: HTMLElement) {
+    el.style.maxHeight = 'revert';
+}
+
+function styleAsMaxHeightRevertLayer(el: HTMLElement) {
+    el.style.maxHeight = 'revert-layer';
+}
+
+function styleAsMaxHeightUnset(el: HTMLElement) {
+    el.style.maxHeight = 'unset';
+}
+
+function styleAsMaxSize(el: HTMLElement, size: QinDimension | QinGrandeur) {
     let dim = size;
     if (typeof size === "string") {
         dim = getDimensionSize(size);
     }
     if (!dim) {
-        dim = { width: null, height: null }
+        dim = { width: null, height: null };
     }
     el.style.maxWidth = getPixelsOrInitial((dim as QinDimension).width);
     el.style.maxHeight = getPixelsOrInitial((dim as QinDimension).height);
+}
+
+function styleAsMaxSizePer(el: HTMLElement, size: QinDimension) {
+    if (!size) {
+        size = { width: null, height: null };
+    }
+    el.style.maxWidth = getPercentOrInitial(size.width);
+    el.style.maxHeight = getPercentOrInitial(size.height);
+}
+
+function styleAsMaxSizeMaxContent(el: HTMLElement) {
+    el.style.maxWidth = 'max-content';
+    el.style.maxHeight = 'max-content';
+}
+
+function styleAsMaxSizeMinContent(el: HTMLElement) {
+    el.style.maxWidth = 'min-content';
+    el.style.maxHeight = 'min-content';
+}
+
+function styleAsMaxSizeFitContent(el: HTMLElement) {
+    el.style.maxWidth = 'fit-content';
+    el.style.maxHeight = 'fit-content';
+}
+
+function styleAsMaxSizeStretch(el: HTMLElement) {
+    el.style.maxWidth = 'stretch';
+    el.style.maxHeight = 'stretch';
+}
+
+function styleAsMaxSizeInherit(el: HTMLElement) {
+    el.style.maxWidth = 'inherit';
+    el.style.maxHeight = 'inherit';
+}
+
+function styleAsMaxSizeInitial(el: HTMLElement) {
+    el.style.maxWidth = 'initial';
+    el.style.maxHeight = 'initial';
+}
+
+function styleAsMaxSizeRevert(el: HTMLElement) {
+    el.style.maxWidth = 'revert';
+    el.style.maxHeight = 'revert';
+}
+
+function styleAsMaxSizeRevertLayer(el: HTMLElement) {
+    el.style.maxWidth = 'revert-layer';
+    el.style.maxHeight = 'revert-layer';
+}
+
+function styleAsMaxSizeUnset(el: HTMLElement) {
+    el.style.maxWidth = 'unset';
+    el.style.maxHeight = 'unset';
 }
 
 function styleAsForeground(el: HTMLElement, foreground: string) {
@@ -680,6 +1159,13 @@ function getPixelsOrInitial(value: number): string {
         return "initial";
     }
     return value + "px";
+}
+
+function getPercentOrInitial(value: number): string {
+    if (value == null || value == undefined) {
+        return "initial";
+    }
+    return value + "%";
 }
 
 function getWindowSize(): QinDimension {
@@ -982,14 +1468,104 @@ export const QinSkin = {
     styleAsBottom,
     styleAsLeft,
     styleAsWidth,
+    styleAsWidthPer,
+    styleAsWidthMaxContent,
+    styleAsWidthMinContent,
+    styleAsWidthFitContent,
+    styleAsWidthStretch,
+    styleAsWidthInherit,
+    styleAsWidthInitial,
+    styleAsWidthRevert,
+    styleAsWidthRevertLayer,
+    styleAsWidthUnset,
     styleAsHeight,
+    styleAsHeightPer,
+    styleAsHeightMaxContent,
+    styleAsHeightMinContent,
+    styleAsHeightFitContent,
+    styleAsHeightStretch,
+    styleAsHeightInherit,
+    styleAsHeightInitial,
+    styleAsHeightRevert,
+    styleAsHeightRevertLayer,
+    styleAsHeightUnset,
     styleAsSize,
+    styleAsSizePer,
+    styleAsSizeMaxContent,
+    styleAsSizeMinContent,
+    styleAsSizeFitContent,
+    styleAsSizeStretch,
+    styleAsSizeInherit,
+    styleAsSizeInitial,
+    styleAsSizeRevert,
+    styleAsSizeRevertLayer,
+    styleAsSizeUnset,
     styleAsMinWidth,
+    styleAsMinWidthPer,
+    styleAsMinWidthMaxContent,
+    styleAsMinWidthMinContent,
+    styleAsMinWidthFitContent,
+    styleAsMinWidthStretch,
+    styleAsMinWidthInherit,
+    styleAsMinWidthInitial,
+    styleAsMinWidthRevert,
+    styleAsMinWidthRevertLayer,
+    styleAsMinWidthUnset,
     styleAsMinHeight,
+    styleAsMinHeightPer,
+    styleAsMinHeightMaxContent,
+    styleAsMinHeightMinContent,
+    styleAsMinHeightFitContent,
+    styleAsMinHeightStretch,
+    styleAsMinHeightInherit,
+    styleAsMinHeightInitial,
+    styleAsMinHeightRevert,
+    styleAsMinHeightRevertLayer,
+    styleAsMinHeightUnset,
     styleAsMinSize,
+    styleAsMinSizePer,
+    styleAsMinSizeMaxContent,
+    styleAsMinSizeMinContent,
+    styleAsMinSizeFitContent,
+    styleAsMinSizeStretch,
+    styleAsMinSizeInherit,
+    styleAsMinSizeInitial,
+    styleAsMinSizeRevert,
+    styleAsMinSizeRevertLayer,
+    styleAsMinSizeUnset,
     styleAsMaxWidth,
+    styleAsMaxWidthPer,
+    styleAsMaxWidthMaxContent,
+    styleAsMaxWidthMinContent,
+    styleAsMaxWidthFitContent,
+    styleAsMaxWidthStretch,
+    styleAsMaxWidthInherit,
+    styleAsMaxWidthInitial,
+    styleAsMaxWidthRevert,
+    styleAsMaxWidthRevertLayer,
+    styleAsMaxWidthUnset,
     styleAsMaxHeight,
+    styleAsMaxHeightPer,
+    styleAsMaxHeightMaxContent,
+    styleAsMaxHeightMinContent,
+    styleAsMaxHeightFitContent,
+    styleAsMaxHeightStretch,
+    styleAsMaxHeightInherit,
+    styleAsMaxHeightInitial,
+    styleAsMaxHeightRevert,
+    styleAsMaxHeightRevertLayer,
+    styleAsMaxHeightUnset,
     styleAsMaxSize,
+    styleAsMaxSizePer,
+    styleAsMaxSizeMaxContent,
+    styleAsMaxSizeMinContent,
+    styleAsMaxSizeFitContent,
+    styleAsMaxSizeStretch,
+    styleAsMaxSizeInherit,
+    styleAsMaxSizeInitial,
+    styleAsMaxSizeRevert,
+    styleAsMaxSizeRevertLayer,
+    styleAsMaxSizeUnset,
     styleAsForeground,
     styleAsBackground,
     styleAsBackgroundImage,
@@ -1004,6 +1580,7 @@ export const QinSkin = {
     styleAsWhiteSpaceInherit,
     applyStyles,
     getPixelsOrInitial,
+    getPercentOrInitial,
     getWindowSize,
     getWindowSizeStyle,
     hideAllIFrames,
