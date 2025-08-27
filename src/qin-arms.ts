@@ -22,9 +22,9 @@ export class QinEvent {
         this._eventMouse = kind?.eventMouse ?? null;
         this._eventTouch = kind?.eventTouch ?? null;
         if (this._eventMouse) {
-            this._point = makeEventMousePoint(isStart, this._eventMouse);
+            this._point = getEventMousePoint(isStart, this._eventMouse);
         } else if (this._eventTouch) {
-            this._point = makeEventTouch(isStart, this._eventTouch);
+            this._point = getEventTouchPoint(isStart, this._eventTouch);
         }
     }
 
@@ -332,7 +332,7 @@ let lastEventTouch: TouchEvent = null;
 let actualEventMouse: MouseEvent = null;
 let actualEventTouch: TouchEvent = null;
 
-function makeEventMousePoint(isStart: boolean, ev: MouseEvent): QinPoint {
+function getEventMousePoint(isStart: boolean, ev: MouseEvent): QinPoint {
     if (!ev) {
         return null;
     }
@@ -351,7 +351,7 @@ function makeEventMousePoint(isStart: boolean, ev: MouseEvent): QinPoint {
     return result;
 }
 
-function makeEventTouch(isStart: boolean, ev: TouchEvent): QinPoint {
+function getEventTouchPoint(isStart: boolean, ev: TouchEvent): QinPoint {
     if (!ev) {
         return null;
     }
@@ -919,7 +919,7 @@ function addMover(sources: HTMLElement[], target: HTMLElement, dragCalls?: QinPo
             dragCalls.onLong();
             return;
         }
-        const pointer = makeEventMousePoint(true, ev);
+        const pointer = getEventMousePoint(true, ev);
         dragInitEventX = pointer.posX;
         dragInitEventY = pointer.posY;
         dragInitPosX = parseInt(target.style.left, 10);
@@ -947,7 +947,7 @@ function addMover(sources: HTMLElement[], target: HTMLElement, dragCalls?: QinPo
             dragCalls.onLong();
             return;
         }
-        const pointer = makeEventTouch(true, ev);
+        const pointer = getEventTouchPoint(true, ev);
         dragInitEventX = pointer.posX;
         dragInitEventY = pointer.posY;
         dragInitPosX = parseInt(target.style.left, 10);
@@ -964,7 +964,7 @@ function addMover(sources: HTMLElement[], target: HTMLElement, dragCalls?: QinPo
     }
 
     function onMoverMouseMove(ev: MouseEvent) {
-        const pointer = makeEventMousePoint(false, ev);
+        const pointer = getEventMousePoint(false, ev);
         var dragDifX = pointer.posX - dragInitEventX;
         var dragDifY = pointer.posY - dragInitEventY;
         var dragFinalX = dragInitPosX + dragDifX;
@@ -978,7 +978,7 @@ function addMover(sources: HTMLElement[], target: HTMLElement, dragCalls?: QinPo
     }
 
     function onMoverTouchMove(ev: TouchEvent) {
-        const pointer = makeEventTouch(false, ev);
+        const pointer = getEventTouchPoint(false, ev);
         var dragDifX = pointer.posX - dragInitEventX;
         var dragDifY = pointer.posY - dragInitEventY;
         var dragFinalX = dragInitPosX + dragDifX;
@@ -1029,7 +1029,7 @@ function addResizer(sources: HTMLElement[], target: HTMLElement, dragCalls?: Qin
             dragCalls.onLong();
             return;
         }
-        const pointer = makeEventMousePoint(true, ev);
+        const pointer = getEventMousePoint(true, ev);
         dragInitEventX = pointer.posX;
         dragInitEventY = pointer.posY;
         dragInitWidth = parseInt(target.style.width, 10);
@@ -1057,7 +1057,7 @@ function addResizer(sources: HTMLElement[], target: HTMLElement, dragCalls?: Qin
             dragCalls.onLong();
             return;
         }
-        const pointer = makeEventTouch(true, ev);
+        const pointer = getEventTouchPoint(true, ev);
         dragInitEventX = pointer.posX;
         dragInitEventY = pointer.posY;
         dragInitWidth = parseInt(target.style.width, 10);
@@ -1074,7 +1074,7 @@ function addResizer(sources: HTMLElement[], target: HTMLElement, dragCalls?: Qin
     }
 
     function onResizerMouseMove(ev: MouseEvent) {
-        const pointer = makeEventMousePoint(false, ev);
+        const pointer = getEventMousePoint(false, ev);
         let frameDragDifX = pointer.posX - dragInitEventX;
         let frameDragDifY = pointer.posY - dragInitEventY;
         let frameDragFinalWidth = dragInitWidth + frameDragDifX;
@@ -1088,7 +1088,7 @@ function addResizer(sources: HTMLElement[], target: HTMLElement, dragCalls?: Qin
     }
 
     function onResizerTouchMove(ev: TouchEvent) {
-        const pointer = makeEventTouch(false, ev);
+        const pointer = getEventTouchPoint(false, ev);
         let frameDragDifX = pointer.posX - dragInitEventX;
         let frameDragDifY = pointer.posY - dragInitEventY;
         let frameDragFinalWidth = dragInitWidth + frameDragDifX;
@@ -1138,7 +1138,7 @@ function addScroller(target: HTMLElement, dragCalls?: QinPointerCalls) {
             dragCalls.onLong();
             return;
         }
-        const pointer = makeEventMousePoint(true, ev);
+        const pointer = getEventMousePoint(true, ev);
         dragInitX = pointer.posX;
         dragInitY = pointer.posY;
         dragScrollX = target.scrollLeft;
@@ -1166,7 +1166,7 @@ function addScroller(target: HTMLElement, dragCalls?: QinPointerCalls) {
             dragCalls.onLong();
             return;
         }
-        const pointer = makeEventTouch(true, ev);
+        const pointer = getEventTouchPoint(true, ev);
         dragInitX = pointer.posX;
         dragInitY = pointer.posY;
         dragScrollX = target.scrollLeft;
@@ -1183,7 +1183,7 @@ function addScroller(target: HTMLElement, dragCalls?: QinPointerCalls) {
     }
 
     function onScrollerMouseMove(ev: MouseEvent) {
-        const pointer = makeEventMousePoint(false, ev);
+        const pointer = getEventMousePoint(false, ev);
         var dragDifX = pointer.posX - dragInitX;
         var dragDifY = pointer.posY - dragInitY;
         var dragNewX = dragScrollX - dragDifX;
@@ -1196,7 +1196,7 @@ function addScroller(target: HTMLElement, dragCalls?: QinPointerCalls) {
     }
 
     function onScrollerTouchMove(ev: TouchEvent) {
-        const pointer = makeEventTouch(false, ev);
+        const pointer = getEventTouchPoint(false, ev);
         var dragDifX = pointer.posX - dragInitX;
         var dragDifY = pointer.posY - dragInitY;
         var dragNewX = dragScrollX - dragDifX;
@@ -1224,8 +1224,8 @@ function addScroller(target: HTMLElement, dragCalls?: QinPointerCalls) {
 
 export const QinArms = {
     stopEvent,
-    makeEventMousePoint,
-    makeEventTouch,
+    getEventMousePoint,
+    getEventTouchPoint,
     isEventMouseDouble,
     isEventTouchDouble,
     isEventMouseLong,
