@@ -9,8 +9,8 @@ function makeQinUID(): string {
 
 function makeQindredUID(qindred: string): string {
     return qindred + "_qindred_" 
-            + getLastChars(Date.now() + "", 4, "0", false) + "_" 
-            + fillToString(Math.floor(Math.random() * 10000), 5, "0", false);
+            + getLastChars(Date.now() + "", 3, "0", false) + "_" 
+            + fillToString(Math.floor(Math.random() * 1000), 3, "0", false);
 }
 
 function getLastChars(source: string, count: number, fillWith: string = " ", atEnd: boolean = true): string {
