@@ -327,10 +327,10 @@ function stopPropagation(event: any) {
     return false;
 }
 
-var lastEventMouse: MouseEvent = null;
-var lastEventTouch: TouchEvent = null;
-var actualEventMouse: MouseEvent = null;
-var actualEventTouch: TouchEvent = null;
+let lastEventMouse: MouseEvent = null;
+let lastEventTouch: TouchEvent = null;
+let actualEventMouse: MouseEvent = null;
+let actualEventTouch: TouchEvent = null;
 
 function makeEventMousePoint(isStart: boolean, ev: MouseEvent): QinPoint {
     if (!ev) {
@@ -364,8 +364,9 @@ function makeEventTouch(isStart: boolean, ev: TouchEvent): QinPoint {
         result.posX = ev.touches[index].clientX;
         result.posY = ev.touches[index].clientY;
     }
-    if (isStart) {
-        lastEventTouch = ev;
+    if (!isStart) {
+        lastEventTouch = actualEventTouch;
+        actualEventTouch = ev;
     }
     return result;
 }
