@@ -252,9 +252,9 @@ export class QinEvent {
     public get isMenu(): boolean {
         if (this._eventKey) {
             return isMenuKey(this._eventKey);
-        } else if (this._eventKey) {
+        } else if (this._eventMouse) {
             return isMenuMouse(this._eventMouse);
-        } else if (this._eventKey) {
+        } else if (this._eventTouch) {
             return isMenuTouch(this._eventTouch);
         }
         return false;
@@ -849,7 +849,7 @@ function addActionsMainMouse(origins: HTMLElement[], action: QinAction) {
 
 function addActionsMainTouch(origins: HTMLElement[], action: QinAction) {
     for (const element of origins) {
-        addActionMainPoint(element, action);
+        addActionMainTouch(element, action);
     }
 }
 
@@ -879,7 +879,7 @@ function addActionsMidiMouse(origins: HTMLElement[], action: QinAction) {
 
 function addActionsMidiTouch(origins: HTMLElement[], action: QinAction) {
     for (const element of origins) {
-        addActionMidiPoint(element, action);
+        addActionMidiTouch(element, action);
     }
 }
 
@@ -909,7 +909,7 @@ function addActionsMenuMouse(origins: HTMLElement[], action: QinAction) {
 
 function addActionsMenuTouch(origins: HTMLElement[], action: QinAction) {
     for (const element of origins) {
-        addActionMenuPoint(element, action);
+        addActionMenuTouch(element, action);
     }
 }
 
