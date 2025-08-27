@@ -895,7 +895,7 @@ function addActionsKey(keyList: string[], origins: HTMLElement[], action: QinAct
     }
 }
 
-function addMover(sources: HTMLElement[], target: HTMLElement, dragCalls?: QinPointerCalls) {
+function addMover(sources: HTMLElement[], target: HTMLElement, pointerCalls?: QinPointerCalls) {
     var dragInitEventX = 0;
     var dragInitEventY = 0;
     var dragInitPosX = 0;
@@ -911,12 +911,12 @@ function addMover(sources: HTMLElement[], target: HTMLElement, dragCalls?: QinPo
         if (document.onmousemove || document.ontouchmove) {
             return;
         }
-        if (dragCalls && dragCalls.onDouble && isEventMouseDouble(true, ev)) {
-            dragCalls.onDouble();
+        if (pointerCalls && pointerCalls.onDouble && isEventMouseDouble(true, ev)) {
+            pointerCalls.onDouble();
             return;
         }
-        if (dragCalls && dragCalls.onLong && isEventMouseLong(true, ev)) {
-            dragCalls.onLong();
+        if (pointerCalls && pointerCalls.onLong && isEventMouseLong(true, ev)) {
+            pointerCalls.onLong();
             return;
         }
         const pointer = getEventMousePoint(true, ev);
@@ -929,8 +929,8 @@ function addMover(sources: HTMLElement[], target: HTMLElement, dragCalls?: QinPo
         document.onmouseup = onMoverClose;
         document.ontouchend = onMoverClose;
         QinSkin.hideAllIFrames();
-        if (dragCalls && dragCalls.onStart) {
-            dragCalls.onStart();
+        if (pointerCalls && pointerCalls.onStart) {
+            pointerCalls.onStart();
         }
         return stopEvent(ev);
     }
@@ -939,12 +939,12 @@ function addMover(sources: HTMLElement[], target: HTMLElement, dragCalls?: QinPo
         if (document.onmousemove || document.ontouchmove) {
             return;
         }
-        if (dragCalls && dragCalls.onDouble && isEventTouchDouble(true, ev)) {
-            dragCalls.onDouble();
+        if (pointerCalls && pointerCalls.onDouble && isEventTouchDouble(true, ev)) {
+            pointerCalls.onDouble();
             return;
         }
-        if (dragCalls && dragCalls.onLong && isEventTouchLong(true, ev)) {
-            dragCalls.onLong();
+        if (pointerCalls && pointerCalls.onLong && isEventTouchLong(true, ev)) {
+            pointerCalls.onLong();
             return;
         }
         const pointer = getEventTouchPoint(true, ev);
@@ -957,8 +957,8 @@ function addMover(sources: HTMLElement[], target: HTMLElement, dragCalls?: QinPo
         document.onmouseup = onMoverClose;
         document.ontouchend = onMoverClose;
         QinSkin.hideAllIFrames();
-        if (dragCalls && dragCalls.onStart) {
-            dragCalls.onStart();
+        if (pointerCalls && pointerCalls.onStart) {
+            pointerCalls.onStart();
         }
         return stopEvent(ev);
     }
@@ -971,8 +971,8 @@ function addMover(sources: HTMLElement[], target: HTMLElement, dragCalls?: QinPo
         var dragFinalY = dragInitPosY + dragDifY;
         target.style.left = (dragFinalX > 0 ? dragFinalX : 0) + "px";
         target.style.top = (dragFinalY > 0 ? dragFinalY : 0) + "px";
-        if (dragCalls && dragCalls.onMove) {
-            dragCalls.onMove();
+        if (pointerCalls && pointerCalls.onMove) {
+            pointerCalls.onMove();
         }
         return stopEvent(ev);
     }
@@ -985,8 +985,8 @@ function addMover(sources: HTMLElement[], target: HTMLElement, dragCalls?: QinPo
         var dragFinalY = dragInitPosY + dragDifY;
         target.style.left = (dragFinalX > 0 ? dragFinalX : 0) + "px";
         target.style.top = (dragFinalY > 0 ? dragFinalY : 0) + "px";
-        if (dragCalls && dragCalls.onMove) {
-            dragCalls.onMove();
+        if (pointerCalls && pointerCalls.onMove) {
+            pointerCalls.onMove();
         }
         return stopEvent(ev);
     }
@@ -998,14 +998,14 @@ function addMover(sources: HTMLElement[], target: HTMLElement, dragCalls?: QinPo
         document.onmouseup = null;
         QinSkin.showAllIFrames();
         QinSkin.clearSelection();
-        if (dragCalls && dragCalls.onEnd) {
-            dragCalls.onEnd();
+        if (pointerCalls && pointerCalls.onEnd) {
+            pointerCalls.onEnd();
         }
         return stopEvent(ev);
     }
 }
 
-function addResizer(sources: HTMLElement[], target: HTMLElement, dragCalls?: QinPointerCalls) {
+function addResizer(sources: HTMLElement[], target: HTMLElement, pointerCalls?: QinPointerCalls) {
     let dragInitEventX = 0;
     let dragInitEventY = 0;
     let dragInitWidth = 0;
@@ -1021,12 +1021,12 @@ function addResizer(sources: HTMLElement[], target: HTMLElement, dragCalls?: Qin
         if (document.onmousemove || document.ontouchmove) {
             return;
         }
-        if (dragCalls && dragCalls.onDouble && isEventMouseDouble(true, ev)) {
-            dragCalls.onDouble();
+        if (pointerCalls && pointerCalls.onDouble && isEventMouseDouble(true, ev)) {
+            pointerCalls.onDouble();
             return;
         }
-        if (dragCalls && dragCalls.onLong && isEventMouseLong(true, ev)) {
-            dragCalls.onLong();
+        if (pointerCalls && pointerCalls.onLong && isEventMouseLong(true, ev)) {
+            pointerCalls.onLong();
             return;
         }
         const pointer = getEventMousePoint(true, ev);
@@ -1039,8 +1039,8 @@ function addResizer(sources: HTMLElement[], target: HTMLElement, dragCalls?: Qin
         document.onmouseup = onResizerClose;
         document.ontouchend = onResizerClose;
         QinSkin.hideAllIFrames();
-        if (dragCalls && dragCalls.onStart) {
-            dragCalls.onStart();
+        if (pointerCalls && pointerCalls.onStart) {
+            pointerCalls.onStart();
         }
         return stopEvent(ev);
     }
@@ -1049,12 +1049,12 @@ function addResizer(sources: HTMLElement[], target: HTMLElement, dragCalls?: Qin
         if (document.onmousemove || document.ontouchmove) {
             return;
         }
-        if (dragCalls && dragCalls.onDouble && isEventTouchDouble(true, ev)) {
-            dragCalls.onDouble();
+        if (pointerCalls && pointerCalls.onDouble && isEventTouchDouble(true, ev)) {
+            pointerCalls.onDouble();
             return;
         }
-        if (dragCalls && dragCalls.onLong && isEventTouchLong(true, ev)) {
-            dragCalls.onLong();
+        if (pointerCalls && pointerCalls.onLong && isEventTouchLong(true, ev)) {
+            pointerCalls.onLong();
             return;
         }
         const pointer = getEventTouchPoint(true, ev);
@@ -1067,8 +1067,8 @@ function addResizer(sources: HTMLElement[], target: HTMLElement, dragCalls?: Qin
         document.onmouseup = onResizerClose;
         document.ontouchend = onResizerClose;
         QinSkin.hideAllIFrames();
-        if (dragCalls && dragCalls.onStart) {
-            dragCalls.onStart();
+        if (pointerCalls && pointerCalls.onStart) {
+            pointerCalls.onStart();
         }
         return stopEvent(ev);
     }
@@ -1081,8 +1081,8 @@ function addResizer(sources: HTMLElement[], target: HTMLElement, dragCalls?: Qin
         let frameDragFinalHeight = dragInitHeight + frameDragDifY;
         target.style.width = (frameDragFinalWidth > 0 ? frameDragFinalWidth : 0) + "px";
         target.style.height = (frameDragFinalHeight > 0 ? frameDragFinalHeight : 0) + "px";
-        if (dragCalls && dragCalls.onMove) {
-            dragCalls.onMove();
+        if (pointerCalls && pointerCalls.onMove) {
+            pointerCalls.onMove();
         }
         return stopEvent(ev);
     }
@@ -1095,8 +1095,8 @@ function addResizer(sources: HTMLElement[], target: HTMLElement, dragCalls?: Qin
         let frameDragFinalHeight = dragInitHeight + frameDragDifY;
         target.style.width = (frameDragFinalWidth > 0 ? frameDragFinalWidth : 0) + "px";
         target.style.height = (frameDragFinalHeight > 0 ? frameDragFinalHeight : 0) + "px";
-        if (dragCalls && dragCalls.onMove) {
-            dragCalls.onMove();
+        if (pointerCalls && pointerCalls.onMove) {
+            pointerCalls.onMove();
         }
         return stopEvent(ev);
     }
@@ -1108,14 +1108,14 @@ function addResizer(sources: HTMLElement[], target: HTMLElement, dragCalls?: Qin
         document.onmouseup = null;
         QinSkin.showAllIFrames();
         QinSkin.clearSelection();
-        if (dragCalls && dragCalls.onEnd) {
-            dragCalls.onEnd();
+        if (pointerCalls && pointerCalls.onEnd) {
+            pointerCalls.onEnd();
         }
         return stopEvent(ev);
     }
 }
 
-function addScroller(target: HTMLElement, dragCalls?: QinPointerCalls) {
+function addScroller(target: HTMLElement, pointerCalls?: QinPointerCalls) {
     let dragInitX = 0;
     let dragInitY = 0;
     let dragScrollX = 0;
@@ -1130,12 +1130,12 @@ function addScroller(target: HTMLElement, dragCalls?: QinPointerCalls) {
             return;
         }
         stopPropagation(ev);
-        if (dragCalls && dragCalls.onDouble && isEventMouseDouble(true, ev)) {
-            dragCalls.onDouble();
+        if (pointerCalls && pointerCalls.onDouble && isEventMouseDouble(true, ev)) {
+            pointerCalls.onDouble();
             return;
         }
-        if (dragCalls && dragCalls.onLong && isEventMouseLong(true, ev)) {
-            dragCalls.onLong();
+        if (pointerCalls && pointerCalls.onLong && isEventMouseLong(true, ev)) {
+            pointerCalls.onLong();
             return;
         }
         const pointer = getEventMousePoint(true, ev);
@@ -1148,8 +1148,8 @@ function addScroller(target: HTMLElement, dragCalls?: QinPointerCalls) {
         document.ontouchend = onScrollerClose;
         document.onmouseup = onScrollerClose;
         QinSkin.hideAllIFrames();
-        if (dragCalls && dragCalls.onStart) {
-            dragCalls.onStart();
+        if (pointerCalls && pointerCalls.onStart) {
+            pointerCalls.onStart();
         }
         return stopEvent(ev);
     }
@@ -1158,12 +1158,12 @@ function addScroller(target: HTMLElement, dragCalls?: QinPointerCalls) {
         if (document.onmousemove || document.ontouchmove) {
             return;
         }
-        if (dragCalls && dragCalls.onDouble && isEventTouchDouble(true, ev)) {
-            dragCalls.onDouble();
+        if (pointerCalls && pointerCalls.onDouble && isEventTouchDouble(true, ev)) {
+            pointerCalls.onDouble();
             return;
         }
-        if (dragCalls && dragCalls.onLong && isEventTouchLong(true, ev)) {
-            dragCalls.onLong();
+        if (pointerCalls && pointerCalls.onLong && isEventTouchLong(true, ev)) {
+            pointerCalls.onLong();
             return;
         }
         const pointer = getEventTouchPoint(true, ev);
@@ -1176,8 +1176,8 @@ function addScroller(target: HTMLElement, dragCalls?: QinPointerCalls) {
         document.onmouseup = onScrollerClose;
         document.ontouchend = onScrollerClose;
         QinSkin.hideAllIFrames();
-        if (dragCalls && dragCalls.onStart) {
-            dragCalls.onStart();
+        if (pointerCalls && pointerCalls.onStart) {
+            pointerCalls.onStart();
         }
         return stopEvent(ev);
     }
@@ -1189,8 +1189,8 @@ function addScroller(target: HTMLElement, dragCalls?: QinPointerCalls) {
         var dragNewX = dragScrollX - dragDifX;
         var dragNewY = dragScrollY - dragDifY;
         target.scrollTo(dragNewX, dragNewY);
-        if (dragCalls && dragCalls.onMove) {
-            dragCalls.onMove();
+        if (pointerCalls && pointerCalls.onMove) {
+            pointerCalls.onMove();
         }
         return stopEvent(ev);
     }
@@ -1202,8 +1202,8 @@ function addScroller(target: HTMLElement, dragCalls?: QinPointerCalls) {
         var dragNewX = dragScrollX - dragDifX;
         var dragNewY = dragScrollY - dragDifY;
         target.scrollTo(dragNewX, dragNewY);
-        if (dragCalls && dragCalls.onMove) {
-            dragCalls.onMove();
+        if (pointerCalls && pointerCalls.onMove) {
+            pointerCalls.onMove();
         }
         return stopEvent(ev);
     }
@@ -1215,8 +1215,8 @@ function addScroller(target: HTMLElement, dragCalls?: QinPointerCalls) {
         document.onmouseup = null;
         QinSkin.showAllIFrames();
         QinSkin.clearSelection();
-        if (dragCalls && dragCalls.onEnd) {
-            dragCalls.onEnd();
+        if (pointerCalls && pointerCalls.onEnd) {
+            pointerCalls.onEnd();
         }
         return stopEvent(ev);
     }
