@@ -1129,6 +1129,170 @@ function styleAsZIndex(el: HTMLElement, index: number) {
     }
 }
 
+function styleAsCursorAuto(el: HTMLElement) {
+    el.style.whiteSpace = "auto";
+}
+
+function styleAsCursorDefault(el: HTMLElement) {
+    el.style.whiteSpace = "default";
+}
+
+function styleAsCursorNone(el: HTMLElement) {
+    el.style.whiteSpace = "none";
+}
+
+function styleAsCursorContextMenu(el: HTMLElement) {
+    el.style.whiteSpace = "context-menu";
+}
+
+function styleAsCursorHelp(el: HTMLElement) {
+    el.style.whiteSpace = "help";
+}
+
+function styleAsCursorPointer(el: HTMLElement) {
+    el.style.whiteSpace = "pointer";
+}
+
+function styleAsCursorProgress(el: HTMLElement) {
+    el.style.whiteSpace = "progress";
+}
+
+function styleAsCursorWait(el: HTMLElement) {
+    el.style.whiteSpace = "wait";
+}
+
+function styleAsCursorCell(el: HTMLElement) {
+    el.style.whiteSpace = "cell";
+}
+
+function styleAsCursorCrosshair(el: HTMLElement) {
+    el.style.whiteSpace = "crosshair";
+}
+
+function styleAsCursorText(el: HTMLElement) {
+    el.style.whiteSpace = "text";
+}
+
+function styleAsCursorVerticalText(el: HTMLElement) {
+    el.style.whiteSpace = "vertical-text";
+}
+
+function styleAsCursorAlias(el: HTMLElement) {
+    el.style.whiteSpace = "alias";
+}
+
+function styleAsCursorCopy(el: HTMLElement) {
+    el.style.whiteSpace = "copy";
+}
+
+function styleAsCursorMove(el: HTMLElement) {
+    el.style.whiteSpace = "move";
+}
+
+function styleAsCursorNoDrop(el: HTMLElement) {
+    el.style.whiteSpace = "no-drop";
+}
+
+function styleAsCursorNotAllowed(el: HTMLElement) {
+    el.style.whiteSpace = "not-allowed";
+}
+
+function styleAsCursorGrab(el: HTMLElement) {
+    el.style.whiteSpace = "grab";
+}
+
+function styleAsCursorGrabbing(el: HTMLElement) {
+    el.style.whiteSpace = "grabbing";
+}
+
+function styleAsCursorAllScroll(el: HTMLElement) {
+    el.style.whiteSpace = "all-scroll";
+}
+
+function styleAsCursorColResize(el: HTMLElement) {
+    el.style.whiteSpace = "col-resize";
+}
+
+function styleAsCursorRowResize(el: HTMLElement) {
+    el.style.whiteSpace = "row-resize";
+}
+
+function styleAsCursorNResize(el: HTMLElement) {
+    el.style.whiteSpace = "n-resize";
+}
+
+function styleAsCursorEResize(el: HTMLElement) {
+    el.style.whiteSpace = "e-resize";
+}
+
+function styleAsCursorSResize(el: HTMLElement) {
+    el.style.whiteSpace = "s-resize";
+}
+
+function styleAsCursorWResize(el: HTMLElement) {
+    el.style.whiteSpace = "w-resize";
+}
+
+function styleAsCursorNEResize(el: HTMLElement) {
+    el.style.whiteSpace = "ne-resize";
+}
+
+function styleAsCursorNWResize(el: HTMLElement) {
+    el.style.whiteSpace = "nw-resize";
+}
+
+function styleAsCursorSEResize(el: HTMLElement) {
+    el.style.whiteSpace = "se-resize";
+}
+
+function styleAsCursorSWResize(el: HTMLElement) {
+    el.style.whiteSpace = "sw-resize";
+}
+
+function styleAsCursorEWResize(el: HTMLElement) {
+    el.style.whiteSpace = "ew-resize";
+}
+
+function styleAsCursorNSResize(el: HTMLElement) {
+    el.style.whiteSpace = "ns-resize";
+}
+
+function styleAsCursorNEWSResize(el: HTMLElement) {
+    el.style.whiteSpace = "nesw-resize";
+}
+
+function styleAsCursorNWSEResize(el: HTMLElement) {
+    el.style.whiteSpace = "nwse-resize";
+}
+
+function styleAsCursorZoomIn(el: HTMLElement) {
+    el.style.whiteSpace = "zoom-in";
+}
+
+function styleAsCursorZoomOut(el: HTMLElement) {
+    el.style.whiteSpace = "zoom-out";
+}
+
+function styleAsCursorInherit(el: HTMLElement) {
+    el.style.whiteSpace = "inherit";
+}
+
+function styleAsCursorInitial(el: HTMLElement) {
+    el.style.whiteSpace = "initial";
+}
+
+function styleAsCursorRevert(el: HTMLElement) {
+    el.style.whiteSpace = "revert";
+}
+
+function styleAsCursorRevertLayer(el: HTMLElement) {
+    el.style.whiteSpace = "revert-layer";
+}
+
+function styleAsCursorUnset(el: HTMLElement) {
+    el.style.whiteSpace = "unset";
+}
+
 function styleAsWhiteSpaceNormal(el: HTMLElement) {
     el.style.whiteSpace = "normal";
 }
@@ -1585,6 +1749,47 @@ export const QinSkin = {
     styleAsBackgroundImage,
     styleAsBackgroundImageInitial,
     styleAsZIndex,
+    styleAsCursorAuto,
+    styleAsCursorDefault,
+    styleAsCursorNone,
+    styleAsCursorContextMenu,
+    styleAsCursorHelp,
+    styleAsCursorPointer,
+    styleAsCursorProgress,
+    styleAsCursorWait,
+    styleAsCursorCell,
+    styleAsCursorCrosshair,
+    styleAsCursorText,
+    styleAsCursorVerticalText,
+    styleAsCursorAlias,
+    styleAsCursorCopy,
+    styleAsCursorMove,
+    styleAsCursorNoDrop,
+    styleAsCursorNotAllowed,
+    styleAsCursorGrab,
+    styleAsCursorGrabbing,
+    styleAsCursorAllScroll,
+    styleAsCursorColResize,
+    styleAsCursorRowResize,
+    styleAsCursorNResize,
+    styleAsCursorEResize,
+    styleAsCursorSResize,
+    styleAsCursorWResize,
+    styleAsCursorNEResize,
+    styleAsCursorNWResize,
+    styleAsCursorSEResize,
+    styleAsCursorSWResize,
+    styleAsCursorEWResize,
+    styleAsCursorNSResize,
+    styleAsCursorNEWSResize,
+    styleAsCursorNWSEResize,
+    styleAsCursorZoomIn,
+    styleAsCursorZoomOut,
+    styleAsCursorInherit,
+    styleAsCursorInitial,
+    styleAsCursorRevert,
+    styleAsCursorRevertLayer,
+    styleAsCursorUnset,
     styleAsWhiteSpaceNormal,
     styleAsWhiteSpaceNoWrap,
     styleAsWhiteSpacePre,
