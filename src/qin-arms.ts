@@ -369,8 +369,8 @@ function getEventTouchPoint(isStart: boolean, ev: TouchEvent): QinPoint {
         posX: 0,
         posY: 0,
     };
-    if (ev.touches && this._event.touches.length >= 1) {
-        let index = Math.floor(this._event.touches.length / 2);
+    if (ev.touches && ev.touches.length >= 1) {
+        let index = Math.floor(ev.touches.length / 2);
         result.posX = ev.touches[index].clientX;
         result.posY = ev.touches[index].clientY;
     }
