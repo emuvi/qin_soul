@@ -1349,28 +1349,56 @@ function styleAsWhiteSpaceNormal(el: HTMLElement) {
     el.style.whiteSpace = "normal";
 }
 
-function styleAsWhiteSpaceNoWrap(el: HTMLElement) {
-    el.style.whiteSpace = "nowrap";
-}
-
 function styleAsWhiteSpacePre(el: HTMLElement) {
     el.style.whiteSpace = "pre";
-}
-
-function styleAsWhiteSpacePreLine(el: HTMLElement) {
-    el.style.whiteSpace = "pre-line";
 }
 
 function styleAsWhiteSpacePreWrap(el: HTMLElement) {
     el.style.whiteSpace = "pre-wrap";
 }
 
-function styleAsWhiteSpaceInitial(el: HTMLElement) {
-    el.style.whiteSpace = "initial";
+function styleAsWhiteSpacePreLine(el: HTMLElement) {
+    el.style.whiteSpace = "pre-line";
+}
+
+function styleAsWhiteSpaceNoWrap(el: HTMLElement) {
+    el.style.whiteSpace = "nowrap";
+}
+
+function styleAsWhiteSpaceWrap(el: HTMLElement) {
+    el.style.whiteSpace = "wrap";
+}
+
+function styleAsWhiteSpaceBreakSpaces(el: HTMLElement) {
+    el.style.whiteSpace = "break-spaces";
+}
+
+function styleAsWhiteSpaceCollapse(el: HTMLElement) {
+    el.style.whiteSpace = "collapse";
+}
+
+function styleAsWhiteSpacePreserveNowrap(el: HTMLElement) {
+    el.style.whiteSpace = "preserve nowrap";
 }
 
 function styleAsWhiteSpaceInherit(el: HTMLElement) {
     el.style.whiteSpace = "inherit";
+}
+
+function styleAsWhiteSpaceInitial(el: HTMLElement) {
+    el.style.whiteSpace = "initial";
+}
+
+function styleAsWhiteSpaceRevert(el: HTMLElement) {
+    el.style.whiteSpace = "revert";
+}
+
+function styleAsWhiteSpaceRevertLayer(el: HTMLElement) {
+    el.style.whiteSpace = "revert-layer";
+}
+
+function styleAsWhiteSpaceUnset(el: HTMLElement) {
+    el.style.whiteSpace = "unset";
 }
 
 function applyStyles(element: HTMLElement, styles: Partial<CSSStyleDeclaration>) {
@@ -1856,12 +1884,19 @@ export const QinSkin = {
     styleAsCursorRevertLayer,
     styleAsCursorUnset,
     styleAsWhiteSpaceNormal,
-    styleAsWhiteSpaceNoWrap,
     styleAsWhiteSpacePre,
-    styleAsWhiteSpacePreLine,
     styleAsWhiteSpacePreWrap,
+    styleAsWhiteSpacePreLine,
+    styleAsWhiteSpaceNoWrap,
+    styleAsWhiteSpaceWrap,
+    styleAsWhiteSpaceBreakSpaces,
+    styleAsWhiteSpaceCollapse,
+    styleAsWhiteSpacePreserveNowrap,
     styleAsWhiteSpaceInitial,
     styleAsWhiteSpaceInherit,
+    styleAsWhiteSpaceRevert,
+    styleAsWhiteSpaceRevertLayer,
+    styleAsWhiteSpaceUnset,
     applyStyles,
     getPixelsOrInitial,
     getPercentOrInitial,
