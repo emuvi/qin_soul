@@ -1182,167 +1182,167 @@ function styleAsZIndex(el: HTMLElement, index: number) {
 }
 
 function styleAsCursorAuto(el: HTMLElement) {
-    el.style.whiteSpace = "auto";
+    el.style.cursor = "auto";
 }
 
 function styleAsCursorDefault(el: HTMLElement) {
-    el.style.whiteSpace = "default";
+    el.style.cursor = "default";
 }
 
 function styleAsCursorNone(el: HTMLElement) {
-    el.style.whiteSpace = "none";
+    el.style.cursor = "none";
 }
 
 function styleAsCursorContextMenu(el: HTMLElement) {
-    el.style.whiteSpace = "context-menu";
+    el.style.cursor = "context-menu";
 }
 
 function styleAsCursorHelp(el: HTMLElement) {
-    el.style.whiteSpace = "help";
+    el.style.cursor = "help";
 }
 
 function styleAsCursorPointer(el: HTMLElement) {
-    el.style.whiteSpace = "pointer";
+    el.style.cursor = "pointer";
 }
 
 function styleAsCursorProgress(el: HTMLElement) {
-    el.style.whiteSpace = "progress";
+    el.style.cursor = "progress";
 }
 
 function styleAsCursorWait(el: HTMLElement) {
-    el.style.whiteSpace = "wait";
+    el.style.cursor = "wait";
 }
 
 function styleAsCursorCell(el: HTMLElement) {
-    el.style.whiteSpace = "cell";
+    el.style.cursor = "cell";
 }
 
 function styleAsCursorCrosshair(el: HTMLElement) {
-    el.style.whiteSpace = "crosshair";
+    el.style.cursor = "crosshair";
 }
 
 function styleAsCursorText(el: HTMLElement) {
-    el.style.whiteSpace = "text";
+    el.style.cursor = "text";
 }
 
 function styleAsCursorVerticalText(el: HTMLElement) {
-    el.style.whiteSpace = "vertical-text";
+    el.style.cursor = "vertical-text";
 }
 
 function styleAsCursorAlias(el: HTMLElement) {
-    el.style.whiteSpace = "alias";
+    el.style.cursor = "alias";
 }
 
 function styleAsCursorCopy(el: HTMLElement) {
-    el.style.whiteSpace = "copy";
+    el.style.cursor = "copy";
 }
 
 function styleAsCursorMove(el: HTMLElement) {
-    el.style.whiteSpace = "move";
+    el.style.cursor = "move";
 }
 
 function styleAsCursorNoDrop(el: HTMLElement) {
-    el.style.whiteSpace = "no-drop";
+    el.style.cursor = "no-drop";
 }
 
 function styleAsCursorNotAllowed(el: HTMLElement) {
-    el.style.whiteSpace = "not-allowed";
+    el.style.cursor = "not-allowed";
 }
 
 function styleAsCursorGrab(el: HTMLElement) {
-    el.style.whiteSpace = "grab";
+    el.style.cursor = "grab";
 }
 
 function styleAsCursorGrabbing(el: HTMLElement) {
-    el.style.whiteSpace = "grabbing";
+    el.style.cursor = "grabbing";
 }
 
 function styleAsCursorAllScroll(el: HTMLElement) {
-    el.style.whiteSpace = "all-scroll";
+    el.style.cursor = "all-scroll";
 }
 
 function styleAsCursorColResize(el: HTMLElement) {
-    el.style.whiteSpace = "col-resize";
+    el.style.cursor = "col-resize";
 }
 
 function styleAsCursorRowResize(el: HTMLElement) {
-    el.style.whiteSpace = "row-resize";
+    el.style.cursor = "row-resize";
 }
 
 function styleAsCursorNResize(el: HTMLElement) {
-    el.style.whiteSpace = "n-resize";
+    el.style.cursor = "n-resize";
 }
 
 function styleAsCursorEResize(el: HTMLElement) {
-    el.style.whiteSpace = "e-resize";
+    el.style.cursor = "e-resize";
 }
 
 function styleAsCursorSResize(el: HTMLElement) {
-    el.style.whiteSpace = "s-resize";
+    el.style.cursor = "s-resize";
 }
 
 function styleAsCursorWResize(el: HTMLElement) {
-    el.style.whiteSpace = "w-resize";
+    el.style.cursor = "w-resize";
 }
 
 function styleAsCursorNEResize(el: HTMLElement) {
-    el.style.whiteSpace = "ne-resize";
+    el.style.cursor = "ne-resize";
 }
 
 function styleAsCursorNWResize(el: HTMLElement) {
-    el.style.whiteSpace = "nw-resize";
+    el.style.cursor = "nw-resize";
 }
 
 function styleAsCursorSEResize(el: HTMLElement) {
-    el.style.whiteSpace = "se-resize";
+    el.style.cursor = "se-resize";
 }
 
 function styleAsCursorSWResize(el: HTMLElement) {
-    el.style.whiteSpace = "sw-resize";
+    el.style.cursor = "sw-resize";
 }
 
 function styleAsCursorEWResize(el: HTMLElement) {
-    el.style.whiteSpace = "ew-resize";
+    el.style.cursor = "ew-resize";
 }
 
 function styleAsCursorNSResize(el: HTMLElement) {
-    el.style.whiteSpace = "ns-resize";
+    el.style.cursor = "ns-resize";
 }
 
 function styleAsCursorNEWSResize(el: HTMLElement) {
-    el.style.whiteSpace = "nesw-resize";
+    el.style.cursor = "nesw-resize";
 }
 
 function styleAsCursorNWSEResize(el: HTMLElement) {
-    el.style.whiteSpace = "nwse-resize";
+    el.style.cursor = "nwse-resize";
 }
 
 function styleAsCursorZoomIn(el: HTMLElement) {
-    el.style.whiteSpace = "zoom-in";
+    el.style.cursor = "zoom-in";
 }
 
 function styleAsCursorZoomOut(el: HTMLElement) {
-    el.style.whiteSpace = "zoom-out";
+    el.style.cursor = "zoom-out";
 }
 
 function styleAsCursorInherit(el: HTMLElement) {
-    el.style.whiteSpace = "inherit";
+    el.style.cursor = "inherit";
 }
 
 function styleAsCursorInitial(el: HTMLElement) {
-    el.style.whiteSpace = "initial";
+    el.style.cursor = "initial";
 }
 
 function styleAsCursorRevert(el: HTMLElement) {
-    el.style.whiteSpace = "revert";
+    el.style.cursor = "revert";
 }
 
 function styleAsCursorRevertLayer(el: HTMLElement) {
-    el.style.whiteSpace = "revert-layer";
+    el.style.cursor = "revert-layer";
 }
 
 function styleAsCursorUnset(el: HTMLElement) {
-    el.style.whiteSpace = "unset";
+    el.style.cursor = "unset";
 }
 
 function styleAsWhiteSpaceNormal(el: HTMLElement) {
