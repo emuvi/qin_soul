@@ -459,12 +459,24 @@ function styleAsJustifyContentInherit(el: HTMLElement) {
     el.style.justifyContent = "inherit";
 }
 
+function styleAsAlignItemsNormal(el: HTMLElement) {
+    el.style.alignItems = "normal";
+}
+
 function styleAsAlignItemsStretch(el: HTMLElement) {
     el.style.alignItems = "stretch";
 }
 
 function styleAsAlignItemsCenter(el: HTMLElement) {
     el.style.alignItems = "center";
+}
+
+function styleAsAlignItemsStart(el: HTMLElement) {
+    el.style.alignItems = "start";
+}
+
+function styleAsAlignItemsEnd(el: HTMLElement) {
+    el.style.alignItems = "end";
 }
 
 function styleAsAlignItemsFlexStart(el: HTMLElement) {
@@ -475,16 +487,56 @@ function styleAsAlignItemsFlexEnd(el: HTMLElement) {
     el.style.alignItems = "flex-end";
 }
 
+function styleAsAlignItemsSelfStart(el: HTMLElement) {
+    el.style.alignItems = "self-start";
+}
+
+function styleAsAlignItemsSelfEnd(el: HTMLElement) {
+    el.style.alignItems = "self-end";
+}
+
+function styleAsAlignItemsAnchorCenter(el: HTMLElement) {
+    el.style.alignItems = "anchor-center";
+}
+
 function styleAsAlignItemsBaseline(el: HTMLElement) {
     el.style.alignItems = "baseline";
+}
+
+function styleAsAlignItemsFirstBaseline(el: HTMLElement) {
+    el.style.alignItems = "first baseline";
+}
+
+function styleAsAlignItemsLastBaseline(el: HTMLElement) {
+    el.style.alignItems = "last baseline";
+}
+
+function styleAsAlignItemsSafeCenter(el: HTMLElement) {
+    el.style.alignItems = "safe center";
+}
+
+function styleAsAlignItemsUnsafeCenter(el: HTMLElement) {
+    el.style.alignItems = "unsafe center";
+}
+
+function styleAsAlignItemsInherit(el: HTMLElement) {
+    el.style.alignItems = "inherit";
 }
 
 function styleAsAlignItemsInitial(el: HTMLElement) {
     el.style.alignItems = "initial";
 }
 
-function styleAsAlignItemsInherit(el: HTMLElement) {
-    el.style.alignItems = "inherit";
+function styleAsAlignItemsRevert(el: HTMLElement) {
+    el.style.alignItems = "stretch";
+}
+
+function styleAsAlignItemsRevertLayer(el: HTMLElement) {
+    el.style.alignItems = "revert-layer";
+}
+
+function styleAsAlignItemsUnset(el: HTMLElement) {
+    el.style.alignItems = "unset";
 }
 
 function styleAsBounds(el: HTMLElement, top: number, right: number, bottom: number, left: number) {
@@ -1629,13 +1681,26 @@ export const QinSkin = {
     styleAsJustifyContentSpaceEvenly,
     styleAsJustifyContentInitial,
     styleAsJustifyContentInherit,
+    styleAsAlignItemsNormal,
     styleAsAlignItemsStretch,
     styleAsAlignItemsCenter,
+    styleAsAlignItemsStart,
+    styleAsAlignItemsEnd,
     styleAsAlignItemsFlexStart,
     styleAsAlignItemsFlexEnd,
+    styleAsAlignItemsSelfStart,
+    styleAsAlignItemsSelfEnd,
+    styleAsAlignItemsAnchorCenter,
     styleAsAlignItemsBaseline,
-    styleAsAlignItemsInitial,
+    styleAsAlignItemsFirstBaseline,
+    styleAsAlignItemsLastBaseline,
+    styleAsAlignItemsSafeCenter,
+    styleAsAlignItemsUnsafeCenter,
     styleAsAlignItemsInherit,
+    styleAsAlignItemsInitial,
+    styleAsAlignItemsRevert,
+    styleAsAlignItemsRevertLayer,
+    styleAsAlignItemsUnset,
     styleAsBounds,
     styleAsTop,
     styleAsLeft,
