@@ -369,10 +369,10 @@ function getEventTouchPoint(isStart: boolean, ev: TouchEvent): QinPoint {
         posX: 0,
         posY: 0,
     };
-    if (ev.touches && ev.touches.length >= 1) {
-        let index = Math.floor(ev.touches.length / 2);
-        result.posX = ev.touches[index].clientX;
-        result.posY = ev.touches[index].clientY;
+    if (ev.changedTouches && ev.changedTouches.length >= 1) {
+        let index = Math.floor(ev.changedTouches.length / 2);
+        result.posX = ev.changedTouches[index].clientX;
+        result.posY = ev.changedTouches[index].clientY;
     }
     if (!isStart) {
         lastEventTouch = actualEventTouch;
@@ -487,28 +487,28 @@ function isOneFinger(ev: TouchEvent): boolean {
     if (!ev) {
         return false;
     }
-    return ev?.touches.length == 1;
+    return ev?.changedTouches.length == 1;
 }
 
 function isTwoFingers(ev: TouchEvent): boolean {
     if (!ev) {
         return false;
     }
-    return ev?.touches.length == 2;
+    return ev?.changedTouches.length == 2;
 }
 
 function isThreeFingers(ev: TouchEvent): boolean {
     if (!ev) {
         return false;
     }
-    return ev?.touches.length == 3;
+    return ev?.changedTouches.length == 3;
 }
 
 function isFourFingers(ev: TouchEvent): boolean {
     if (!ev) {
         return false;
     }
-    return ev?.touches.length == 4;
+    return ev?.changedTouches.length == 4;
 }
 
 function isMainKey(ev: KeyboardEvent): boolean {
