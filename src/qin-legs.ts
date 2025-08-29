@@ -1,6 +1,6 @@
 import { QinSkin } from "./qin-skin";
 
-function newRow(items?: HTMLElement[], styles?: CSSStyleDeclaration): HTMLDivElement {
+function newRow(items?: HTMLElement[], styles?: Partial<CSSStyleDeclaration>): HTMLDivElement {
     const result = document.createElement("div");
     result.style.display = "flex";
     result.style.flexDirection = "row";
@@ -13,7 +13,7 @@ function newRow(items?: HTMLElement[], styles?: CSSStyleDeclaration): HTMLDivEle
     return result;
 }
 
-function newLine(items?: HTMLElement[], styles?: CSSStyleDeclaration): HTMLDivElement {
+function newLine(items?: HTMLElement[], styles?: Partial<CSSStyleDeclaration>): HTMLDivElement {
     const result = document.createElement("div");
     result.style.display = "flex";
     result.style.flexDirection = "row";
@@ -27,7 +27,7 @@ function newLine(items?: HTMLElement[], styles?: CSSStyleDeclaration): HTMLDivEl
     return result;
 }
 
-function newColumn(items?: HTMLElement[], styles?: CSSStyleDeclaration): HTMLDivElement {
+function newColumn(items?: HTMLElement[], styles?: Partial<CSSStyleDeclaration>): HTMLDivElement {
     const result = document.createElement("div");
     result.style.display = "flex";
     result.style.flexDirection = "column";
@@ -40,14 +40,14 @@ function newColumn(items?: HTMLElement[], styles?: CSSStyleDeclaration): HTMLDiv
     return result;
 }
 
-function newSpan(text: string, styles?: CSSStyleDeclaration): HTMLSpanElement {
+function newSpan(text: string, styles?: Partial<CSSStyleDeclaration>): HTMLSpanElement {
     const result = document.createElement("div");
     result.innerText = text;
     QinSkin.applyStyles(result, styles);
     return result;
 }
 
-function newImg(src: string, styles?: CSSStyleDeclaration): HTMLImageElement {
+function newImg(src: string, styles?: Partial<CSSStyleDeclaration>): HTMLImageElement {
     const result = document.createElement("img");
     result.src = src;
     QinSkin.applyStyles(result, styles);
