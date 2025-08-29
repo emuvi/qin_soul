@@ -136,191 +136,195 @@ function isFileZipped(extension: string): boolean {
     return zippedExtensions.indexOf(extension) > -1;
 }
 
-function parseBit(value: any) {
-  return value ? 1 : 0;
+function getBit(value: any) {
+    return value ? 1 : 0;
 }
 
-function parseBool(value: any) {
-  if (typeof value === "boolean") return value;
-  if (typeof value === "string") {
-    let lower = value.trim().toLowerCase();
-    return ["true", "1", "yes", "y"].indexOf(lower) >= 0;
-  }
-  return Boolean(value);
+function getBool(value: any) {
+    if (typeof value === "boolean") return value;
+    if (typeof value === "string") {
+        let lower = value.trim().toLowerCase();
+        return ["true", "1", "yes", "y"].indexOf(lower) >= 0;
+    }
+    return Boolean(value);
 }
 
-function parseByte(value: any) {
-  let num = Number(value) || 0;
-  num = Math.trunc(num);
-  if (num < -128) return -128;
-  if (num > 127) return 127;
-  return num;
+function getByte(value: any) {
+    let num = Number(value);
+    if (isNaN(num)) num = 0;
+    num = Math.trunc(num);
+    if (num < -128) return -128;
+    if (num > 127) return 127;
+    return num;
 }
 
-function parseTiny(value: any) {
-  return parseByte(value);
+function getTiny(value: any) {
+    return getByte(value);
 }
 
-function parseSmall(value: any) {
-  let num = Number(value) || 0;
-  num = Math.trunc(num);
-  if (num < -32768) return -32768;
-  if (num > 32767) return 32767;
-  return num;
+function getSmall(value: any) {
+    let num = Number(value);
+    if (isNaN(num)) num = 0;
+    num = Math.trunc(num);
+    if (num < -32768) return -32768;
+    if (num > 32767) return 32767;
+    return num;
 }
 
-function parseInt32(value: any) {
-  let num = Number(value) || 0;
-  num = Math.trunc(num);
-  if (num < -2147483648) return -2147483648;
-  if (num > 2147483647) return 2147483647;
-  return num;
+function getInt32(value: any) {
+    let num = Number(value);
+    if (isNaN(num)) num = 0;
+    num = Math.trunc(num);
+    if (num < -2147483648) return -2147483648;
+    if (num > 2147483647) return 2147483647;
+    return num;
 }
 
-function parseLong(value: any) {
-  let num = Number(value) || 0;
-  num = Math.trunc(num);
-  if (num < -9007199254740991) return -9007199254740991;
-  if (num > 9007199254740991) return 9007199254740991;
-  return num;
+function getLong(value: any) {
+    let num = Number(value);
+    if (isNaN(num)) num = 0;
+    num = Math.trunc(num);
+    if (num < -9223372036854775808) return -9223372036854775808;
+    if (num > 9223372036854775807) return 9223372036854775807;
+    return num;
 }
 
-function parseSerial(value: any) {
-  return parseInt32(value);
+function getSerial(value: any) {
+    return getInt32(value);
 }
 
-function parseBigSerial(value: any) {
-  return parseLong(value);
+function getBigSerial(value: any) {
+    return getLong(value);
 }
 
-function parseFloat32(value: any) {
-  let num = Number(value) || 0;
-  if (num < -3.4028235e38) return -3.4028235e38;
-  if (num > 3.4028235e38) return 3.4028235e38;
-  return num;
+function getFloat32(value: any) {
+    let num = Number(value);
+    if (isNaN(num)) num = 0;
+    if (num < -3.4028235e38) return -3.4028235e38;
+    if (num > 3.4028235e38) return 3.4028235e38;
+    return Math.fround(num);
 }
 
-function parseReal(value: any) {
-  return parseFloat32(value);
+function getReal(value: any) {
+    return getFloat32(value);
 }
 
-function parseDouble(value: any) {
-  let num = Number(value) || 0;
-  if (num < -1.7976931348623157e308) return -1.7976931348623157e308;
-  if (num > 1.7976931348623157e308) return 1.7976931348623157e308;
-  return num;
+function getDouble(value: any) {
+    let num = Number(value);
+    if (isNaN(num)) num = 0;
+    if (num < -1.7976931348623157e308) return -1.7976931348623157e308;
+    if (num > 1.7976931348623157e308) return 1.7976931348623157e308;
+    return num;
 }
 
-function parseNumeric(value: any) {
-  let num = Number(value);
-  return isNaN(num) ? 0 : num;
+function getNumeric(value: any, specs?: any) {
+    let numStr = String(value ?? "0").trim();
+    if (specs?.precision) {
+        let n = Number(numStr);
+        if (!isNaN(n)) {
+            numStr = n.toFixed(specs.precision);
+        }
+    }
+    let num = Number(numStr);
+    if (!isFinite(num) || numStr.length > 30) {
+        return numStr;
+    }
+    return num;
 }
 
-function parseBigNumeric(value: any) {
-  let num = Number(value);
-  return isNaN(num) ? 0 : num;
+function getBigNumeric(value: any, specs?: any) {
+    return getNumeric(value, specs);
 }
 
-function parseChar(value: any) {
-  let str = String(value || "").trim();
-  return str.charAt(0) || "\0";
+function getChar(value: any) {
+    let str = String(value || "").trim();
+    return str.charAt(0) || "\0";
 }
 
-function parseChars(value: any) {
-  return String(value || "");
+function getChars(value: any) {
+    return String(value || "");
 }
 
-function parseDate(value: any) {
-  let d = new Date(value);
-  return isNaN(d.getTime()) ? new Date(0) : d;
+function getDate(value: any) {
+    let d = new Date(value);
+    return isNaN(d.getTime()) ? new Date(0) : d;
 }
 
-function parseTime(value: any) {
-  if (typeof value === "string") return value;
-  let d = new Date(value);
-  return isNaN(d.getTime()) ? "00:00:00" : d.toTimeString().split(" ")[0];
+function getTime(value: any) {
+    if (typeof value === "string") return value;
+    let d = new Date(value);
+    return isNaN(d.getTime()) ? "00:00:00" : d.toTimeString().split(" ")[0];
 }
 
-function parseDateTime(value: any) {
-  let d = new Date(value);
-  return isNaN(d.getTime()) ? new Date(0) : d;
+function getDateTime(value: any) {
+    let d = new Date(value);
+    return isNaN(d.getTime()) ? new Date(0) : d;
 }
 
-function parseTimestamp(value: any) {
-  let d = new Date(value);
-  return isNaN(d.getTime()) ? new Date(0) : d;
+function getTimestamp(value: any) {
+    let d = new Date(value);
+    return isNaN(d.getTime()) ? new Date(0) : d;
 }
 
-function parseBytes(value: any) {
-  if (value instanceof Uint8Array) return value;
-  if (Array.isArray(value)) return new Uint8Array(value.map(function(v){return Number(v)||0;}));
-  if (typeof value === "string") return new Uint8Array([].map.call(value,function(c){return c.charCodeAt(0);}));
-  return new Uint8Array(0);
+function getBytes(value: any) {
+    if (value instanceof Uint8Array) return value;
+    if (Array.isArray(value)) return new Uint8Array(value.map(function(v){return Number(v)||0;}));
+    if (typeof value === "string") return new Uint8Array([].map.call(value,function(c){return c.charCodeAt(0);}));
+    return new Uint8Array(0);
 }
 
-function parseBlob(value: any) {
-  if (value instanceof Uint8Array || value instanceof ArrayBuffer) return value;
-  return parseBytes(value);
+function getBlob(value: any) {
+    if (value instanceof Uint8Array || value instanceof ArrayBuffer) return value;
+    return getBytes(value);
 }
 
-function parseText(value: any) {
-  return String(value || "");
+function getText(value: any) {
+    return String(value || "");
 }
 
-function parseObject(value: any) {
-  return JSON.parse(String(value || "{}"));
+function getObject(value: any) {
+    return JSON.parse(String(value || "{}"));
 }
 
-function parseValued(type: Nature, data: any): any {
+function getValued(type: Nature, data: any, specs?: any): any {
     switch (type) {
-        case Nature.BIT:
-            return parseBit(data);
-        case Nature.BOOL:
-            return parseBool(data);
-        case Nature.BYTE:
-            return parseByte(data);
-        case Nature.TINY:
-            return parseTiny(data);
-        case Nature.SMALL:
-            return parseSmall(data);
-        case Nature.INT:
-            return parseInt32(data);
-            case Nature.SERIAL:
-            return parseSerial(data);
-        case Nature.LONG:
-            return parseLong(data);
-        case Nature.BIG_SERIAL:
-            return parseBigSerial(data);
-        case Nature.FLOAT:
-            return parseFloat32(data);
-        case Nature.REAL:
-            return parseReal(data);
+        case Nature.BIT: return getBit(data);
+        case Nature.BOOL: return getBool(data);
+        case Nature.BYTE: return getByte(data);
+        case Nature.TINY: return getTiny(data);
+        case Nature.SMALL: return getSmall(data);
+        case Nature.INT: return getInt32(data);
+        case Nature.SERIAL: return getSerial(data);
+        case Nature.LONG: return getLong(data);
+        case Nature.BIG_SERIAL: return getBigSerial(data);
+        case Nature.FLOAT: return getFloat32(data);
+        case Nature.REAL: return getReal(data);
         case Nature.DOUBLE:
-            return parseDouble(data);
+            return getDouble(data);
         case Nature.NUMERIC:
-            return parseNumeric(data);
+            return getNumeric(data, specs);
         case Nature.BIG_NUMERIC:
-            return parseBigNumeric(data);
+            return getBigNumeric(data, specs);
         case Nature.CHAR:
-            return parseChar(data);
+            return getChar(data);
         case Nature.CHARS:
-            return parseChars(data);
+            return getChars(data);
         case Nature.DATE:
-            return parseDate(data);
+            return getDate(data);
         case Nature.TIME:
-            return parseTime(data);
+            return getTime(data);
         case Nature.DATE_TIME:
-            return parseDateTime(data);
+            return getDateTime(data);
         case Nature.TIMESTAMP:
-            return parseTimestamp(data);
+            return getTimestamp(data);
         case Nature.BYTES:
-            return parseBytes(data);
+            return getBytes(data);
         case Nature.BLOB:
-            return parseBlob(data);
+            return getBlob(data);
         case Nature.TEXT:
-            return parseText(data);
+            return getText(data);
         case Nature.OBJECT:
-            return parseObject(data);
+            return getObject(data);
         default:
             return data;
     }
@@ -342,28 +346,28 @@ export const QinFoot = {
     isFileMovie,
     isFileMusic,
     isFileZipped,
-    parseBit,
-    parseBool,
-    parseByte,
-    parseTiny,
-    parseSmall,
-    parseInt32,
-    parseLong,
-    parseSerial,
-    parseBigSerial,
-    parseFloat32,
-    parseReal,
-    parseDouble,
-    parseNumeric,
-    parseBigNumeric,
-    parseChar,
-    parseChars,
-    parseDate,
-    parseTime,
-    parseDateTime,
-    parseTimestamp,
-    parseBytes,
-    parseBlob,
-    parseText,
-    parseValued
+    getBit,
+    getBool,
+    getByte,
+    getTiny,
+    getSmall,
+    getInt32,
+    getLong,
+    getSerial,
+    getBigSerial,
+    getFloat32,
+    getReal,
+    getDouble,
+    getNumeric,
+    getBigNumeric,
+    getChar,
+    getChars,
+    getDate,
+    getTime,
+    getDateTime,
+    getTimestamp,
+    getBytes,
+    getBlob,
+    getText,
+    getValued
 };
