@@ -306,34 +306,20 @@ function getValued(type: Nature, data: any, specs?: any): any {
         case Nature.BIG_SERIAL: return getBigSerial(data);
         case Nature.FLOAT: return getFloat32(data);
         case Nature.REAL: return getReal(data);
-        case Nature.DOUBLE:
-            return getDouble(data);
-        case Nature.NUMERIC:
-            return getNumeric(data, specs);
-        case Nature.BIG_NUMERIC:
-            return getBigNumeric(data, specs);
-        case Nature.CHAR:
-            return getChar(data);
-        case Nature.CHARS:
-            return getChars(data);
-        case Nature.DATE:
-            return getDate(data);
-        case Nature.TIME:
-            return getTime(data);
-        case Nature.DATE_TIME:
-            return getDateTime(data);
-        case Nature.TIMESTAMP:
-            return getTimestamp(data);
-        case Nature.BYTES:
-            return getBytes(data);
-        case Nature.BLOB:
-            return getBlob(data);
-        case Nature.TEXT:
-            return getText(data);
-        case Nature.OBJECT:
-            return getObject(data);
-        default:
-            return data;
+        case Nature.DOUBLE: return getDouble(data);
+        case Nature.NUMERIC: return getNumeric(data, specs);
+        case Nature.BIG_NUMERIC: return getBigNumeric(data, specs);
+        case Nature.CHAR: return getChar(data);
+        case Nature.CHARS: return getChars(data);
+        case Nature.DATE: return getDate(data);
+        case Nature.TIME: return getTime(data);
+        case Nature.DATE_TIME: return getDateTime(data);
+        case Nature.TIMESTAMP: return getTimestamp(data);
+        case Nature.BYTES: return getBytes(data);
+        case Nature.BLOB: return getBlob(data);
+        case Nature.TEXT: return getText(data);
+        case Nature.OBJECT: return getObject(data);
+        default: return data;
     }
 }
 
