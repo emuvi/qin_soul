@@ -283,6 +283,13 @@ function getText(value: any) {
 }
 
 function getObject(value: any) {
+    if (value instanceof Map) {
+        return Array.from(value.entries())
+            .reduce((obj, [k, v]) => {
+                obj[k] = v;
+                return obj;
+            }, {} as Object);
+    }
     return JSON.parse(String(value || "{}"));
 }
 
