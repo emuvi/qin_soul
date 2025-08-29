@@ -184,8 +184,8 @@ function getLong(value: any) {
     let num = Number(value);
     if (isNaN(num)) num = 0;
     num = Math.trunc(num);
-    if (num < -9223372036854775808) return -9223372036854775808;
-    if (num > 9223372036854775807) return 9223372036854775807;
+    if (num < Number.MIN_SAFE_INTEGER) return Number.MIN_SAFE_INTEGER;
+    if (num > Number.MAX_SAFE_INTEGER) return Number.MAX_SAFE_INTEGER;
     return num;
 }
 
