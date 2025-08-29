@@ -1125,6 +1125,22 @@ function onTransformCloser(ev: MouseEvent | TouchEvent, pointerCalls?: QinPointe
     return stopEvent(ev);
 }
 
+function putOnAllTabStop(el: HTMLElement, actIn: (this: HTMLElement, ev: FocusEvent) => any, actOut: (this: HTMLElement, ev: FocusEvent) => any) {
+    if (el.tabIndex != null && el.tabIndex != undefined) {
+        if (actIn) {
+            el.addEventListener("focusin", actIn);
+        }
+        if (actOut) {
+            el.addEventListener("focusout", actOut);
+        }
+    }
+    for (const child of el.children) {
+        if (child instanceof HTMLElement) {
+            putOnAllTabStop(child, actIn, actOut);
+        }
+    }
+}
+
 export const QinArms = {
     stopEvent,
     getEventPointerPoint,
@@ -1190,4 +1206,5 @@ export const QinArms = {
     addMover,
     addResizer,
     addScroller,
+    putOnAllTabStop,
 };
