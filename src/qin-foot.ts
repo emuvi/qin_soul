@@ -137,10 +137,12 @@ function isFileZipped(extension: string): boolean {
 }
 
 function getBit(value: any) {
+    if (value === null || value === undefined || value === "") return null;
     return value ? 1 : 0;
 }
 
 function getBool(value: any) {
+    if (value === null || value === undefined || value === "") return null;
     if (typeof value === "boolean") return value;
     if (typeof value === "string") {
         let lower = value.trim().toLowerCase();
@@ -150,6 +152,7 @@ function getBool(value: any) {
 }
 
 function getByte(value: any) {
+    if (value === null || value === undefined || value === "") return null;
     let num = Number(value);
     if (isNaN(num)) num = 0;
     num = Math.trunc(num);
@@ -159,10 +162,12 @@ function getByte(value: any) {
 }
 
 function getTiny(value: any) {
+    if (value === null || value === undefined || value === "") return null;
     return getByte(value);
 }
 
 function getSmall(value: any) {
+    if (value === null || value === undefined || value === "") return null;
     let num = Number(value);
     if (isNaN(num)) num = 0;
     num = Math.trunc(num);
@@ -172,6 +177,7 @@ function getSmall(value: any) {
 }
 
 function getInt32(value: any) {
+    if (value === null || value === undefined || value === "") return null;
     let num = Number(value);
     if (isNaN(num)) num = 0;
     num = Math.trunc(num);
@@ -181,6 +187,7 @@ function getInt32(value: any) {
 }
 
 function getLong(value: any) {
+    if (value === null || value === undefined || value === "") return null;
     let num = Number(value);
     if (isNaN(num)) num = 0;
     num = Math.trunc(num);
@@ -190,14 +197,17 @@ function getLong(value: any) {
 }
 
 function getSerial(value: any) {
+    if (value === null || value === undefined || value === "") return null;
     return getInt32(value);
 }
 
 function getBigSerial(value: any) {
+    if (value === null || value === undefined || value === "") return null;
     return getLong(value);
 }
 
 function getFloat32(value: any) {
+    if (value === null || value === undefined || value === "") return null;
     let num = Number(value);
     if (isNaN(num)) num = 0;
     if (num < -3.4028235e38) return -3.4028235e38;
@@ -206,10 +216,12 @@ function getFloat32(value: any) {
 }
 
 function getReal(value: any) {
+    if (value === null || value === undefined || value === "") return null;
     return getFloat32(value);
 }
 
 function getDouble(value: any) {
+    if (value === null || value === undefined || value === "") return null;
     let num = Number(value);
     if (isNaN(num)) num = 0;
     if (num < -1.7976931348623157e308) return -1.7976931348623157e308;
@@ -218,6 +230,7 @@ function getDouble(value: any) {
 }
 
 function getNumeric(value: any, specs?: any) {
+    if (value === null || value === undefined || value === "") return null;
     let numStr = String(value ?? "0").trim();
     if (specs?.precision) {
         let n = Number(numStr);
@@ -233,40 +246,48 @@ function getNumeric(value: any, specs?: any) {
 }
 
 function getBigNumeric(value: any, specs?: any) {
+    if (value === null || value === undefined || value === "") return null;
     return getNumeric(value, specs);
 }
 
 function getChar(value: any) {
+    if (value === null || value === undefined) return null;
     let str = String(value || "").trim();
     return str.charAt(0) || "\0";
 }
 
 function getChars(value: any) {
+    if (value === null || value === undefined) return null;
     return String(value || "");
 }
 
 function getDate(value: any) {
+    if (value === null || value === undefined || value === "") return null;
     let d = new Date(value);
     return isNaN(d.getTime()) ? new Date(0) : d;
 }
 
 function getTime(value: any) {
+    if (value === null || value === undefined || value === "") return null;
     if (typeof value === "string") return value;
     let d = new Date(value);
     return isNaN(d.getTime()) ? "00:00:00" : d.toTimeString().split(" ")[0];
 }
 
 function getDateTime(value: any) {
+    if (value === null || value === undefined || value === "") return null;
     let d = new Date(value);
     return isNaN(d.getTime()) ? new Date(0) : d;
 }
 
 function getTimestamp(value: any) {
+    if (value === null || value === undefined || value === "") return null;
     let d = new Date(value);
     return isNaN(d.getTime()) ? new Date(0) : d;
 }
 
 function getBytes(value: any) {
+    if (value === null || value === undefined || value === "") return null;
     if (value instanceof Uint8Array) return value;
     if (Array.isArray(value)) return new Uint8Array(value.map(function(v){return Number(v)||0;}));
     if (typeof value === "string") return new Uint8Array([].map.call(value,function(c){return c.charCodeAt(0);}));
@@ -274,15 +295,18 @@ function getBytes(value: any) {
 }
 
 function getBlob(value: any) {
+    if (value === null || value === undefined || value === "") return null;
     if (value instanceof Uint8Array || value instanceof ArrayBuffer) return value;
     return getBytes(value);
 }
 
 function getText(value: any) {
+    if (value === null || value === undefined) return null;
     return String(value || "");
 }
 
 function getObject(value: any) {
+    if (value === null || value === undefined || value === "") return null;
     if (value instanceof Map) {
         return Array.from(value.entries())
             .reduce((obj, [k, v]) => {
