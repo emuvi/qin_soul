@@ -19,8 +19,8 @@ export type PathKindName = {
 }
 
 export enum PathKind {
-    FOLDER = "FOLDER",
-    FILE = "FILE"
+    Folder = "Folder",
+    File = "File"
 }
 
 export type Where = {
@@ -47,14 +47,14 @@ export type PathWrite = {
 }
 
 export enum FilesNature {
-    BOTH = "BOTH",
-    DIRECTORIES = "DIRECTORIES",
-    FILES = "FILES",
+    Both = "Both",
+    Directories = "Directories",
+    Files = "Files",
 }
 
 export enum FilesOperation {
-    OPEN = "OPEN",
-    SAVE = "SAVE"                                                                                                     ,
+    Open = "Open",
+    Save = "Save"                                                                                                     ,
 }
 
 export type FilesDescriptor = {
@@ -64,18 +64,18 @@ export type FilesDescriptor = {
 
 export type Execute = {
     name: string;
-    args?: string[];
-    input?: string[];
+    argList?: string[];
+    inputList?: string[];
     joinErrs?: boolean;
     logLevel?: LogLevel;
 };
 
 export enum LogLevel {
-    LEVEL_ERROR = 0,
-    LEVEL_WARN = 1,
-    LEVEL_INFO = 2,
-    LEVEL_DEBUG = 3,
-    LEVEL_TRACE = 4,
+    Error = 0,
+    Warn = 1,
+    Info = 2,
+    Debug = 3,
+    Trace = 4,
 }
 
 export type IssuedToken = string;
@@ -128,8 +128,8 @@ export type AskStream = {
 };
 
 export enum StreamKind {
-    OUT = "OUT",
-    ERR = "ERR",
+    Out = "Out",
+    Err = "Err",
 }
 
 export type ToInsert = {
@@ -230,11 +230,11 @@ export type Join = {
 }
 
 export enum JoinTies {
-    INNER = "INNER",
-    LEFT = "LEFT",
-    RIGHT = "RIGHT",
-    FULL = "FULL",
-    CROSS = "CROSS"
+    Inner = "Inner",
+    Left = "Left",
+    Right = "Right",
+    Full = "Full",
+    Cross = "Cross"
 }
 
 export type Filter = {
@@ -246,24 +246,24 @@ export type Filter = {
 }
 
 export enum FilterSeems {
-    IS = "IS",
-    NOT = "NOT"
+    Is = "Is",
+    IsNot = "IsNot"
 }
 
 export enum FilterLikes {
-    EQUALS = "EQUALS",
-    BIGGER = "BIGGER",
-    LESSER = "LESSER",
-    BIGGER_EQUALS = "BIGGER_EQUALS",
-    LESSER_EQUALS = "LESSER_EQUALS",
-    STARTS_WITH = "STARTS_WITH",
-    ENDS_WITH = "ENDS_WITH",
-    CONTAINS = "CONTAINS"
+    Equals = "Equals",
+    Bigger = "Bigger",
+    Lesser = "Lesser",
+    BiggerOrEquals = "BiggerOrEquals",
+    LesserOrEquals = "LesserOrEquals",
+    StartsWith = "StartsWith",
+    EndsWith = "EndsWith",
+    Contains = "Contains"
 }
 
 export enum FilterTies {
-    AND = "AND",
-    OR = "OR"
+    And = "And",
+    Or = "Or"
 }
 
 export type Linked = {
@@ -319,30 +319,32 @@ export type Typed = {
 }
 
 export enum Nature {
-    BIT = "BIT",
-    BOOL = "BOOL",
-    BYTE = "BYTE",
-    TINY = "TINY",
-    SMALL = "SMALL",
-    INT = "INT",
-    LONG = "LONG",
-    SERIAL = "SERIAL",
-    BIG_SERIAL = "BIG_SERIAL",
-    FLOAT = "FLOAT",
-    REAL = "REAL",
-    DOUBLE = "DOUBLE",
-    NUMERIC = "NUMERIC",
-    BIG_NUMERIC = "BIG_NUMERIC",
-    CHAR = "CHAR",
-    CHARS = "CHARS",
-    DATE = "DATE",
-    TIME = "TIME",
-    DATE_TIME = "DATE_TIME",
-    TIMESTAMP = "TIMESTAMP",
-    BYTES = "BYTES",
-    BLOB = "BLOB",
-    TEXT = "TEXT",
-    OBJECT = "OBJECT"
+    Bool = "Bool",
+    Bit = "Bit",
+    Byte = "Byte",
+    Tiny = "Tiny",
+    Small = "Small",
+    Int = "Int",
+    Long = "Long",
+    BigInt = "BigInt",
+    Serial = "Serial",
+    BigSerial = "BigSerial",
+    Float = "Float",
+    Real = "Real",
+    Double = "Double",
+    Numeric = "Numeric",
+    BigNumeric = "BigNumeric",
+    Char = "Char",
+    Chars = "Chars",
+    Date = "Date",
+    Time = "Time",
+    DateTime = "DateTime",
+    ZoneTime = "ZoneTime",
+    Timestamp = "Timestamp",
+    Bytes = "Bytes",
+    Blob = "Blob",
+    Text = "Text",
+    Object = "Object"
 }
 
 export type Setup = {
@@ -369,26 +371,26 @@ export type Setup = {
     tokenValidity?: number;
 }
 
-export type Bases = Array<DataWays>;
+export type Bases = Array<BasedWays>;
 
-export type DataWays = {
-    dataJdbc: DataJdbc;
-    dataLink: DataLink;
-    storeMinIdle: number;
-    storeMaxIdle: number;
-    storeMaxTotal: number;
+export type BasedWays = {
+    dataJdbc: BasedJdbc;
+    dataLink: BasedLink;
+    poolMinIdle: number;
+    poolMaxIdle: number;
+    poolMaxTotal: number;
 }
 
-export type DataJdbc = {
+export type BasedJdbc = {
     name: string;
     url: string;
     user: string;
     pass: string;
 }
 
-export type DataLink = {
+export type BasedLink = {
     name: string;
-    base: DataBase;
+    base: Based;
     path: string;
     port: number;
     data: string;
@@ -396,7 +398,7 @@ export type DataLink = {
     pass: string;
 }
 
-export enum DataBase {
+export enum Based {
     SQLiteMemory = "SQLiteMemory",
     SQLiteLocal = "SQLiteLocal",
     HSQLDBMemory = "HSQLDBMemory", 
