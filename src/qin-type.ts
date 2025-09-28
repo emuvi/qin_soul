@@ -457,7 +457,7 @@ export type AllowDir = {
 
 export type AllowCmd = {
     name: string;
-    args: Array<string>;
+    argList: Array<string>;
 }
 
 export type AllowBas = {
